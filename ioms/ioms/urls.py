@@ -13,9 +13,20 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url,include
 from django.contrib import admin
+
+from iomstools.views import index
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'', index, name='root'),
+
+    #url(r'^workflow', include('workflow.urls'), name='workflow),
+    #url(r'^hostmanage', include('hostmanage.urls')),
+    #url(r'^cmdb', include('cmdb.urls'))
+    #url(r'^iomstools', include('iomstools.urls')),
+    url(r'^usermanage', include('usermanage.urls')),
+    #url(r'^userhelp', include('userhelp.urls)),
+
 ]
