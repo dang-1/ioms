@@ -11,6 +11,7 @@ class Host(models.Model):
     disk = models.CharField(max_length=50)
     cpu_num = models.CharField(max_length=50)
     cloudplatform = models.CharField(max_length=50)
+    location = models.CharField(max_length=50)
 
     def __str__(self):
         return self.hostname
