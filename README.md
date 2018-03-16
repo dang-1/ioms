@@ -16,3 +16,9 @@ ops system
 
 
 
+## 结构
+1. docs 文档
+2. iom 测试
+3. mysite 广泛测试
+
+
