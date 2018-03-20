@@ -41,8 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'hostmanage.apps.HostmanageConfig',
-    'cmdb.apps.CmdbConfig',
+    #'hostmanage.apps.HostmanageConfig',
+    #'cmdb.apps.CmdbConfig',
+    'sitecollect.apps.SitecollectConfig',
 ]
 
 MIDDLEWARE = [

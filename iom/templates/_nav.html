@@ -1,0 +1,41 @@
+<!-- 这个是左侧的导航栏-->
+<li id="index">
+    <a href="{% url 'index' %}">
+        <i class="fa fa-dashboard" style="width: 14px"></i><span class="nav-label">仪表盘</span><span class="label label-info pull-right"></span>
+    </a>
+</li>
+<li id="links">
+    <a href="{% url 'siteindex' %}">
+        <i class="fa fa-dashboard" style="width: 14px"></i><span class="nav-label">链接管理</span><span class="label label-info pull-right"></span>
+    </a>
+    <ul class="nav nav-second-level active">
+        <li id="links"><a href="{% url 'siteindex' %}">链接列表</a> </li>
+        <li id="add-link"><a href="{% url 'addsite' %}">添加链接</a> </li>
+        <li id="delete-link"><a href="{% url 'deletesite' %}">删除链接</a> </li>
+    </ul>
+</li>
+<li id="users">
+    <a href="">
+        <i class="fa fa-group" style="width: 14px"></i><span class="">用户管理</span><span></span>
+    </a>
+    <ul class="nav nav-second-level active">
+        <li id="user"><a href="">用户列表</a> </li>
+        <li id="user-group"><a href="">用户组</a> </li>
+        <li id="login-log"><a href="">登陆日志</a> </li>
+    </ul>
+</li>
+<li id="users">
+    <a href="">
+        <i class="fa fa-group" style="width: 14px"></i><span class="">资产管理</span><span></span>
+    </a>
+    <ul class="nav nav-second-level active">
+        <li id="user"><a href="">资产列表</a> </li>
+        <li id="user"><a href="">用户组</a> </li>
+        <li id="user"><a href="">系统用户</a> </li>
+    </ul>
+</li>
+<li id="settings">
+    <a href="">
+        <i class="fa fa-gears"></i> <span class="nav-label">设置</span><span class="label label-info pull-right"></span>
+    </a>
+</li>

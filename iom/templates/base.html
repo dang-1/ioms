@@ -1,4 +1,3 @@
-<!--ok -->
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +9,6 @@
     <link rel="shortcut icon" href="{% static 'img/facio.ico' %}" type="image/x-icon">
     {% include '_head_css_js.html' %} <!-- some css and js lib -->
     <link href="{% static 'css/iom.css' %}" rel="stylesheet">
-    <!--{% block custom_head_css_js %} {% endblock %}-->
 
 </head>
 <body>
@@ -18,13 +16,9 @@
     {% include '_left_side_bar.html' %} <!-- 左侧导航栏  -->
     <div id="page-wrapper" class="gray-bg">
         {% include '_header_bar.html' %}
-        {% block help_message %} {% endblock %}
-        {% include '_message.html' %}
         {% block content %}{% endblock %}
         {% include '_footer.html' %}
     </div>
 </div>
 </body>
-{% include '_foot_js.html' %}
-<!--{% block custom_foot_js %} {% endblock %}-->
 </html>

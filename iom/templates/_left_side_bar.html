@@ -3,11 +3,9 @@
     <div class="sidebar-collapse">
         <ul class="nav" id="side-menu">
             {% include '_user_profile.html' %}
-            {% if request.user.is_superuser and request.COOKIES.IN_ADMIN_PAGE != "No" %}
-                {% include '_nav.html' %}
-            {% else %}
-                {% include '_nav_user.html' %}
-            {% endif %}
+            {% include '_nav.html' %}
+
+            {% include '_nav_user.html' %}
         </ul>
     </div>
 </nav>

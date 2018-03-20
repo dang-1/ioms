@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="sitecollect">
+    <p>hello, every body, this page is a collect site page.</p>
+{% for sitetype, sitetotal in site_info.items %}
+    {% if sitetotal %}
+
+    <p> {{ sitetype }}</p>
+    {% for sitename, siteurl in sitetotal.items %}
+    <a href={{ siteurl }}>{{ sitename }}</a>
+    {% endfor %}
+    {% endif %}
+{% endfor %}
+<p>
+    <a href={% url 'addsite' %}>add</a>
+    <a href={% url 'deletesite' %}>delete</a>
+</p>
+
+</div>
+
+<div>
+    <p>powered by tang</p>
+</div>
+{% endblock %}

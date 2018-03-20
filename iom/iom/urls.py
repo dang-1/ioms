@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     #url(r'^hostmanage/', include('hostmanage.urls')),
     url(r'^$', IndexView, name='index'),
+    url(r'^sitecollect/', include('sitecollect.urls'), name='sitecollect'),
 ]
