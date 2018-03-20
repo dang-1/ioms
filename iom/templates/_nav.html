@@ -6,12 +6,13 @@
 </li>
 <li id="links">
     <a href="{% url 'siteindex' %}">
-        <i class="fa fa-dashboard" style="width: 14px"></i><span class="nav-label">链接管理</span><span class="label label-info pull-right"></span>
+        <i class="fa fa-dashboard" style="width: 14px"></i><span class="nav-label">网址收藏</span><span class="label label-info pull-right"></span>
     </a>
     <ul class="nav nav-second-level active">
-        <li id="links"><a href="{% url 'siteindex' %}">链接列表</a> </li>
+        <li id="links"><a href="{% url 'managesite' %}">链接管理</a> </li>
         <li id="add-link"><a href="{% url 'addsite' %}">添加链接</a> </li>
         <li id="delete-link"><a href="{% url 'deletesite' %}">删除链接</a> </li>
+        <li id="type-manage"><a href="{% url 'typemanage' %}">链接类型</a> </li>
     </ul>
 </li>
 <li id="users">

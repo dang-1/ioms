@@ -25,12 +25,21 @@ def siteindex(request):
 
     #return
     return render(request, 'sitecollect/index.html', {'site_info': site_info})
+def managesite(request):
+    pass
 
+def sitetypemanage(request):
+    type_info = {}
+    for i in SiteType.objects.all():
+        type_info[i.typename] = i.typeid
+
+    return render(request, 'sitecollect/site_type_manage.html', {'site_type_list': type_info})
 
 def addsite(request):
-    return render(request, 'sitecollect/addsite.html')
+    return render(request, 'sitecollect/add_site.html')
 
 
 def deletesite(request):
     return render(request, 'sitecollect/deletesite.html')
+
 
