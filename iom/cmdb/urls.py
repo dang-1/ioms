@@ -5,8 +5,8 @@ from .views import *
 
 
 urlpatterns = [
-    url(r'^host_index', host_index, name='host_index'),
-    url(r'^host_add', host_add, name='host_add'),
+    url(r'^cmdb_index', cmdb_index, name='cmdb_index'),
+    #url(r'^', host_add, name='host_add'),
     #url(r'^admin/', admin.site.urls),
     #url(r'^hostmanage', include('hostmanage.urls')),
     #url(r'^index', siteindex, name='siteindex'),

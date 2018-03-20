@@ -26,7 +26,7 @@ def siteindex(request):
     #return
     return render(request, 'sitecollect/index.html', {'site_info': site_info})
 def managesite(request):
-    pass
+    return render(request, 'sitecollect/manage_site.html')
 
 def sitetypemanage(request):
     type_info = {}
@@ -40,6 +40,6 @@ def addsite(request):
 
 
 def deletesite(request):
-    return render(request, 'sitecollect/deletesite.html')
+    return render(request, 'sitecollect/delete_site.html')
 
 

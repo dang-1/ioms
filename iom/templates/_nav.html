@@ -30,7 +30,17 @@
         <i class="fa fa-group" style="width: 14px"></i><span class="">资产管理</span><span></span>
     </a>
     <ul class="nav nav-second-level active">
-        <li id="user"><a href="">资产列表</a> </li>
+        <li id="host-list"><a href="{% url 'host_index' %}">主机列表</a> </li>
+        <li id="user"><a href="{% url 'host_add' %}">添加主机</a> </li>
+        <!--<li id="user"><a href=""></a> </li>-->
+    </ul>
+</li>
+<li id="cmdb">
+    <a href="{% url 'cmdb_index' %}">
+        <i class="fa fa-group" style="width: 14px"></i><span class="">配置管理</span><span></span>
+    </a>
+    <ul class="nav nav-second-level active">
+        <li id="gl"><a href="">GL</a> </li>
         <li id="user"><a href="">用户组</a> </li>
         <li id="user"><a href="">系统用户</a> </li>
     </ul>
