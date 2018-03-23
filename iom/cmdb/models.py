@@ -1,13 +1,13 @@
 #coding: utf-8
 from django.db import models
 
-#from hostmanage.models import Host
+from hostmanage.models import Host
 
 # Create your models here.
-import hostmanage
+
 class ConfigManage(models.Model):
-    gs_ip = models.CharField(max_length=50) #游戏服ip
-    #gs_ip = models.ForeignKey(hostmanage.models.Host,on_delete=models.CASCADE)
+    #gs_ip = models.CharField(max_length=50) #游戏服ip
+    gs_ip = models.ForeignKey(Host, on_delete=models.SET_NULL, blank=True, null=True)  # 机器ip，使用外键
     gs_zone = models.CharField(max_length=50) #区域
     gs_id = models.CharField(max_length=50) #游戏服id
     gs_alias = models.CharField(max_length=50) #唯一标识符
@@ -31,13 +31,7 @@ class ConfigManage(models.Model):
     def __str__(self):
         return self.gs_name
 
-#class ConfigManageR(models.Model):
-#    gs_ip = models.ForeignKey(
-#        Host,
-#        on_delete=models.SET_NULL,
-#        blank=True,
-#        null=True,
-#    )
+
 
 
 
