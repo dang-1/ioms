@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'hostmanage.apps.HostmanageConfig',
     'cmdb.apps.CmdbConfig',
     'sitecollect.apps.SitecollectConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
@@ -71,6 +72,13 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
         },
+        #use Jinja2
+        #{
+        #'BACKEND': 'django.template.backends.jinja2.Jinja2',
+        #'DIRS': [
+        #    '/home/html/jinja2',
+        #],
+        #},
     },
 ]
 
@@ -101,10 +109,14 @@ DATABASES = {
         'NAME': db_name,
         'USER': db_user,
         'PASSWORD': db_password,
+        'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",},
         'HOST': db_host,
         'PORT': db_port,
+        'ATOMIC_REQUESTS': True,
     }
 }
+
+AUTH_USER_MODEL = 'users.User'
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -150,3 +162,7 @@ STATIC_DIR = os.path.join(BASE_DIR, "static")
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR,  'static'),
 )
+
+
+# I18N translation
+LOCALE_PATHS = [os.path.join(BASE_DIR, 'i18n'), ]

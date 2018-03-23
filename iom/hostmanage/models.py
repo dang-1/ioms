@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Host(models.Model):
+    id = models.IntegerField(unique=True,primary_key = True)
     hostname = models.CharField(max_length=50)
     outer_ip = models.CharField(max_length=50)
     inner_ip = models.CharField(max_length=50)

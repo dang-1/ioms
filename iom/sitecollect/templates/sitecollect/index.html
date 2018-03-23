@@ -6,11 +6,18 @@
 {% for sitetype, sitetotal in site_info.items %}
     {% if sitetotal %}
 
-    <p> {{ sitetype }}</p>
-    {% for sitename, siteurl in sitetotal.items %}
-    <a href={{ siteurl }}>{{ sitename }}</a>
-    {% endfor %}
+    <table>
+        <caption>{{ sitetype }}</caption>
+        <tr>
+            {% for sitename, siteurl in sitetotal.items %}
+            <td><a href={{ siteurl }}> {{ sitename }} | </a></td>
+            {% endfor %}
+        </tr>
+    </table>
+
     {% endif %}
+
+
 {% endfor %}
 <p>
     <a href={% url 'addsite' %}>add</a>
