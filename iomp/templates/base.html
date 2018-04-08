@@ -7,6 +7,12 @@
     <title>{％ title_name ％}</title>
 </head>
 <body>
-{% block content %}{% endblock content %}
+<div id="wrapper">
+    <!-- left side bar -->
+    {% include '_left_side_bar.html' %}
+    <div id="page-wrapper" class="gray-bg">
+        {% block content %}{% endblock content %}
+    </div>
+</div>
 </body>
 </html>

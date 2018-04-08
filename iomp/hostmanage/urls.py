@@ -11,6 +11,7 @@ from django.conf.urls import url
 
 from .views import *
 
+app_name = 'hostmanage'
 
 urlpatterns = [
     url(r'^host_index', HostIndex.as_view(), name='host_index'),
