@@ -27,6 +27,8 @@ def IndexView(request):
 
 class IndexView2(LoginRequiredMixin, TemplateView):
     template_name = 'index2.html'
+
+
     initial = {"title": 'index'}
 
     def get(self, request, *args, **kwargs):

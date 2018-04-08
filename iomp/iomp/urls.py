@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', IndexView2.as_view(), name='index'),
     url(r'users/', include('users.urls'), name='user'),
+    url(r'hostmanage/', include('hostmanage.urls'), name='hostmanage'),
 ]

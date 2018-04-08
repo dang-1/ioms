@@ -30,7 +30,7 @@ class Host(models.Model):
     def __str__(self):
         return self.hostname
 
-    #class Meta:
-    #    ordering = ["outer_ip"]
+    class Meta:
+        ordering = ["outer_ip"]
 
 
