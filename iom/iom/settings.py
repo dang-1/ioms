@@ -29,7 +29,7 @@ SECRET_KEY = '1wdfftqd!v5&4x%$%o40#z@4@_hxf0i%h^j6n7#@vdi(fkf5^x'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -44,14 +44,14 @@ INSTALLED_APPS = [
     'hostmanage.apps.HostmanageConfig',
     'cmdb.apps.CmdbConfig',
     'sitecollect.apps.SitecollectConfig',
-    #'users.apps.UsersConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -116,7 +116,7 @@ DATABASES = {
     }
 }
 
-#AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = 'users.User'
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators

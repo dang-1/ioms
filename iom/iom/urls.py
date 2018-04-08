@@ -15,13 +15,20 @@ Including another URLconf
 """
 from django.conf.urls import url,include
 from django.contrib import admin
-
+#from django.conf.urls import handler404, handler500
 from .views import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^hostmanage/', include('hostmanage.urls')),
+    url(r'^users/', include('users.urls'), name='users'),
     url(r'^$', IndexView, name='index'),
     url(r'^sitecollect/', include('sitecollect.urls'), name='sitecollect'),
     url(r'cmdb/', include('cmdb.urls'), name='cmdb'),
+    # 将 auth 应用中的 urls 模块包含进来
+    url(r'^users/', include('django.contrib.auth.urls')),
 ]
+
+#handler404 = page_not_found
+#handler500 = page_not_found
+#handler301 = page_not_found

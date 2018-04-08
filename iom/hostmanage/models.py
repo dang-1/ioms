@@ -20,13 +20,17 @@ class Host(models.Model):
     instance_name = models.CharField(max_length=50,null=True) #实例名字
     virtual_type = models.CharField(max_length=50,null=True) #虚拟化类型
     role = models.CharField(max_length=50,null=True) #角色
-    start_time = models.CharField(max_length=50,null=True) #注册时间
+    start_time = models.CharField(max_length=50,null=True) #注册时间 DateField
     end_time = models.CharField(max_length=50,null=True) #销毁时间
     project_name = models.CharField(max_length=50,null=True) #项目
-    explain = models.CharField(max_length=128, null=True)
+    explain = models.CharField(max_length=128, null=True) #说明
+
 
 
     def __str__(self):
         return self.hostname
+
+    #class Meta:
+    #    ordering = ["outer_ip"]
 
 

@@ -1,30 +1,49 @@
 from django.shortcuts import render
-
+from django.http import JsonResponse
+#import json
+#from django.http import HttpResponse
+from django.views.generic import TemplateView
 from .models import *
 # Create your views here.
 
 def siteindex(request):
+    print(request.method)
     site_info = {}
-    type_info = {}
-    #eg: {'typeid':{a: b}, 'typeid':{a: b, c:d}}
 
-    #get type name
-    for i in SiteType.objects.all():
-        site_info[i.typename] = {}
-        type_info[i.typeid] = i.typename
-
-
-
-    #get site
-    all_site = SiteCollect.objects.all()
-    for i in all_site:
-        site_one = {i.sitename: i.siteurl}
-        site_type = i.typeid
-
-        site_info[type_info[site_type]].update(site_one)
-
-    #return
+    for k in SiteCollect.objects.all():
+        if k.siteurl and k.sitename:
+            try:
+                site_info[k.typeid.typename].update({k.sitename: k.siteurl})
+            except:
+                site_info[k.typeid.typename] = {k.sitename: k.siteurl}
     return render(request, 'sitecollect/index.html', {'site_info': site_info})
+
+class siteindex2(TemplateView):
+    template_name = 'sitecollect/index.html'
+
+    def get(self, *args, **kwargs):
+        site_info = {}
+
+        for k in SiteCollect.objects.all():
+            if k.siteurl and k.sitename:
+                try:
+                    site_info[k.typeid.typename].update({k.sitename: k.siteurl})
+                except:
+                    site_info[k.typeid.typename] = {k.sitename: k.siteurl}
+        return site_info
+
+
+def site_index_api(request):
+    site_info = {}
+    for k in SiteCollect.objects.all():
+        if k.siteurl and k.sitename:
+            try:
+                site_info[k.typeid.typename].update({k.sitename: k.siteurl})
+            except:
+                site_info[k.typeid.typename] = {k.sitename: k.siteurl}
+    #return HttpResponse(site_info, mimetype='application/json')
+    return JsonResponse(site_info)
+
 def managesite(request):
     return render(request, 'sitecollect/manage_site.html')
 
