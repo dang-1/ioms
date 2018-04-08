@@ -17,8 +17,8 @@ class HostIndex(LoginRequiredMixin, ListView):
 
     model = Host
 
-    # def get_context_data(self, **kwargs):
-    #     context = super(HostIndex, self).get_context_data(**kwargs)
-    #     context['title_name'] = 'host page'
-    #     return context
+    def get_context_data(self, **kwargs):
+        context = super(HostIndex, self).get_context_data(**kwargs)
+        context['title_name'] = 'host page'
+        return context
 

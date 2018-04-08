@@ -35,6 +35,11 @@ class IndexView2(LoginRequiredMixin, TemplateView):
 
         return super(IndexView2, self).get(request, *args, **kwargs, )
 
+    def get_context_data(self, **kwargs):
+        context = super(IndexView2, self).get_context_data(**kwargs)
+        context['title_name'] = 'index page'
+        return context
+
     # @login_required(login_url='/users/login')
     # def dispatch(self):
     #     pass

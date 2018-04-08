@@ -5,11 +5,25 @@
     </a>
 </li>
 
-<li id="links">
+<li id="cmdb">
     <a href="{% url 'index' %}">
         <span class="nav-label">资产管理</span>
     </a>
     <ul class="nav nav-second-level active">
         <li id="host-list"><a href="{% url 'hostmanage:host_index' %}">主机列表</a> </li>
+        <li id="host-list"><a href="{% url 'hostmanage:host_index' %}">添加主机</a> </li>
     </ul>
 </li>
+
+<li id="links">
+    <a href="{% url 'index' %}">
+        <span class="nav-label">链接管理</span>
+    </a>
+    <ul class="nav nav-second-level active">
+        <li id="host-list"><a href="{% url 'hostmanage:host_index' %}">链接类型</a> </li>
+        <li id="host-list"><a href="{% url 'hostmanage:host_index' %}">链接列表</a> </li>
+        <li id="host-list"><a href="{% url 'hostmanage:host_index' %}">添加网址</a> </li>
+    </ul>
+</li>
+
+
