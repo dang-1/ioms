@@ -11,32 +11,28 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-@login_required(login_url='/users/login')
-def IndexView(request):
-    # if request.user.is_authenticated:
-    #     print('auth ok')
-    # else:
-    #     print("auth fail")
-    title_name = 'index'
+# @login_required(login_url='/users/login')
+# def IndexView(request):
+#     # if request.user.is_authenticated:
+#     #     print('auth ok')
+#     # else:
+#     #     print("auth fail")
+#     title_name = 'index'
+#     template_name = 'index2.html'
+#
+#     # def get(request):
+#     #     pass
+#     return render(request, template_name)
+
+
+class IndexView(LoginRequiredMixin, TemplateView):
     template_name = 'index2.html'
-
-    # def get(request):
-    #     pass
-    return render(request, template_name)
-
-
-class IndexView2(LoginRequiredMixin, TemplateView):
-    template_name = 'index2.html'
-
-
-    initial = {"title": 'index'}
 
     def get(self, request, *args, **kwargs):
-
         return super(IndexView2, self).get(request, *args, **kwargs, )
 
     def get_context_data(self, **kwargs):
-        context = super(IndexView2, self).get_context_data(**kwargs)
+        context = super(IndexView, self).get_context_data(**kwargs)
         context['title_name'] = 'index page'
         return context
 

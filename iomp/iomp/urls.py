@@ -16,11 +16,12 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from .views import IndexView, IndexView2
+from .views import IndexView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', IndexView2.as_view(), name='index'),
+    url(r'^$', IndexView.as_view(), name='index'),
     url(r'users/', include('users.urls'), name='user'),
     url(r'hostmanage/', include('hostmanage.urls'), name='hostmanage'),
+    url(r'sitecollect/', include('sitecollect.urls'), name='sitecollect'),
 ]
