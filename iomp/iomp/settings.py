@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 import json
 
+#login
+from django.urls import reverse_lazy
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_DIR = os.path.dirname(BASE_DIR)
@@ -75,20 +78,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'iomp.wsgi.application'
 
+LOGIN_REDIRECT_URL = reverse_lazy('index')
+LOGIN_URL = reverse_lazy('users:login')
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'mysite',
-#         'USER': 'root',
-#         'PASSWORD': '123456789',
-#         'HOST': '127.0.0.1',
-#         'PORT': 9306,
-#     }
-# }
 db_config = '/Users/tangjianming/config.json'
 with open(db_config, 'r') as f:
     db_info = json.load(f)

@@ -16,10 +16,10 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from .views import IndexView
+from .views import IndexView, IndexView2
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', IndexView, name='index'),
+    url(r'^$', IndexView2.as_view(), name='index'),
     url(r'users/', include('users.urls'), name='user'),
 ]
