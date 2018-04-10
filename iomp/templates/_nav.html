@@ -16,14 +16,25 @@
 </li>
 
 <li id="links">
-    <a href="{% url 'index' %}">
+    <a href="{% url 'sitecollect:siteindex' %}">
         <span class="nav-label">链接管理</span>
     </a>
     <ul class="nav nav-second-level active">
-        <li id="host-list"><a href="{% url 'hostmanage:host_index' %}">链接类型</a> </li>
-        <li id="host-list"><a href="{% url 'hostmanage:host_index' %}">链接列表</a> </li>
-        <li id="host-list"><a href="{% url 'hostmanage:host_index' %}">添加网址</a> </li>
+        <li id="host-list"><a href="{% url 'sitecollect:sitetype' %}">链接类型</a> </li>
+        <li id="host-list"><a href="{% url 'sitecollect:siteindex' %}">链接列表</a> </li>
+        <li id="host-list"><a href="{% url 'sitecollect:siteindex' %}">添加网址</a> </li>
     </ul>
 </li>
 
+<li id="links">
+    <a href="{% url 'users:user_list' %}">
+        <span class="nav-label">用户管理</span>
+    </a>
+    <ul class="nav nav-second-level active">
+        <li id="host-list"><a href="{% url 'users:user_list' %}">用户列表</a> </li>
+        <li id="host-list"><a href="{% url 'users:user_add' %}">添加用户</a> </li>
+        <li id="host-list"><a href="{% url 'sitecollect:siteindex' %}">组列表</a> </li>
+        <li id="host-list"><a href="{% url 'sitecollect:siteindex' %}">添加组</a> </li>
+    </ul>
+</li>
 

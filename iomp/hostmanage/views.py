@@ -1,3 +1,4 @@
+#coding: utf-8
 from django.shortcuts import render
 
 # Create your views here.
@@ -10,15 +11,26 @@ from django.views.generic import TemplateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
+# class HostIndex(LoginRequiredMixin, ListView):
+#     template_name = 'hostmanage/index.html'
+#
+#     context_object_name = 'host_list'
+#
+#     model = Host
+#
+#     def get_context_data(self, **kwargs):
+#         context = super(HostIndex, self).get_context_data(**kwargs)
+#         context['title_name'] = 'host page'
+#         return context
+
+
 class HostIndex(LoginRequiredMixin, ListView):
     template_name = 'hostmanage/index.html'
-
     context_object_name = 'host_list'
-
     model = Host
+    paginate_by = 30
 
     def get_context_data(self, **kwargs):
         context = super(HostIndex, self).get_context_data(**kwargs)
-        context['title_name'] = 'host page'
+        context['title_name'] = 'iomp: host page'
         return context
-

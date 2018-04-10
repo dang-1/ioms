@@ -16,3 +16,11 @@ class UserForm(forms.Form):
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=50, widget=forms.TextInput())
     password = forms.CharField(max_length=50, widget=forms.PasswordInput())
+
+
+class UserAddForm(forms.Form):
+    username = forms.CharField(max_length=50, widget=forms.TextInput())
+    email = forms.EmailField(max_length=50, widget=forms.TextInput())
+    password = forms.CharField(max_length=50, widget=forms.PasswordInput())
+
+

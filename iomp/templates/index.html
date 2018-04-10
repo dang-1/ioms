@@ -1,11 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>index</title>
-</head>
-<body>
-<p>welcome come to index page</p>
-<p>you can come to <a href="{% url 'users:register' %}">register</a>or <a href="{% url 'users:login' %}">login</a>page</p>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>index page</h1>
+
+<h2>需求管理实现：</h2>
+
+<li>
+    <a>仪表盘</a>
+</li>
+
+<li>
+    <a>资产管理</a>
+    <ul>
+        <li>主机列表--大致实现，未实现分页功能</li>
+        <li>注册主机--未实现</li>
+        <li>删除主机--未实现</li>
+    </ul>
+</li>
+<li>
+    <a>链接管理</a>
+    <ul>
+        <li>链接类型--大致实现</li>
+        <li>添加链接--未实现</li>
+        <li>添加链接类型--未实现</li>
+    </ul>
+</li>
+<li>
+    <a>配置管理--未实现</a>
+    <ul>
+        <li>游戏服配置--未实现</li>
+        <li>网关配置--未实现</li>
+        <li>其他配置--未实现</li>
+    </ul>
+</li>
+<li>
+    <a>用户管理--未实现</a>
+    <ul>
+        <li>用户列表--大致实现</li>
+        <li>添加用户--大致实现</li>
+        <li>组管理--未实现</li>
+        <li>添加组--未实现</li>
+    </ul>
+</li>
+
+<p>===========</p>
+
+{% endblock %}

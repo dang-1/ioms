@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="sitecollect">
+    <p>hello, every body, this page is a site type page.</p>
+
+
+
+
+    <table>
+        <caption>site type</caption>
+        <tr>
+            <th>id</th>
+            <th>type</th>
+        </tr>
+        {% for site_type_one in site_type %}
+        <tr>
+            <td>{{ site_type_one.id }}</td>
+            <td>{{ site_type_one.typename }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+<p>
+    <a href=>add</a>
+    <a href=>delete</a>
+</p>
+
+</div>
+
+{% endblock %}

@@ -1,28 +1,44 @@
+{% load static %}
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>login</title>
+    <title>iomp: login</title>
+    <!--<link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>-->
+    <link href={% static "css/login.css" %} rel="stylesheet" type="text/css" media="all"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="后台登录" />
+
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+
+    <!--<link href="//apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">-->
 </head>
 <body>
+<div class="htmleaf-container">
+    <div class="wrapper">
+		<div class="container">
+            <h1>Login</h1>
+            <form action="" method="post" role="form">
+                {% csrf_token %}
+                <label for="name" class="col-sm-2 control-label">Name: </label>
+                <input id="user_name" type="text" name="username" value=" {{ form.username }} " />
+                <br />
 
-    <h1>Login</h1>
-    <form action="" method="post">
-        {% csrf_token %}
-        <label for="name">Name: </label>
-        <input id="user_name" type="text" name="username" value=" {{ form.username }} " />
-        <br />
+                <label for="password" class="col-sm-2 control-label">password: </label>
+                <input id="user_password" type="password" name="password" value=" {{ form.password }} " />
+                <br />
 
-        <label for="password">password: </label>
-        <input id="user_password" type="password" name="password" value=" {{ form.password }} " />
-        <br />
+                <!--<button type="submit">login</button>-->
 
-        <!--<button type="submit">login</button>-->
-
-        <input type="submit" value="login">
-    </form>
-    <a href="{% url 'users:register' %}">register</a>
-    <a href="{% url 'index' %}">index page</a>
-
+                <input type="submit" value="login" class="btn btn-default">
+            </form>
+            <a href="{% url 'users:register' %}">register</a>
+            <a href="{% url 'index' %}">index page</a>
+        </div>
+    </div>
+</div>
 </body>
 </html>

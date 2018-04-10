@@ -29,7 +29,7 @@ SECRET_KEY = 'r1c-()na3&rqmf35tyk=n=tccb(8tn4bdnhtxd6l%7*3@)c+lx'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Custom User Auth model
 AUTH_USER_MODEL = 'users.User'
@@ -151,4 +151,5 @@ STATIC_DIR = os.path.join(BASE_DIR, "static")
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR,  'static'),
+
 )
