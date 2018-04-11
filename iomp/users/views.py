@@ -32,6 +32,8 @@ class Login(TemplateView):
                 print('exec auth')
                 login(request, user)
                 return HttpResponseRedirect("/")
+        else:
+            return HttpResponseRedirect("/users/login/")
 
 #class Logout(TemplateView):
 

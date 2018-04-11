@@ -12,6 +12,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="后台登录" />
 
+    <link rel="icon" href="{% static 'img/logo.png' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'img/logo.png' %}" type="image/x-icon">
+
     <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
 
     <!--<link href="//apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">-->
@@ -41,15 +44,15 @@
 <body>
     <div class="login-page">
 		<div class="form">
-            <h1>Login</h1>
+            <h1>IOMP Login</h1>
             <form action="" method="post" role="form" class="login-form">
                 {% csrf_token %}
                 <!--<label for="name" class="col-sm-2 control-label">Name: </label>-->
-                <input id="user_name" type="text" name="username" value=" {{ form.username }} " placeholder="name" />
+                <input id="user_name" type="text" name="username" value="{{ form.username }}" placeholder="name" />
                 <br />
 
                 <!--<label for="password" class="col-sm-2 control-label">password: </label>-->
-                <input id="user_password" type="password" name="password" value=" {{ form.password }} " placeholder="password" />
+                <input id="user_password" type="password" name="password" value="{{ form.password }}" placeholder="password" />
                 <br />
 
                 <button type="submit">login</button>
