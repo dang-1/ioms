@@ -74,15 +74,15 @@ class User(AbstractUser):
         ordering = ['username']
 
 
-class UserGroup(models.Model):
-    id = models.UUIDField(default=uuid.uuid4, primary_key=True)
-    name = models.CharField(max_length=128)
-    comment = models.CharField(max_length=120, blank=True)
-    date_created = models.DateTimeField(auto_now_add=True,null=True)
-    created_by = models.CharField(max_length=100, null=True, blank=True)
-
-    def __str__(self):
-        return self.name
+# class UserGroup(models.Model):
+#     id = models.UUIDField(default=uuid.uuid4, primary_key=True)
+#     name = models.CharField(max_length=128)
+#     comment = models.CharField(blank=True)
+#     date_created = models.DateTimeField(auto_now_add=True,null=True)
+#     created_by = models.CharField(max_length=100, null=True, blank=True)
+#
+#     def __str__(self):
+#         return self.name
 
 
 

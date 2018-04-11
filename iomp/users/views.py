@@ -112,8 +112,10 @@ class UserAdd(TemplateView):
 
     def post(self, request, *args, **kwargs):
         print(request.POST)
+        print(request.method)
         user_add_form = UserAddForm(request.POST)
         if user_add_form.is_valid():
+            # print('valid')
             user_name = user_add_form.cleaned_data['username']
             email = user_add_form.cleaned_data['email']
             password = user_add_form.cleaned_data['password']
@@ -126,6 +128,7 @@ class UserAdd(TemplateView):
                 )
                 new_user.password_raw = password
                 new_user.save()
+                print('save')
                 # user_add_form.save()
             except Exception as e:
                 print('add fail {}'.format((e)))

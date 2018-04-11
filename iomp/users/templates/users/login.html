@@ -16,29 +16,56 @@
 
     <!--<link href="//apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">-->
 </head>
+
+
+<!-- https://codepen.io/colorlib/pen/rxddKy?editors=1100 -->
+
+<!--<div class="login-page">-->
+  <!--<div class="form">-->
+    <!--<form class="register-form">-->
+      <!--<input type="text" placeholder="name"/>-->
+      <!--<input type="password" placeholder="password"/>-->
+      <!--<input type="text" placeholder="email address"/>-->
+      <!--<button>create</button>-->
+      <!--<p class="message">Already registered? <a href="#">Sign In</a></p>-->
+    <!--</form>-->
+    <!--<form class="login-form">-->
+      <!--<input type="text" placeholder="username"/>-->
+      <!--<input type="password" placeholder="password"/>-->
+      <!--<button>login</button>-->
+      <!--<p class="message">Not registered? <a href="#">Create an account</a></p>-->
+    <!--</form>-->
+  <!--</div>-->
+<!--</div>-->
+
 <body>
-<div class="htmleaf-container">
-    <div class="wrapper">
-		<div class="container">
+    <div class="login-page">
+		<div class="form">
             <h1>Login</h1>
-            <form action="" method="post" role="form">
+            <form action="" method="post" role="form" class="login-form">
                 {% csrf_token %}
-                <label for="name" class="col-sm-2 control-label">Name: </label>
-                <input id="user_name" type="text" name="username" value=" {{ form.username }} " />
+                <!--<label for="name" class="col-sm-2 control-label">Name: </label>-->
+                <input id="user_name" type="text" name="username" value=" {{ form.username }} " placeholder="name" />
                 <br />
 
-                <label for="password" class="col-sm-2 control-label">password: </label>
-                <input id="user_password" type="password" name="password" value=" {{ form.password }} " />
+                <!--<label for="password" class="col-sm-2 control-label">password: </label>-->
+                <input id="user_password" type="password" name="password" value=" {{ form.password }} " placeholder="password" />
                 <br />
 
-                <!--<button type="submit">login</button>-->
+                <button type="submit">login</button>
 
-                <input type="submit" value="login" class="btn btn-default">
+                <!--<input type="submit" value="login" class="btn btn-default">-->
             </form>
             <a href="{% url 'users:register' %}">register</a>
             <a href="{% url 'index' %}">index page</a>
         </div>
     </div>
-</div>
 </body>
+
+<script type="text/javascript">
+    $('.message a').click(function(){
+   $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+    });
+</script>
+
 </html>

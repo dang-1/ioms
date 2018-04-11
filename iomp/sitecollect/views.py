@@ -4,7 +4,9 @@ from django.http import JsonResponse
 #from django.http import HttpResponse
 from django.views.generic import TemplateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseRedirect
 from .models import *
+from .form import SiteTypeAddForm
 # Create your views here.
 
 class SiteIndex(LoginRequiredMixin, ListView):
@@ -76,6 +78,43 @@ class SiteType(LoginRequiredMixin, ListView):
         context = super(SiteType, self).get_context_data(**kwargs)
         context['title_name'] = 'iomp: url type page'
         return context
+
+class SiteTypeAddView(LoginRequiredMixin, TemplateView):
+    template_name = 'sitecollect/site_type_add.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(SiteTypeAddView, self).get_context_data(**kwargs)
+        context['title_name'] = 'site type add page'
+        return context
+
+    def post(self, request, *args, **kwargs):
+        site_type_add_form = SiteTypeAddForm(request.POST)
+        if site_type_add_form.is_valid():
+            try:
+                site_type_add_form.save()
+            except Exception as e:
+                print('add fail as :{}'.format(e))
+            return HttpResponseRedirect("/sitecollect/site_type/")
+
+
+class SiteTypeNameChangeView(LoginRequiredMixin, TemplateView):
+    template_name = 'sitecollect/site_type_change.html'
+
+    def get(self, request, *args, **kwargs):
+        pass
+
+    # def post(self, request, *args, **kwargs):
+    #     login_form = LoginForm(request.POST)  # 将数据绑定到表单
+    #     if login_form.is_valid(): #验证
+    #         username = login_form.cleaned_data['username']
+    #         password = login_form.cleaned_data['password']
+    #         print(username, password)
+    #         user = authenticate(username=username, password=password)
+    #         #if authenticate(username=username, password=password):
+    #         if user is not None:
+    #             print('exec auth')
+    #             login(request, user)
+    #             return HttpResponseRedirect("/")
 
 # def sitetypemanage(request):
 #     type_info = {}

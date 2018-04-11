@@ -17,10 +17,10 @@ urlpatterns = [
     #url(r'^hostmanage', include('hostmanage.urls')),
     #url(r'^index2/$', siteindex, name='siteindex2'),
     url(r'^siteindex/$', SiteIndex.as_view(), name='siteindex'),
-    url(r'^sitetype/$', SiteType.as_view(), name='sitetype'),
+    url(r'^site_type/$', SiteType.as_view(), name='site_type'),
     #url(r'^index/api/$', site_index_api, name='siteindexapi'),
-    #url(r'^managesite', managesite, name='managesite'),
-    #url(r'^sitetypemanage', sitetypemanage, name='typemanage'),
+    url(r'^site_type_add/$', SiteTypeAddView.as_view(), name='site_type_add'),
+    url(r'^site_type_change/', SiteTypeNameChangeView.as_view(), name='site_type_change'),
     #url(r'^addsite', addsite, name='addsite'),
     #url(r'^deletesite', deletesite, name='deletesite'),
 

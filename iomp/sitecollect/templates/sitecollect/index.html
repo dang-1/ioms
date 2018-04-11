@@ -13,7 +13,7 @@
         <tr><td>{{ sitetotal.len }}</td></tr>
         <tr>
             {% for sitename, siteurl in sitetotal.items %}
-            <td><a href={{ siteurl }}> {{ sitename }} | </a></td>
+            <td><a href={{ siteurl }} target="_blank"> {{ sitename }}  </a></td>
             {% endfor %}
         </tr>
     </table>

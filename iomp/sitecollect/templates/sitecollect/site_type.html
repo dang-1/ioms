@@ -17,14 +17,17 @@
         <tr>
             <td>{{ site_type_one.id }}</td>
             <td>{{ site_type_one.typename }}</td>
+            <td><a href="">更改类型名字</a></td>
+
+            <td><a href="">删除</a></td>
         </tr>
         {% endfor %}
     </table>
 
 
 <p>
-    <a href=>add</a>
-    <a href=>delete</a>
+    <a href={% url "sitecollect:site_type_add" %}>add type</a>
+    <a href=>delete type</a>
 </p>
 
 </div>
