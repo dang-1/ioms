@@ -1,3 +1,4 @@
+#coding: utf-8
 """
 Django settings for ioms project.
 
@@ -11,9 +12,14 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import json
+
+#login
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_DIR = os.path.dirname(BASE_DIR)
 
 
 # Quick-start development settings - unsuitable for production
@@ -31,6 +37,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'users.apps.UsersConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -69,6 +76,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ioms.wsgi.application'
 
+LOGIN_REDIRECT_URL = reverse_lazy('index')
+LOGIN_URL = reverse_lazy('users:login')
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
@@ -126,7 +135,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
@@ -134,8 +143,19 @@ USE_L10N = True
 
 USE_TZ = True
 
-
+LOCAL_PATHS = [os.path.join(BASE_DIR, 'i18n'), ]
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.0/howto/static-files/
+# https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(PROJECT_DIR, "data", "static")
+STATIC_DIR = os.path.join(BASE_DIR, "static")
+
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR,  'static'),
+
+)
+
+# Custom User Auth model
+AUTH_USER_MODEL = 'users.User'
