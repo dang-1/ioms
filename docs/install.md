@@ -2,7 +2,7 @@
 
 
 ## pip install
-pip install django==1.11
+pip install django==2.0
 pip install pymysql
 
 
