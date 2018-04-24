@@ -37,6 +37,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'sitecollect.apps.SitecollectConfig',
     'users.apps.UsersConfig',
     'django.contrib.admin',
     'django.contrib.auth',

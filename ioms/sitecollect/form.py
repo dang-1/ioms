@@ -10,7 +10,13 @@
 
 
 from django import forms
-from .models import SiteType
+from .models import SiteType, SiteCollect
+
+
+class SiteForm(forms.ModelForm):
+	class Meta:
+		model = SiteCollect
+		fields = '__all__'
 
 class SiteTypeAddForm(forms.ModelForm):
     class Meta:

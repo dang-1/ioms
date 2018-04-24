@@ -6,7 +6,7 @@ from django.views.generic import TemplateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from .models import *
-from .form import SiteTypeAddForm
+from .form import SiteTypeAddForm, SiteForm
 # Create your views here.
 
 class SiteIndex(LoginRequiredMixin, ListView):
@@ -28,32 +28,26 @@ class SiteIndex(LoginRequiredMixin, ListView):
         return context
 
 
-# def siteindex(request):
-#     print(request.method)
-#     site_info = {}
-#
-#     for k in SiteCollect.objects.all():
-#         if k.siteurl and k.sitename:
-#             try:
-#                 site_info[k.typeid.typename].update({k.sitename: k.siteurl})
-#             except:
-#                 site_info[k.typeid.typename] = {k.sitename: k.siteurl}
-#     return render(request, 'sitecollect/index.html', {'site_info': site_info})
-#
-# class siteindex2(TemplateView):
-#     template_name = 'sitecollect/index.html'
-#
-#     def get(self, *args, **kwargs):
-#         site_info = {}
-#
-#         for k in SiteCollect.objects.all():
-#             if k.siteurl and k.sitename:
-#                 try:
-#                     site_info[k.typeid.typename].update({k.sitename: k.siteurl})
-#                 except:
-#                     site_info[k.typeid.typename] = {k.sitename: k.siteurl}
-#         return site_info
+class SiteAddView(ListView):
+    '''
+    not good
+    '''
+    template_name = 'sitecollect/site_add.html'
+    model = SiteType
+    context_object_name = 'site_type'
 
+    def post(self, request, *args, **kwargs):
+
+        # print(request.POST.get('typeid'))
+        # print('GET ')
+        site_add_form = SiteForm(request.POST)
+        # print(site_add_form.cleaned_data)
+        if site_add_form.is_valid():
+            print('valid site add data')
+            print(site_add_form.cleaned_data)
+        return HttpResponseRedirect("/sitecollect/site_add/")
+
+        # username = login_form.cleaned_data['username']
 
 # def site_index_api(request):
 #     site_info = {}
@@ -94,7 +88,7 @@ class SiteTypeAddView(LoginRequiredMixin, TemplateView):
                 site_type_add_form.save()
             except Exception as e:
                 print('add fail as :{}'.format(e))
-            return HttpResponseRedirect("/sitecollect/site_type/")
+            return HttpResponseRedirect("/sitecollect/site_type_add/")
 
 
 class SiteTypeNameChangeView(LoginRequiredMixin, TemplateView):

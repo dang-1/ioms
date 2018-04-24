@@ -22,4 +22,6 @@ urlpatterns = [
     # path('polls/', include('polls.urls')),
     path('users/', include('users.urls')),
     path('', IndexView.as_view(), name='index'),
+    # url(r'sitecollect/', include('sitecollect.urls'), name='sitecollect'),
+    path('sitecollect/', include('sitecollect.urls'), name='sitecollect'),
 ]
