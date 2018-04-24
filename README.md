@@ -18,7 +18,7 @@ ops system
 
 ## 结构
 1. docs 文档
-2. iom 测试
-3. mysite 广泛测试
+2. iomp 使用django 1.11开发
+3. mysite 使用官方文档 django 2.0 
 
 
