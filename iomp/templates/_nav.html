@@ -6,12 +6,14 @@
 </li>
 
 <li id="cmdb">
-    <a href="{% url 'index' %}">
+    <a href="{% url 'hostmanage:host_index' %}">
         <span class="nav-label">资产管理</span>
     </a>
     <ul class="nav nav-second-level active">
         <li id="host-list"><a href="{% url 'hostmanage:host_index' %}">主机列表</a> </li>
-        <li id="host-list"><a href="{% url 'hostmanage:host_index' %}">添加主机</a> </li>
+        <li id="host-list"><a href="{% url 'hostmanage:project_list' %}">项目列表</a> </li>
+        <li id="host-list"><a href="{% url 'hostmanage:cloudplat_list' %}">云服务商列表</a> </li>
+        <li id="host-list"><a href="{% url 'hostmanage:role_list' %}">角色列表</a> </li>
     </ul>
 </li>
 
@@ -35,6 +37,7 @@
         <li id="host-list"><a href="{% url 'users:user_add' %}">添加用户</a> </li>
         <li id="host-list"><a href="{% url 'sitecollect:siteindex' %}">组列表</a> </li>
         <li id="host-list"><a href="{% url 'sitecollect:siteindex' %}">添加组</a> </li>
+        <li id="host-list"><a href="{% url 'users:test_page' %}">test page</a> </li>
     </ul>
 </li>
 

@@ -1,13 +1,14 @@
 #coding: utf-8
 from django.db import models
 
+__all__ = ['HostRole', 'ProjectName', 'CloudPlat', 'HostStatus', 'Host']
 
 class HostRole(models.Model):
 	'''
-	host role
+	host role name
 	'''
     id = models.AutoField(primary_key=True)
-    role = models.CharField(max_length=48, null=False, verbose_name="角色")
+    role = models.CharField(max_length=48, null=False, unique=True, verbose_name="角色")
 
     def __str__(self):
         return self.role
@@ -18,10 +19,11 @@ class ProjectName(models.Model):
 	project name
 	'''
     id = models.AutoField(primary_key=True)
-    project_name = models.CharField(max_length=48, null=False, verbose_name="项目名")
+    project_name = models.CharField(max_length=48, null=False, unique=True, verbose_name="项目名")
 
     def __str__(self):
         return self.project_name
+
 
 class CloudPlat(models.Model):
 	'''
@@ -36,13 +38,23 @@ class CloudPlat(models.Model):
     def __str__(self):
         return self.cloud_platform_name
 
+
+class HostStatus(models.Model):
+	'''
+	host status
+	'''
+	id = models.AutoField(primary_key=True)
+	status = models.CharField(max_length=48, null=False, unique=True, verbose_name='状态')
+
+
 class Host(models.Model):
 	'''
 	single host
 	'''
     id = models.AutoField(primary_key=True)
-    hostname = models.CharField(max_length=50, verbose_name="主机名")
-    state = models.CharField(max_length=50,null=True, verbose_name="状态")
+    hostname = models.CharField(max_length=50, unique=True, verbose_name="主机名")
+    # state = models.CharField(max_length=50,null=True, verbose_name="状态")
+    status = models.ForeignKey(HostStatus, on_delete=models.SET_NULL, blank=True, null=True, verbose_name='状态')
     outer_ip = models.CharField(max_length=50, verbose_name="外网ip")
     inner_ip = models.CharField(max_length=50, verbose_name="内网ip")
     osversion = models.CharField(max_length=50,null=True, verbose_name="系统版本")
@@ -56,7 +68,7 @@ class Host(models.Model):
     instance_name = models.CharField(max_length=50,null=True, verbose_name="实例名字")
     virtual_type = models.CharField(max_length=50,null=True, verbose_name="虚拟化类型")
     # role = models.CharField(max_length=50,null=True, verbose_name="区域") #角色
-    role = models.ManyToManyField(HostRole)
+    role = models.ManyToManyField(HostRole, verbose_name='角色')
     start_time = models.CharField(max_length=50,null=True, verbose_name="注册时间 DateField")
     end_time = models.CharField(max_length=50,null=True, verbose_name="销毁时间")
     # project_name = models.CharField(max_length=50,null=True) #项目
