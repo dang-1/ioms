@@ -35,7 +35,7 @@ urlpatterns = [
     path('logout/', user_logout, name='logout'),
     path('register/', Login.as_view(), name='register'),
     # path('user_list/', Login.as_view(), name='user_list'),
-    path('useradd/', UserAdd.as_view(), name='useradd'),
+    path('user_add/', UserAdd.as_view(), name='user_add'),
     path('user_list/', UserList.as_view(), name='user_list'),
     # path('login/$', )
 ]

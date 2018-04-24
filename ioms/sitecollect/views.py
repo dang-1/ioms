@@ -30,16 +30,13 @@ class SiteIndex(LoginRequiredMixin, ListView):
 
 class SiteAddView(ListView):
     '''
-    not good
+    ok, could use add site with type
     '''
     template_name = 'sitecollect/site_add.html'
     model = SiteType
     context_object_name = 'site_type'
 
     def post(self, request, *args, **kwargs):
-
-        # print(request.POST.get('typeid'))
-        # print('GET ')
         site_add_form = SiteForm(request.POST)
         # print(site_add_form.cleaned_data)
         if site_add_form.is_valid():
