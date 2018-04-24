@@ -1,0 +1,19 @@
+<!-- 这个是左侧的导航栏-->
+<li id="index">
+    <a href="{% url 'index' %}">
+        <i class="fa fa-dashboard" style="width: 14px"></i><span class="nav-label">仪表盘</span><span class="label label-info pull-right"></span>
+    </a>
+</li>
+
+
+
+<li id="links">
+    <a href="{% url 'users:user_list' %}">
+        <span class="nav-label">用户管理</span>
+    </a>
+    <ul class="nav nav-second-level active">
+        <li id="host-list"><a href="{% url 'users:user_list' %}">用户列表</a> </li>
+        <li id="host-list"><a href="{% url 'users:login' %}">添加用户</a> </li>
+    </ul>
+</li>
+

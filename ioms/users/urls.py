@@ -5,12 +5,9 @@
 # # @FileName: urls.py
 # # @Software: PyCharm
 # # @Mail    : 93651849@qq.com
-# from django.conf.urls import url
 
 # from .views import Login, user_logout, UserList, UserAdd, register, test_page
 
-
-# app_name = 'users'
 
 # urlpatterns = [
 #     #url(r'^login/$', login, name='login'),
@@ -28,7 +25,17 @@
 from django.contrib import admin
 from django.urls import path
 
+from .views import Login, user_logout, UserAdd, UserList
+
+app_name = 'users'
+
 urlpatterns = [
     # path('admin/', admin.site.urls),
+    path('login/', Login.as_view(), name='login'), #ok
+    path('logout/', user_logout, name='logout'),
+    path('register/', Login.as_view(), name='register'),
+    # path('user_list/', Login.as_view(), name='user_list'),
+    path('useradd/', UserAdd.as_view(), name='useradd'),
+    path('user_list/', UserList.as_view(), name='user_list'),
     # path('login/$', )
 ]

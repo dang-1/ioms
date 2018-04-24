@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>{{ title_name }}</title>
+
+    <link rel="icon" href="{% static 'img/logo.png' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'img/logo.png' %}" type="image/x-icon">
+    <link href={% static "css/base.css" %} rel="stylesheet" type="text/css" media="all"/>
+</head>
+<body>
+<div id="wrapper">
+    <!-- left side bar -->
+    {% include '_left_side_bar.html' %}
+    <div id="page-wrapper" class="gray-bg">
+        {% include '_header_bar.html' %}
+        {% block content %}{% endblock content %}
+        {% include '_footer.html' %}
+    </div>
+</div>
+</body>
+</html>
