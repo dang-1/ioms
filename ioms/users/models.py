@@ -1,8 +1,9 @@
 #coding: utf-8
-from django.db import models
-from django.contrib.auth.models import AbstractUser
 import uuid
 from collections import OrderedDict
+
+from django.db import models
+from django.contrib.auth.models import AbstractUser
 from django.utils.translation import ugettext_lazy as _ #翻译相关
 
 # from django.common.mixins import NoDeleteModelMixin
