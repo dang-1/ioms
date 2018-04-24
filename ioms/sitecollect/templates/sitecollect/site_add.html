@@ -13,7 +13,7 @@
         <!--site type-->
         <label>SiteType: </label>
         {% for site_type_one in site_type %}
-            <input type="radio" name="typeid" id="{{ site_type_one.id }}" value="{{ site_type_one.typename }}" />
+            <input type="radio" name="typeid" id="{{ site_type_one.id }}" value="{{ site_type_one.id }}" />
             <label for="{{ site_type_one.id }}">{{ site_type_one.typename }}</label>
         {% endfor %}
 

@@ -45,6 +45,11 @@ class SiteAddView(ListView):
         if site_add_form.is_valid():
             print('valid site add data')
             print(site_add_form.cleaned_data)
+            try:
+                site_add_form.save()
+            except Exception as e:
+                print('add fail as :{}'.format(e))
+            return HttpResponseRedirect("/sitecollect/site_add/")
         return HttpResponseRedirect("/sitecollect/site_add/")
 
         # username = login_form.cleaned_data['username']
