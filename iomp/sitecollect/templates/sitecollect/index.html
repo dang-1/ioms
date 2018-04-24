@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="sitecollect">
+    <p>hello, every body, this page is a collect site page.</p>
+
+
+    {% for sitetype, sitetotal in site_info.items %}
+    {% if sitetotal %}
+
+    <table>
+        <caption>{{ sitetype }}</caption>
+        <tr><td>{{ sitetotal.len }}</td></tr>
+        <tr>
+            {% for sitename, siteurl in sitetotal.items %}
+            <td><a href={{ siteurl }} target="_blank"> {{ sitename }}  </a></td>
+            {% endfor %}
+        </tr>
+    </table>
+
+    {% endif %}
+
+
+
+
+
+{% endfor %}
+<p>
+    <a href=>add</a>
+    <a href=>delete</a>
+</p>
+
+</div>
+
+{% endblock %}

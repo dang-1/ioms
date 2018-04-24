@@ -1,0 +1,78 @@
+{% load static  %}
+{% load i18n %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>iomp: login</title>
+    <!--<link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>-->
+    <link href={% static "css/login.css" %} rel="stylesheet" type="text/css" media="all"/>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="后台登录" />
+
+    <link rel="icon" href="{% static 'img/logo.png' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'img/logo.png' %}" type="image/x-icon">
+
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+
+    <!--<link href="//apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">-->
+</head>
+
+
+<!-- https://codepen.io/colorlib/pen/rxddKy?editors=1100 -->
+
+<!--<div class="login-page">-->
+  <!--<div class="form">-->
+    <!--<form class="register-form">-->
+      <!--<input type="text" placeholder="name"/>-->
+      <!--<input type="password" placeholder="password"/>-->
+      <!--<input type="text" placeholder="email address"/>-->
+      <!--<button>create</button>-->
+      <!--<p class="message">Already registered? <a href="#">Sign In</a></p>-->
+    <!--</form>-->
+    <!--<form class="login-form">-->
+      <!--<input type="text" placeholder="username"/>-->
+      <!--<input type="password" placeholder="password"/>-->
+      <!--<button>login</button>-->
+      <!--<p class="message">Not registered? <a href="#">Create an account</a></p>-->
+    <!--</form>-->
+  <!--</div>-->
+<!--</div>-->
+
+<body>
+{% language 'zh' %}
+    <div class="login-page">
+		<div class="form">
+            <h1>IOMP {% trans "login" %}</h1>
+            <form action="" method="post" role="form" class="login-form">
+                {% csrf_token %}
+                <!--<label for="name" class="col-sm-2 control-label">Name: </label>-->
+                <input id="user_name" type="text" name="username" value="{{ form.username }}" placeholder="name" />
+                <br />
+
+                <!--<label for="password" class="col-sm-2 control-label">password: </label>-->
+                <input id="user_password" type="password" name="password" value="{{ form.password }}" placeholder="password" />
+                <br />
+
+                <button type="submit">login</button>
+
+                <!--<input type="submit" value="login" class="btn btn-default">-->
+            </form>
+            <a href="{% url 'users:register' %}">register</a>
+            <a href="{% url 'index' %}">index page</a>
+        </div>
+    </div>
+{% endlanguage %}
+</body>
+
+<script type="text/javascript">
+    $('.message a').click(function(){
+   $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+    });
+</script>
+
+</html>

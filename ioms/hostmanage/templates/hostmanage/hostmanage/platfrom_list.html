@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<p>host index page</p>
+
+<table>
+    <caption>云平台列表</caption>
+    <tr>
+        <th>平台id</th>
+        <th>平台提供商</th>
+        <th>平台名</th>
+        <th>地区</th>
+        <th>城市</th>
+    </tr>
+    {% for cloudplat in cloudplat_list %}
+    <tr>
+        <td>{{ cloudplat.id }}</td>
+        <td>{{ cloudplat.provider }}</td>
+        <td>{{ cloudplat.cloud_platform_name }}</td>
+        <td>{{ cloudplat.locate }}</td>
+        <td>{{ cloudplat.city }}</td>
+    </tr>
+    {% endfor%}
+</table>
+
+
+{% if is_paginated %}
+<div>
+    <span>
+        <!--{% if first %}-->
+            <!--<a href={% url "hostmanage:host_index" %}?page=1>1</a>-->
+        <!--{% endif %}-->
+        {% if page_obj.has_previous %}
+            <a href={% url "hostmanage:cloudplat_list" %}?page={{ page_obj.previous_page_number }}>上一页</a>
+        {% endif %}
+        <span class="page-current">
+            第{{ page_obj.number }}页 ，共{{ page_obj.paginator.num_pages }}页。
+        </span>
+        {% if page_obj.has_next %}
+            <a href={% url "hostmanage:cloudplat_list" %}?page={{ page_obj.next_page_number }}>下一页</a>
+        {% endif %}
+
+    </span>
+</div>
+{% endif %}
+
+
+{% endblock %}
