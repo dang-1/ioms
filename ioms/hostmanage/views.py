@@ -14,7 +14,7 @@ from .models import *
 from .form import HostDetailFrom
 from django.shortcuts import get_object_or_404
 
-class HostIndex(LoginRequiredMixin, ListView):
+class HostIndexView(LoginRequiredMixin, ListView):
     template_name = 'hostmanage/index.html'
     context_object_name = 'host_list'
     model = Host

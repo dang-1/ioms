@@ -11,10 +11,16 @@
         <input id="site_url" type="text" name="siteurl" value="{{ form.url }}"/>
         <br />
         <!--site type-->
-        <label>SiteType: </label>
+        <!-- <label>SiteType: </label>
         {% for site_type_one in site_type %}
             <input type="radio" name="typeid" id="{{ site_type_one.id }}" value="{{ site_type_one.id }}" />
             <label for="{{ site_type_one.id }}">{{ site_type_one.typename }}</label>
+        {% endfor %} -->
+
+        <br />
+        <label>SiteType: </label>
+        {% for site_type_one in site_type %}
+            <input type="radio" name="typeid" value="{{ site_type_one.id }}" />{{ site_type_one.typename }}
         {% endfor %}
 
 

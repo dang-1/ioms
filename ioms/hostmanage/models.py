@@ -4,9 +4,9 @@ from django.db import models
 __all__ = ['HostRole', 'ProjectName', 'CloudPlat', 'HostStatus', 'Host']
 
 class HostRole(models.Model):
-	'''
-	host role name
-	'''
+    '''
+    host role name
+    '''
     id = models.AutoField(primary_key=True)
     role = models.CharField(max_length=48, null=False, unique=True, verbose_name="角色")
 
@@ -15,9 +15,9 @@ class HostRole(models.Model):
 
 
 class ProjectName(models.Model):
-	'''
-	project name
-	'''
+    '''
+    project name
+    '''
     id = models.AutoField(primary_key=True)
     project_name = models.CharField(max_length=48, null=False, unique=True, verbose_name="项目名")
 
@@ -26,9 +26,9 @@ class ProjectName(models.Model):
 
 
 class CloudPlat(models.Model):
-	'''
-	cloud platfrom
-	'''
+    '''
+    cloud platfrom
+    '''
     id = models.AutoField(primary_key=True)
     provider = models.CharField(max_length=48, null=False, verbose_name="提供商")
     cloud_platform_name = models.CharField(max_length=48, null=False, verbose_name="云平台名字")
@@ -40,17 +40,17 @@ class CloudPlat(models.Model):
 
 
 class HostStatus(models.Model):
-	'''
-	host status
-	'''
-	id = models.AutoField(primary_key=True)
-	status = models.CharField(max_length=48, null=False, unique=True, verbose_name='状态')
+    '''
+    host status
+    '''
+    id = models.AutoField(primary_key=True)
+    status = models.CharField(max_length=48, null=False, unique=True, verbose_name='状态')
 
 
 class Host(models.Model):
-	'''
-	single host
-	'''
+    '''
+    single host
+    '''
     id = models.AutoField(primary_key=True)
     hostname = models.CharField(max_length=50, unique=True, verbose_name="主机名")
     # state = models.CharField(max_length=50,null=True, verbose_name="状态")

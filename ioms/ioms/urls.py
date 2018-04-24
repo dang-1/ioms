@@ -24,4 +24,5 @@ urlpatterns = [
     path('', IndexView.as_view(), name='index'),
     # url(r'sitecollect/', include('sitecollect.urls'), name='sitecollect'),
     path('sitecollect/', include('sitecollect.urls'), name='sitecollect'),
+    path('hostmanage/', include('hostmanage.urls'), name='hostmanage'),
 ]
