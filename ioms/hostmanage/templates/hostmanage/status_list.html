@@ -5,15 +5,21 @@
 <p>host index page</p>
 
 <table>
-    <caption>云平台列表</caption>
+    <caption>状态列表</caption>
     <tr>
-        <th>状态id</th>
-        <th>状态</th>
+        <th>平台id</th>
+        <th>平台提供商</th>
+        <th>平台名</th>
+        <th>地区</th>
+        <th>城市</th>
     </tr>
-    {% for status in status_list %}
+    {% for cloudplat in cloudplat_list %}
     <tr>
-        <td>{{ status.id }}</td>
-        <td>{{ status.status }}</td>
+        <td>{{ cloudplat.id }}</td>
+        <td>{{ cloudplat.provider }}</td>
+        <td>{{ cloudplat.cloud_platform_name }}</td>
+        <td>{{ cloudplat.locate }}</td>
+        <td>{{ cloudplat.city }}</td>
     </tr>
     {% endfor%}
 </table>

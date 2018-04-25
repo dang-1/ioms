@@ -1,18 +1,12 @@
 #coding: utf-8
-from django.shortcuts import render
-
-# Create your views here.
-
-
-
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
-from django.views.generic import TemplateView, ListView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import render, get_object_or_404
+from django.views.generic import TemplateView, ListView, DetailView
+
 
 from .models import *
 from .form import HostDetailFrom
-from django.shortcuts import get_object_or_404
 
 class HostIndexView(LoginRequiredMixin, ListView):
     template_name = 'hostmanage/index.html'
@@ -54,6 +48,9 @@ class ProjectListView(LoginRequiredMixin, ListView):
         context = super(ProjectListView, self).get_context_data(**kwargs)
         context['title_name'] = 'iomp: host project page'
         return context
+
+
+
 
 class CloudPlatView(LoginRequiredMixin, ListView):
     template_name = 'hostmanage/platfrom_list.html'
