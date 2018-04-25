@@ -23,10 +23,15 @@
 # ]
 from django.contrib import admin
 from django.urls import path
+from rest_framework import routers
 
-from .views import HostIndexView, StatusView
+from .views import HostIndexView, StatusView, HostViewSet
 
 app_name = 'hostmanage'
+
+
+router = routers.DefaultRouter()
+router.register(r'host', HostViewSet)
 
 urlpatterns = [
     path('host_index/', HostIndexView.as_view(), name="host_index"),

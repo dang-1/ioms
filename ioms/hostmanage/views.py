@@ -1,9 +1,10 @@
 #coding: utf-8
+from rest_framework import viewsets
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import TemplateView, ListView, DetailView
-
+from .serializers import HostSerializer
 
 from .models import *
 from .form import HostDetailFrom
@@ -37,6 +38,12 @@ class HostDetailView(LoginRequiredMixin, ListView):
         print('info: {}'.format(host_detail_info))
         return super(HostDetailView, self).get_queryset().filter(hostname=host_detail_info)
 
+class HostViewSet(viewsets.ModelViewSet):
+    '''
+    api
+    '''
+    queryset = Host.objects.all()
+    serializer_class = HostSerializer
 
 class ProjectListView(LoginRequiredMixin, ListView):
     template_name = 'hostmanage/project_list.html'
