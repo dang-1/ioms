@@ -24,22 +24,21 @@
 from django.contrib import admin
 from django.urls import path
 
-from .views import HostIndexView
+from .views import HostIndexView, StatsView
 
 app_name = 'hostmanage'
 
 urlpatterns = [
     path('host_index/', HostIndexView.as_view(), name="host_index"),
+    path('status_list/', StatsView.as_view(), name='status_list'),
     # path('site_index/', SiteIndex.as_view(), name='site_index'),
     # path('site_add/', SiteAddView.as_view(), name='site_add'),
     # path('site_type_index/', SiteType.as_view(), name='site_type_index'),
     # path('site_type_add/', SiteTypeAddView.as_view(), name='site_type_add'),
-    # path('admin/', admin.site.urls),
-    # path('login/', Login.as_view(), name='login'), #ok
     # path('logout/', user_logout, name='logout'),
     # path('register/', Login.as_view(), name='register'),
     # # path('user_list/', Login.as_view(), name='user_list'),
     # path('useradd/', UserAdd.as_view(), name='useradd'),
     # path('user_list/', UserList.as_view(), name='user_list'),
-    # # path('login/$', )
+
 ]
