@@ -24,13 +24,13 @@
 from django.contrib import admin
 from django.urls import path
 
-from .views import HostIndexView, StatsView
+from .views import HostIndexView, StatusView
 
 app_name = 'hostmanage'
 
 urlpatterns = [
     path('host_index/', HostIndexView.as_view(), name="host_index"),
-    path('status_list/', StatsView.as_view(), name='status_list'),
+    path('status_list/', StatusView.as_view(), name='status_list'),
     # path('site_index/', SiteIndex.as_view(), name='site_index'),
     # path('site_add/', SiteAddView.as_view(), name='site_add'),
     # path('site_type_index/', SiteType.as_view(), name='site_type_index'),

@@ -9,7 +9,7 @@ from django.utils.translation import ugettext_lazy as _ #翻译相关
 # from django.common.mixins import NoDeleteModelMixin
 # Create your models here.
 
-__all__ = ['User', 'UserGroup']
+__all__ = ['User']
 
 class User(AbstractUser):
     id = models.UUIDField(default=uuid.uuid4, primary_key=True)

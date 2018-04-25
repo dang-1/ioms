@@ -137,8 +137,6 @@ class UserAdd(TemplateView):
                 print('add fail {}'.format((e)))
                 return HttpResponseRedirect("/users/useradd/")
             finally:
-
-                # return HttpResponseRedirect("/users/login/")
                 return HttpResponseRedirect("/")
 
 def test_page(request):
