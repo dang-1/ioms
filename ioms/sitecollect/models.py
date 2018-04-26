@@ -14,6 +14,9 @@ class SiteType(models.Model):
     def __str__(self):
     	return self.typename
 
+    class Meta:
+        ordering = ['id']
+
 
 class SiteCollect(models.Model):
     '''
@@ -29,3 +32,6 @@ class SiteCollect(models.Model):
 
     def __str__(self):
         return self.sitename
+
+    class Meta:
+        ordering = ['typeid']
