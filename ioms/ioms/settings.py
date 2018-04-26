@@ -37,6 +37,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'cmdb.apps.CmdbConfig',
     'hostmanage.apps.HostmanageConfig',
     'sitecollect.apps.SitecollectConfig',
     'users.apps.UsersConfig',

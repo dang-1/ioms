@@ -1,10 +1,11 @@
+#coding: utf-8
 from django.shortcuts import render
-from django.http import JsonResponse
 #import json
 #from django.http import HttpResponse
 from django.views.generic import TemplateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
+
 from .models import *
 from .form import SiteTypeAddForm, SiteForm
 # Create your views here.
