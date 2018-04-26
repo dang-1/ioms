@@ -25,4 +25,5 @@ urlpatterns = [
     # url(r'sitecollect/', include('sitecollect.urls'), name='sitecollect'),
     path('sitecollect/', include('sitecollect.urls'), name='sitecollect'),
     path('hostmanage/', include('hostmanage.urls'), name='hostmanage'),
+    path('cmdb/', include('cmdb.urls'), name='cmdb'),
 ]

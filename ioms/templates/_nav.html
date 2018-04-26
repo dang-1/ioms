@@ -28,6 +28,17 @@
         <li id="host-list"><a href="{% url 'hostmanage:host_index' %}">添加链接类型</a> </li>
     </ul>
 </li>
+<li id="links">
+    <a href="{% url 'cmdb:gs_status' %}">
+        <span class="nav-label">配置管理</span>
+    </a>
+    <ul class="nav nav-second-level active">
+        <li id="host-list"><a href="{% url 'cmdb:gs_status' %}">游戏服列表</a> </li>
+        <li id="host-list"><a href="{% url 'cmdb:gs_status' %}">状态列表</a></li>
+        <li id="host-list"><a href="{% url 'cmdb:gs_status' %}">链接类型</a> </li>
+        <li id="host-list"><a href="{% url 'cmdb:gs_status' %}">添加链接类型</a> </li>
+    </ul>
+</li>
 
 <li id="links">
     <a href="{% url 'users:user_list' %}">
@@ -38,4 +49,3 @@
         <li id="host-list"><a href="{% url 'users:user_add' %}">添加用户</a></li>
     </ul>
 </li>
-
