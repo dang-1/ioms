@@ -3,11 +3,12 @@ from django.shortcuts import render
 #import json
 #from django.http import HttpResponse
 from django.views.generic import TemplateView, ListView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect, JsonResponse
-
+from django.urls import reverse_lazy
 from .models import *
-from .form import SiteTypeAddForm, SiteForm
+from .form import  SiteForm, SiteTypeForm
 # Create your views here.
 
 class SiteIndex(LoginRequiredMixin, ListView):
@@ -40,6 +41,7 @@ class SiteAddView(ListView):
     def post(self, request, *args, **kwargs):
         site_add_form = SiteForm(request.POST)
         # print(site_add_form.cleaned_data)
+        # print(site_add_form.cleaned_data)
         if site_add_form.is_valid():
             print('valid site add data')
             print(site_add_form.cleaned_data)
@@ -48,9 +50,15 @@ class SiteAddView(ListView):
             except Exception as e:
                 print('add fail as :{}'.format(e))
             return HttpResponseRedirect("/sitecollect/site_add/")
-        return HttpResponseRedirect("/sitecollect/site_add/")
+        else:
+            print("valied false")
+            return HttpResponseRedirect("/sitecollect/site_add/")
 
         # username = login_form.cleaned_data['username']
+
+
+
+
 
 # def site_index_api(request):
 #     site_info = {}
@@ -92,6 +100,24 @@ class SiteTypeAddView(LoginRequiredMixin, TemplateView):
             except Exception as e:
                 print('add fail as :{}'.format(e))
             return HttpResponseRedirect("/sitecollect/site_type_add/")
+
+class SiteTypeAddView2(CreateView):
+    form_class = SiteTypeForm
+    template_name = 'sitecollect/site_type_add2.html'
+    success_url = '/sitecollect/site_type_index'
+
+    def form_invalid(self, form):
+        return HttpResponseRedirect("/sitecollect/site_type_index/")
+
+
+class SiteTypeUpdateView(UpdateView):
+    models = SiteType
+    fields = ['typename']
+
+
+class SiteTypeDeleteView(DeleteView):
+    models = SiteType
+    success_url = reverse_lazy("index")
 
 
 class SiteTypeNameChangeView(LoginRequiredMixin, TemplateView):

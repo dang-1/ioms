@@ -1,5 +1,6 @@
 #coding: utf-8
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 
@@ -12,7 +13,10 @@ class SiteType(models.Model):
     typename = models.CharField(max_length=60, null=False, unique=True, verbose_name="网址类型")
 
     def __str__(self):
-    	return self.typename
+        return self.typename
+
+    # def get_absolete_url(self):
+    #     return reverse("")
 
     class Meta:
         ordering = ['id']

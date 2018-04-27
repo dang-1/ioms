@@ -27,12 +27,19 @@ class Login(TemplateView):
             password = login_form.cleaned_data['password']
             #email = login_form.cleaned_data['email']
             print(username, password)
-            user = authenticate(username=username, password=password)
-            #if authenticate(username=username, password=password):
+            try:
+                user = authenticate(username=username, password=password)
+                #if authenticate(username=username, password=password):
+            except:
+                return HttpResponseRedirect("/users/login/")
+            # if user:
+            #     return HttpResponseRedirect("/users/login/")
             if user is not None:
                 print('exec auth')
                 login(request, user)
                 return HttpResponseRedirect("/")
+            else:
+                return HttpResponseRedirect("/users/login/")
         else:
             return HttpResponseRedirect("/users/login/")
 

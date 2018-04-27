@@ -1,10 +1,16 @@
 #coding: utf-8
+
 from django.db import models
 from hostmanage.models import Host
 
 # Create your models here.
 
 __all__ = ["GsStatus", "ZoneName", "DbConfig", "ConfigManage"]
+
+
+class Project(models.Model):
+    id = models.AutoField(primary_key=True)
+    project_name = models.CharField(max_length=48, null=False)
 
 
 class ZoneName(models.Model):
@@ -51,7 +57,8 @@ class DbConfig(models.Model):
 
 
 class ConfigManage(models.Model):
-    #gs_ip = models.CharField(max_length=50) #游戏服ip
+    project = models.ForeignKey(Project, on_delete=models.SET_NULL, related_name="gs_project_set", blank=True, null=True)
+    used = models.CharField(max_length=50, verbose_name="是否使用")
     gs_ip = models.ForeignKey(Host, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="host ip's id")
     # gs_zone = models.CharField(max_length=50, verbose_name="区域")
     gs_zone = models.ForeignKey(ZoneName, on_delete=models.SET_NULL, related_name="gs_zone_name_set", blank=True, null=True, verbose_name="zone id")
@@ -79,5 +86,5 @@ class ConfigManage(models.Model):
         return self.gs_name
 
     class Meta:
-    	ordering = ['gs_zone', 'gs_id']
+        ordering = ['gs_zone', 'gs_id']
 

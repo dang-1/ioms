@@ -1,5 +1,6 @@
 #coding: utf-8
-from django.shortcuts import render
+from django.http import JsonResponse
+
 # Create your views here.
 
 from rest_framework import viewsets
@@ -18,8 +19,11 @@ class GsStatusView(LoginRequiredMixin, ListView):
     paginate_by = 30
 
     def get_context_data(self, **kwargs):
-        context = super(GsStatusView, self).get_context_data(**kwargs)
+        # context = super(GsStatusView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context['title_name'] = 'iomp: gs status page'
         return context
+
+
 
 

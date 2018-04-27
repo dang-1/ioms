@@ -6,23 +6,26 @@
 # @Software: PyCharm
 # @Mail    : 93651849@qq.com
 
-
-
-
 from django import forms
 from .models import SiteType, SiteCollect
 
 
 class SiteForm(forms.ModelForm):
-	class Meta:
-		model = SiteCollect
-		fields = '__all__'
-
-class SiteTypeAddForm(forms.ModelForm):
     class Meta:
-        model = SiteType
+        model = SiteCollect
         fields = '__all__'
 
+
+# class SiteTypeAddForm(forms.ModelForm):
+#     class Meta:
+#         model = SiteType
+#         fields = '__all__'
+
+#
+class SiteTypeForm(forms.ModelForm):
+    class Meta:
+        model = SiteType
+        fields = ['typename']
 
 
 

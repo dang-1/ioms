@@ -28,7 +28,7 @@
 from django.contrib import admin
 from django.urls import path
 
-from .views import SiteIndex, SiteAddView, SiteType, SiteTypeAddView
+from .views import SiteIndex, SiteAddView, SiteType, SiteTypeAddView, SiteTypeAddView2
 
 app_name = 'sitecollect'
 
@@ -37,6 +37,7 @@ urlpatterns = [
     path('site_add/', SiteAddView.as_view(), name='site_add'),
     path('site_type_index/', SiteType.as_view(), name='site_type_index'),
     path('site_type_add/', SiteTypeAddView.as_view(), name='site_type_add'),
+    path('site_type/add/', SiteTypeAddView2.as_view(), name='site_type_add2'),
     # path('admin/', admin.site.urls),
     # path('login/', Login.as_view(), name='login'), #ok
     # path('logout/', user_logout, name='logout'),
