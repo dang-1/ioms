@@ -16,10 +16,10 @@
         {% for site_type_one in site_type %}
         <tr>
             <td>{{ site_type_one.id }}</td>
-            <td>{{ site_type_one.typename }}</td>
-            <td><a href="">更改类型名字</a></td>
+            <td>{{ site_type_one.site_type_name }}</td>
+            <td><a href={% url "sitecollect:site_type_update"  site_type_one.id  %}>更改类型名字</a></td>
 
-            <td><a href="">删除</a></td>
+            <td><a href={% url "sitecollect:site_type_delete"  site_type_one.id  %}>删除</a></td>
         </tr>
         {% endfor %}
     </table>
@@ -27,7 +27,6 @@
 
 <p>
     <a href={% url "sitecollect:site_type_add" %}>add type</a>
-    <a href=>delete type</a>
 </p>
 
 </div>

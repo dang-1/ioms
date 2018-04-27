@@ -7,12 +7,12 @@
 # @Mail    : 93651849@qq.com
 
 from django import forms
-from .models import SiteType, SiteCollect
+from .models import SiteTypeModel, SiteCollectModel
 
 
 class SiteForm(forms.ModelForm):
     class Meta:
-        model = SiteCollect
+        model = SiteCollectModel
         fields = '__all__'
 
 
@@ -24,10 +24,11 @@ class SiteForm(forms.ModelForm):
 #
 class SiteTypeForm(forms.ModelForm):
     class Meta:
-        model = SiteType
-        fields = ['typename']
+        model = SiteTypeModel
+        fields = ['site_type_name']
 
 
+# class ConfirmDeleteForm(forms.ModelForm):
 
 
 # class UserAddForm(forms.ModelForm):

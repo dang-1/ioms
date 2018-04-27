@@ -4,7 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>{{ title_name }}</title>
+    {% if title_name %}
+      <title>{{ title_name }}</title>
+    {% else %}
+    <title>iomp</title>
+    {% endif %}
     <!-- <title>{% block title %}{% endblock %}</title> -->
 
     <link rel="icon" href="{% static 'img/logo.png' %}" type="image/x-icon">

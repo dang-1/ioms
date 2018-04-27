@@ -92,3 +92,6 @@ class StatusView(LoginRequiredMixin, ListView):
         context['title_name'] = 'iomp: host status page'
         return context
 
+class HostStatusDetailView(DetailView):
+    model = HostStatus
+    template_name = 'hostmanage/host_status_detail.html'

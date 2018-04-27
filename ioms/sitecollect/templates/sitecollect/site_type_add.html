@@ -3,25 +3,9 @@
 {% block content %}
 
     <h1>add site type</h1>
-    <form action="" method="post">
-        {% csrf_token %}
-        <label for="name">Name: </label>
-        <input id="type_name" type="text" name="typename" value=" {{ form.typename }} " />
-        <br />
-
-        <!--<label for="password">E-mail: </label>-->
-        <!--<input id="user_email" type="text" name="email" value=" {{ form.email }} " />-->
-        <!--<br />-->
-
-        <!--<label for="password">password: </label>-->
-        <!--<input id="user_password" type="password" name="password" value=" {{ form.password }} " />-->
-        <!--<br />-->
-
-
-
-        <!--<button type="submit">login</button>-->
-
-        <input type="submit" value="sitetypeadd">
+      <form action="" method="post">{% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value="保存" />
     </form>
 
 
