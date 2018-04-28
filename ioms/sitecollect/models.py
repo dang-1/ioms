@@ -20,7 +20,7 @@ class SiteTypeModel(models.Model):
         return self.site_type_name
 
     def get_absolute_url(self):
-        return reverse("sitecollect:site_type_detail", kwargs={'pk': self.id})
+        return reverse("sitecollect:site_type_detail", kwargs={'pk': self.pk})
 
     class Meta:
         ordering = ['id']

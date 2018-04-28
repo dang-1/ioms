@@ -2,6 +2,7 @@
 from django.shortcuts import render
 #import json
 #from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
 from django.views.generic import TemplateView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
@@ -63,13 +64,45 @@ class SiteTypeUpdateView(LoginRequiredMixin, UpdateView):
 
 class SiteTypeModelDeleteView(LoginRequiredMixin, DeleteView):
     models = SiteTypeModel
-    # fields = '__all__'
-    # template_name = 'sitecollect/site_type_delete.html'
-    success_url = reverse_lazy("sitecollect/site_type/list/")
+    fields = ['id', 'site_type_name']
+    template_name = 'sitecollect/site_type_delete.html'
+    success_url = '/sitecollect/site_type/list'
+
+    def get_queryset(self):
+        data = SiteTypeModel.objects.filter(id=self.kwargs['pk'])
+        return data
 
     # def get_queryset(self):
-    #     id = self.request.id
-    #     return self.model.objects.filter(id=id)
+    #     # return get_object_or_404(SiteTypeModel, id=self.kwargs['pk'])
+    #     return SiteTypeModel.objects.get(id=self.kwargs['pk'])
+        # xxxxx = get_object_or_404(SiteTypeModel, id=self.kwargs['pk'])
+        # print(xxxxx)
+        # return xxxxx
+
+class SiteListView(LoginRequiredMixin, ListView):
+    template_name = 'sitecollect/site_list.html'
+    context_object_name = 'type_list'
+    model = SiteTypeModel
+
+    def get_context_data(self, **kwargs):
+        context = super(SiteListView, self).get_context_data(**kwargs)
+        context['title_name'] = 'iomp: url list page'
+        return context
+
+
+class SiteAddView(LoginRequiredMixin, CreateView):
+    model = SiteTypeModel
+    form_class = SiteForm
+    template_name = 'sitecollect/site_add.html'
+    success_url = '/sitecollect/site/list'
+
+    def get_context_data(self, **kwargs):
+        context = super(SiteAddView, self).get_context_data(**kwargs)
+        context['title_name'] = 'site add page'
+        return context
+
+
+
 # class SiteIndex(LoginRequiredMixin, ListView):
 #     template_name = 'sitecollect/index.html'
 #     context_object_name = 'site_list'
@@ -87,6 +120,12 @@ class SiteTypeModelDeleteView(LoginRequiredMixin, DeleteView):
 #                     site_info[k.typeid.typename] = {k.sitename: k.siteurl}
 #         context['site_info'] =  site_info
 #         return context
+
+
+    # def get_queryset(self):
+    #     id = self.request.id
+    #     return self.model.objects.filter(id=id)
+
 #
 #
 # class SiteAddView(ListView):

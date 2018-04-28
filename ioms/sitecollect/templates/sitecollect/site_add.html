@@ -2,50 +2,10 @@
 
 {% block content %}
 
-    <h1>add site</h1>
-    <form action="" method="post">
-        {% csrf_token %}
-        <label for="name">SiteName: </label>
-        <input id="site_name" type="text" name="sitename" value="{{ form.sitename }}"/>
-        <br />
-        <label for="name">SiteURL: </label>
-        <input id="site_url" type="text" name="siteurl" value="{{ form.url }}"/>
-        <br />
-        <!--site type-->
-        <!-- <label>SiteType: </label>
-        {% for site_type_one in site_type %}
-            <input type="radio" name="typeid" id="{{ site_type_one.id }}" value="{{ site_type_one.id }}" />
-            <label for="{{ site_type_one.id }}">{{ site_type_one.typename }}</label>
-        {% endfor %} -->
-
-        <br />
-        <label>SiteType: </label>
-        {% for site_type_one in site_type %}
-            <input type="radio" name="typeid" value="{{ site_type_one.id }}" />{{ site_type_one.typename }}
-        {% endfor %}
-
-
-        <!-- {% for choice in question.choice_set.all %}
-		    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-		    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
-        {% endfor %} -->
-
-        
-        <br />
-
-        <!--<label for="password">E-mail: </label>-->
-        <!--<input id="user_email" type="text" name="email" value=" {{ form.email }} " />-->
-        <!--<br />-->
-
-        <!--<label for="password">password: </label>-->
-        <!--<input id="user_password" type="password" name="password" value=" {{ form.password }} " />-->
-        <!--<br />-->
-
-
-
-        <!--<button type="submit">login</button>-->
-
-        <input type="submit" value="sitetypeadd">
+    <h1>add site type</h1>
+      <form action="" method="post">{% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value="保存" />
     </form>
 
 
