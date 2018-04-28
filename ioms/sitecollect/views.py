@@ -94,6 +94,7 @@ class SiteManageView(LoginRequiredMixin, ListView):
     template_name = 'sitecollect/site_manage.html'
     context_object_name = 'site_list'
     model = SiteCollectModel
+    paginate_by = 30
 
     def get_context_data(self, **kwargs):
         context = super(SiteManageView, self).get_context_data(**kwargs)
@@ -123,9 +124,27 @@ class SiteUpdateView(LoginRequiredMixin, UpdateView):
     # form_class = SiteTypeForm
     fields = ['sitename', 'siteurl', 'typeid']
     template_name = 'sitecollect/site_update.html'
-    # template_name_suffix = '_update_form'
-    # fields = ['typename']
     success_url = '/sitecollect/site/list'
+
+
+class SiteDeleteView(DeleteView):
+    models = SiteCollectModel
+    fields = ['siteurl', 'sitename']
+    template_name = 'sitecollect/site_delete.html'
+    success_url = '/sitecollect/site/list/'
+
+    def get_queryset(self):
+        data = SiteCollectModel.objects.filter(id=self.kwargs['pk'])
+        return data
+
+        # models = SiteTypeModel
+        # fields = ['id', 'site_type_name']
+        # template_name = 'sitecollect/site_type_delete.html'
+        # success_url = '/sitecollect/site_type/list'
+        #
+        # def get_queryset(self):
+        #     data = SiteTypeModel.objects.filter(id=self.kwargs['pk'])
+        #     return data
 
 # class SiteIndex(LoginRequiredMixin, ListView):
 #     template_name = 'sitecollect/index.html'

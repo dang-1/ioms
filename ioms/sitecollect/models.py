@@ -43,6 +43,6 @@ class SiteCollectModel(models.Model):
         return self.sitename
 
     class Meta:
-        ordering = ['typeid']
+        ordering = ['id', 'typeid']
 
 

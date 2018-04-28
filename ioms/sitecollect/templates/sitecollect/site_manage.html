@@ -22,8 +22,8 @@
             <td>{{ site.siteurl }}</td>
             <td>{{ site.typeid }}</td>
             <td><a href={% url "sitecollect:site_detail" site.id %}>详情</a></td>
-            <td><a href={% url "sitecollect:site_detail" site.id %}>更改类型名字</a></td>
-            <td><a href=>删除</a></td>
+            <td><a href={% url "sitecollect:site_update" site.id %}>修改</a></td>
+            <td><a href={% url "sitecollect:site_delete" site.id %}>删除</a></td>
         </tr>
         {% endfor %}
     </table>
