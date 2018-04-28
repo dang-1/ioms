@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="sitecollect">
+    <p>hello, every body, this page is a manage site page.</p>
+
+
+
+
+    <table>
+        <caption>site</caption>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>url</th>
+            <th>type</th>
+        </tr>
+        {% for site in site_list %}
+        <tr>
+            <td>{{ site.id }}</td>
+            <td>{{ site.sitename }}</td>
+            <td>{{ site.siteurl }}</td>
+            <td>{{ site.typeid }}</td>
+            <td><a href={% url "sitecollect:site_detail" site.id %}>详情</a></td>
+            <td><a href={% url "sitecollect:site_detail" site.id %}>更改类型名字</a></td>
+            <td><a href=>删除</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+<p>
+    <a href={% url "sitecollect:site_add" %}>add type</a>
+</p>
+
+</div>
+
+{% endblock %}

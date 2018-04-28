@@ -90,6 +90,17 @@ class SiteListView(LoginRequiredMixin, ListView):
         return context
 
 
+class SiteManageView(LoginRequiredMixin, ListView):
+    template_name = 'sitecollect/site_manage.html'
+    context_object_name = 'site_list'
+    model = SiteCollectModel
+
+    def get_context_data(self, **kwargs):
+        context = super(SiteManageView, self).get_context_data(**kwargs)
+        context['title_name'] = 'iomp: url manage page'
+        return context
+
+
 class SiteAddView(LoginRequiredMixin, CreateView):
     model = SiteTypeModel
     form_class = SiteForm
@@ -102,6 +113,19 @@ class SiteAddView(LoginRequiredMixin, CreateView):
         return context
 
 
+class SiteDetailView(DetailView):
+    model = SiteCollectModel
+    template_name = 'sitecollect/site_detail.html'
+
+
+class SiteUpdateView(LoginRequiredMixin, UpdateView):
+    model = SiteCollectModel
+    # form_class = SiteTypeForm
+    fields = ['sitename', 'siteurl', 'typeid']
+    template_name = 'sitecollect/site_update.html'
+    # template_name_suffix = '_update_form'
+    # fields = ['typename']
+    success_url = '/sitecollect/site/list'
 
 # class SiteIndex(LoginRequiredMixin, ListView):
 #     template_name = 'sitecollect/index.html'
