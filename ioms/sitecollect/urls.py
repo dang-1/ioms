@@ -10,7 +10,7 @@ from django.contrib import admin
 from django.urls import path
 
 from .views import SiteTypeDetailView, SiteTypeListView, SiteTypeAddView, SiteTypeUpdateView, SiteTypeModelDeleteView, \
-    SiteListView
+    SiteListView, SiteAddView
 
 #SiteIndex, SiteAddView, , ,
 
@@ -23,6 +23,7 @@ urlpatterns = [
     path('site_type/<int:pk>/update/', SiteTypeUpdateView.as_view(), name='site_type_update'),
     path('site_type/<int:pk>/delete/', SiteTypeModelDeleteView.as_view(), name='site_type_delete'),
     path('site/list/', SiteListView.as_view(), name='site_list'),
+    path('site/add/', SiteAddView.as_view(), name='site_add'),
     # path('site_index/', SiteIndex.as_view(), name='site_index'),
     # path('site_add/', SiteAddView.as_view(), name='site_add'),
     # path('site_type_index/', SiteType.as_view(), name='site_type_index'),
