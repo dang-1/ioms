@@ -25,15 +25,11 @@ class Login(TemplateView):
         if login_form.is_valid(): #验证
             username = login_form.cleaned_data['username']
             password = login_form.cleaned_data['password']
-            #email = login_form.cleaned_data['email']
             print(username, password)
             try:
                 user = authenticate(username=username, password=password)
-                #if authenticate(username=username, password=password):
             except:
                 return HttpResponseRedirect("/users/login/")
-            # if user:
-            #     return HttpResponseRedirect("/users/login/")
             if user is not None:
                 print('exec auth')
                 login(request, user)
@@ -49,17 +45,18 @@ def user_logout(request):
     logout(request)
     return HttpResponseRedirect('/users/login')
 
-# def login(request):
-#     #form = LoginForm()
+
+# def register(request):
 #     if request.method == "POST":
-#         login_form = LoginForm(request.POST) #将数据绑定到表单
-#         if login_form.is_valid(): #验证
-#             username = login_form.cleaned_data['username']
-#             password = login_form.cleaned_data['password']
-#             print(username, password)
-#             if authenticate(username=username, password=password):
-#                 print('login ok')
-#                 return HttpResponseRedirect("/")
+#         user_form = UserForm(request.POST) #将数据绑定到表单
+#         if user_form.is_valid(): #验证
+#             username = user_form.cleaned_data['username']
+#             useremail = user_form.cleaned_data['email']
+#             password = user_form.cleaned_data['password']
+#             #print(username, password)
+#             #if authenticate(username=username, password=password):
+#             #    print('login ok')
+#             #    return HttpResponseRedirect("/")
 #     else:
 #         form = LoginForm()
 #
@@ -68,28 +65,7 @@ def user_logout(request):
 #         #username = login_form.cleaned_data['username']
 #         #password = login_form.cleaned_data['password']
 #         #print('========={} {}'.format(username, password))
-#     return render(request, 'users/login.html')
-
-def register(request):
-    if request.method == "POST":
-        user_form = UserForm(request.POST) #将数据绑定到表单
-        if user_form.is_valid(): #验证
-            username = user_form.cleaned_data['username']
-            useremail = user_form.cleaned_data['email']
-            password = user_form.cleaned_data['password']
-            #print(username, password)
-            #if authenticate(username=username, password=password):
-            #    print('login ok')
-            #    return HttpResponseRedirect("/")
-    else:
-        form = LoginForm()
-
-        #print(type(login_form))
-        ##if login_form.is_valied:
-        #username = login_form.cleaned_data['username']
-        #password = login_form.cleaned_data['password']
-        #print('========={} {}'.format(username, password))
-    return render(request, 'users/register.html')
+#     return render(request, 'users/register.html')
 
 
 class UserList(LoginRequiredMixin, ListView):
@@ -101,14 +77,6 @@ class UserList(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super(UserList, self).get_context_data(**kwargs)
         context['title_name'] = 'user list page'
-        # user_info = []
-        # for k in User.objects.all():
-        #     one_user = {}
-        #     for x,y in k.items:
-        #         if x and y:
-        #             one_user[x] = y
-        #     user_info.append(one_user)
-        # context['user_info'] = user_info
         return context
 
 
