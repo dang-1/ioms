@@ -125,7 +125,7 @@ class UserAdd(TemplateView):
         print(request.method)
         user_add_form = UserAddForm(request.POST)
         if user_add_form.is_valid():
-            # print('valid')
+            print('user add valid')
             user_name = user_add_form.cleaned_data['username']
             email = user_add_form.cleaned_data['email']
             password = user_add_form.cleaned_data['password']
@@ -145,6 +145,8 @@ class UserAdd(TemplateView):
                 return HttpResponseRedirect("/users/useradd/")
             finally:
                 return HttpResponseRedirect("/")
+        else:
+            return HttpResponseRedirect("/users/useradd/")
 
 def test_page(request):
     return render(request, 'users/test_page.html')
