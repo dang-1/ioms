@@ -16,7 +16,7 @@ app_name = 'users'
 urlpatterns = [
     path('login/', Login.as_view(), name='login'), #ok
     path('logout/', user_logout, name='logout'), #ok
-    # path('register/', Login.as_view(), name='register'),
+    path('register/', Login.as_view(), name='register'),
     path('user_add/', UserAdd.as_view(), name='user_add'), #ok
     path('user_list/', UserList.as_view(), name='user_list'), #ok
 ]
