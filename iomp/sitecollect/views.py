@@ -4,6 +4,7 @@ from django.http import JsonResponse
 #from django.http import HttpResponse
 from django.views.generic import TemplateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.detail import DetailView
 from django.http import HttpResponseRedirect
 from .models import *
 from .form import SiteTypeAddForm
@@ -26,7 +27,9 @@ class SiteIndex(LoginRequiredMixin, ListView):
                     site_info[k.typeid.typename] = {k.sitename: k.siteurl}
         context['site_info'] =  site_info
         return context
-
+class SiteTypeDetailView(DetailView):
+    model = SiteType
+    template_name = 'sitecollect/sitetype_detail.html'
 
 # def siteindex(request):
 #     print(request.method)

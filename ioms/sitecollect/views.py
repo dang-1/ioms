@@ -28,6 +28,11 @@ class SiteTypeDetailView(DetailView):
     model = SiteTypeModel
     template_name = 'sitecollect/site_type_detail.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(SiteTypeListView, self).get_context_data(**kwargs)
+        context['title_name'] = 'iomp: url type detail page'
+        return context
+
     # def get_queryset(self, pk=1):
     #     return SiteType.object.get(id=pk)
     # form_class = SiteTypeForm

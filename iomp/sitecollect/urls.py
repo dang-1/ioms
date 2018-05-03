@@ -21,7 +21,8 @@ urlpatterns = [
     #url(r'^index/api/$', site_index_api, name='siteindexapi'),
     url(r'^site_type_add/$', SiteTypeAddView.as_view(), name='site_type_add'),
     url(r'^site_type_change/', SiteTypeNameChangeView.as_view(), name='site_type_change'),
-    #url(r'^addsite', addsite, name='addsite'),
+    url(r'^site_type/(?P<pk>\d+)/', SiteTypeDetailView.as_view(), name='site_type_detail'),
     #url(r'^deletesite', deletesite, name='deletesite'),
+    # path('site_type/<int:pk>/', SiteTypeDetailView.as_view(), name='site_type_detail'),
 
 ]

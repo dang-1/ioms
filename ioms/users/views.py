@@ -12,7 +12,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import User
 
 __all__ = [
-    'Login', 'user_logout',
+    'Login', 'user_logout', 'UserList', 'UserAdd', 'test_page'
 ]
 
 
@@ -106,7 +106,7 @@ class UserAdd(TemplateView):
                 )
                 new_user.password_raw = password
                 new_user.save()
-                print('save')
+                print('save success')
                 # user_add_form.save()
             except Exception as e:
                 print('add fail {}'.format((e)))
