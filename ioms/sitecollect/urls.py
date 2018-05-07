@@ -10,13 +10,17 @@ from django.contrib import admin
 from django.urls import path
 
 from .views import SiteTypeDetailView, SiteTypeListView, SiteTypeAddView, SiteTypeUpdateView, SiteTypeModelDeleteView, \
-    SiteListView, SiteManageView, SiteDetailView, SiteAddView, SiteUpdateView, SiteDeleteView
-
+    SiteListView, SiteManageView, SiteDetailView, SiteAddView, SiteUpdateView, SiteDeleteView, \
+    SiteTypeApiView
+# from rest_framework import routers
 #SiteIndex, SiteAddView, , ,
 
 app_name = 'sitecollect'
+# router = routers.DefaultRouter()
+# router.register(r'site_type/list/api/', SiteTypeSerializer)
 
 urlpatterns = [
+    path('site_type/list/api/', SiteTypeApiView.as_view(), name='api-user'),
     path('site_type/list/', SiteTypeListView.as_view(), name='site_type_list'),
     path('site_type/add/', SiteTypeAddView.as_view(), name='site_type_add'),
     path('site_type/<int:pk>/', SiteTypeDetailView.as_view(), name='site_type_detail'),

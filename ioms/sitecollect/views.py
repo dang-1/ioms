@@ -9,6 +9,10 @@ from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse_lazy
+from rest_framework.views import APIView
+from rest_framework.response import  Response
+from rest_framework import status
+from .serializers import SiteTypeSerializer
 from .models import SiteTypeModel, SiteCollectModel
 from .form import  SiteForm, SiteTypeForm
 
@@ -23,6 +27,25 @@ class SiteTypeListView(LoginRequiredMixin, ListView):
         context['title_name'] = 'iomp: url type page'
         return context
 
+
+# class JSONResponse(HttpResponse):
+#     """
+#     An HttpResponse that renders its content into JSON.
+#     """
+#
+#     def __init__(self, data, **kwargs):
+#         content = JSONRenderer().render(data)
+#         kwargs['content_type'] = 'application/json'
+#         super(JSONResponse, self).__init__(content, **kwargs)
+
+
+class SiteTypeApiView(APIView):
+    def get(self, request, fromat=None):
+        site_type = SiteTypeModel.objects.all()
+        serailizer = SiteTypeSerializer(site_type, many=True)
+        return Response(serailizer.data)
+    # queryset = SiteTypeModel.objects.all().order_by('id')
+    # serializer_class = SiteTypeSerializer
 
 class SiteTypeDetailView(DetailView):
     model = SiteTypeModel
