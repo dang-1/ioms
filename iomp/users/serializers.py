@@ -11,13 +11,16 @@ from .models import User
 
 from rest_framework import serializers
 
-class UserSerializer(serializers.ModelSerializer):
-    # pk = serializers.IntegerField(read_only=True)
-    # username = serializers.CharField(required=False, max_length=100)
+# class UserSerializer(serializers.ModelSerializer):
+#     # pk = serializers.IntegerField(read_only=True)
+#     # username = serializers.CharField(required=False, max_length=100)
+#     class Meta:
+#         model = User
+#         fields = ('id', 'username', 'name', 'email')
+
+
+class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username', 'name', 'email')
-
-
-
+        fields = ('id', 'username')
 
