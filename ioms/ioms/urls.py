@@ -20,10 +20,16 @@ from .views import IndexView
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('polls/', include('polls.urls')),
-    path('users/', include('users.urls')),
+    # path('users/', include('users.urls')),
     path('', IndexView.as_view(), name='index'),
     # url(r'sitecollect/', include('sitecollect.urls'), name='sitecollect'),
     path('sitecollect/', include('sitecollect.urls'), name='sitecollect'),
     path('hostmanage/', include('hostmanage.urls'), name='hostmanage'),
     path('cmdb/', include('cmdb.urls'), name='cmdb'),
+
+    # jeneral view
+    path('users/', include('users.urls.view_urls'), name='users'),
+
+    #api url view map
+    path('api/users/', include('users.urls.api_urls'), name='api-users'),
 ]

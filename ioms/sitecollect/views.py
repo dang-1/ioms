@@ -43,7 +43,8 @@ class SiteTypeApiView(APIView):
     def get(self, request, fromat=None):
         site_type = SiteTypeModel.objects.all()
         serailizer = SiteTypeSerializer(site_type, many=True)
-        return Response(serailizer.data)
+
+        return JsonResponse(serailizer.data)
     # queryset = SiteTypeModel.objects.all().order_by('id')
     # serializer_class = SiteTypeSerializer
 
