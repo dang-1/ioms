@@ -23,6 +23,10 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
 
+# class UserViewSet2(APIView):
+#     def get(self, request, format=None):
+#         usernames = [user.name for user in User.objects.all()]
+#         return Response(usernames)
 
 
 
