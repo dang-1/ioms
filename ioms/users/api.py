@@ -11,7 +11,7 @@ from rest_framework.response import Response
 from rest_framework import serializers, viewsets, routers
 from .serializers import UserSerializer
 from .models import User
-from rest_framework import serializers, viewsets, routers
+from rest_framework import viewsets
 # class UserInfoListView(APIView):
 #     def get(self, request, format=None):
 #         users = User.objects.all()
@@ -19,7 +19,7 @@ from rest_framework import serializers, viewsets, routers
 #         return Response(serializer.data)
 
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
+    queryset = User.objects.all().order_by('username')
     serializer_class = UserSerializer
 
 
