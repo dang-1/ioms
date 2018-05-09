@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import TemplateView, ListView, DetailView
 from .serializers import HostSerializer
-
+from django.http import HttpResponse
 from .models import *
 from .form import HostDetailFrom
 
@@ -95,3 +95,17 @@ class StatusView(LoginRequiredMixin, ListView):
 class HostStatusDetailView(DetailView):
     model = HostStatus
     template_name = 'hostmanage/host_status_detail.html'
+
+
+def upload(request):
+    if request.method == 'POST':
+        upload_file = request.FILES.get('file', None)
+        if upload_file is None:
+            return HttpResponse('No file get')
+        else:
+            with open('/tmp/{}'.format(upload_file.name), 'wb') as f:
+                f.write(upload_file.read())
+            return HttpResponse('Ok')
+    else:
+        return render(request, 'hostmanage/upload_file.html')
+

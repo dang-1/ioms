@@ -25,7 +25,7 @@ from django.contrib import admin
 from django.urls import path
 from rest_framework import routers
 
-from .views import HostIndexView, StatusView, HostViewSet, HostStatusDetailView
+from .views import HostIndexView, StatusView, HostViewSet, HostStatusDetailView, upload
 
 app_name = 'hostmanage'
 
@@ -37,6 +37,7 @@ urlpatterns = [
     path('host_index/', HostIndexView.as_view(), name="host_index"),
     path('status_list/', StatusView.as_view(), name='status_list'),
     path('host_status/<int:pk>/', HostStatusDetailView.as_view(), name='host_status_detail'),
+    path('upload/', upload, name='upload')
     #path('site_type/<int:pk>/', SiteTypeDetailView.as_view(), name='site_type_detail'),
     # path('site_index/', SiteIndex.as_view(), name='site_index'),
     # path('site_add/', SiteAddView.as_view(), name='site_add'),
