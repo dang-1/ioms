@@ -20,7 +20,7 @@ class User(AbstractUser):
     phone = models.CharField(max_length=20, blank=True, null=True)
     wechat = models.CharField(max_length=20, blank=True, null=True)
 
-    zabbix_tmp_pass = models.CharField(max_length=20, blank=True, null=True)
+    # zabbix_tmp_pass = models.CharField(max_length=20, blank=True, null=True)
 
 
     def __str__(self):
