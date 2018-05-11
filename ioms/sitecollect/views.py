@@ -166,4 +166,3 @@ class SiteDeleteView(DeleteView):
         data = SiteCollectModel.objects.filter(id=self.kwargs['pk'])
         return data
 
- 
