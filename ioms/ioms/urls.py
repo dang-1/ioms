@@ -17,19 +17,21 @@ from django.contrib import admin
 from django.urls import path, include
 from .views import IndexView
 
+api_patterns = [
+    path('users/', include('users.urls.api_urls'), name='api-users'),
+    path('hostmanage/', include('hostmanage.urls.api_urls'), name='api-hostmanage'),
+]
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('polls/', include('polls.urls')),
-    # path('users/', include('users.urls')),
     path('', IndexView.as_view(), name='index'),
-    # url(r'sitecollect/', include('sitecollect.urls'), name='sitecollect'),
     path('sitecollect/', include('sitecollect.urls'), name='sitecollect'),
-    path('hostmanage/', include('hostmanage.urls'), name='hostmanage'),
     path('cmdb/', include('cmdb.urls'), name='cmdb'),
 
-    # jeneral view
+    # general view
     path('users/', include('users.urls.view_urls'), name='users'),
+    path('hostmanage/', include('hostmanage.urls.view_urls'), name='hostmanage'),
 
     #api url view map
-    path('api2/users/', include('users.urls.api_urls'), name='api-users'),
+    path('api2/', include(api_patterns)),
 ]
