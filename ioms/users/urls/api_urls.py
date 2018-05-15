@@ -34,10 +34,10 @@ router.register(r'users', api.UserViewSet)
 # router.register(r'users2', api.UserViewSet2.as_view())
 
 
+urlpatterns = router.urls
 
-
-urlpatterns = [
-    url(r'^', include(router.urls)),
-    # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
-]
+# urlpatterns = [
+#     url(r'^', include(router.urls)),
+#     # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+# ]
 

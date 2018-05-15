@@ -25,7 +25,7 @@ from django.contrib import admin
 from django.urls import path
 from rest_framework import routers
 
-from .views import HostIndexView, StatusView, HostViewSet, HostStatusDetailView, upload
+from ..views import update_host_view,HostIndexView, StatusView, HostViewSet, HostStatusDetailView, upload
 
 app_name = 'hostmanage'
 
@@ -34,6 +34,7 @@ router = routers.DefaultRouter()
 router.register(r'host', HostViewSet)
 
 urlpatterns = [
+    path('host_sync/', update_host_view, name="host_sync"),
     path('host_index/', HostIndexView.as_view(), name="host_index"),
     path('status_list/', StatusView.as_view(), name='status_list'),
     path('host_status/<int:pk>/', HostStatusDetailView.as_view(), name='host_status_detail'),

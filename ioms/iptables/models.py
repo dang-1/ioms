@@ -5,6 +5,7 @@ from hostmanage.models import Host
 
 
 
+
 class Rule(models.Model):
     '''
     一般规则

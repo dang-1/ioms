@@ -31,5 +31,5 @@ urlpatterns = [
     path('users/', include('users.urls.view_urls'), name='users'),
 
     #api url view map
-    path('api/users/', include('users.urls.api_urls'), name='api-users'),
+    path('api2/users/', include('users.urls.api_urls'), name='api-users'),
 ]

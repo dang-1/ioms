@@ -9,6 +9,43 @@ from django.http import HttpResponse
 from .models import *
 from .form import HostDetailFrom
 
+def update_host_view(request):
+    error_info = {}
+    iop_host_api_url = "https://iop-api.tap4fun.com/real_servers/unsecure_list?"
+    get_total_info = json.loads(requests.get(iop_host_api_url).text)
+    total_page = int(get_total_info["total_pages"]) #ok
+    for i in range(1, total_page+1):
+        page_url_api = "{}page={}".format(iop_host_api_url, i)
+        hosts_data = json.loads(requests.get(page_url_api).text)['data']
+        for j in range(len(hosts_data)):
+            host_data = hosts_data[j]
+            try:
+                host_info = HostForm({
+                    # 'instance_id': host_data.get('identifier', 'xxx'),
+                    # 'public_ip': ','.join(host_data.get("public_ip_addresses", 'xxx')),
+                    # 'private_ip': ','.join(host_data.get('private_ip_addresses', 'xxx')),
+                    # 'hostname': host_data.get('hostname', 'xxx'),
+                    # 'project': host_data.get("project").get('bastion_group_name', 'xxx'),
+                    # 'role': ','.join(host_data.get('tags').get('roles', 'xxx'))}
+                    'instance_id': host_data.get('identifier'),
+                    'public_ip': ','.join(host_data.get("public_ip_addresses")),
+                    'private_ip': ','.join(host_data.get('private_ip_addresses')),
+                    'hostname': host_data.get('hostname'),
+                    'project': host_data.get("project").get('bastion_group_name'),
+                    'role': None if not host_data.get('tags').get('roles') else ','.join(host_data.get('tags').get('roles'))}
+                )
+            except Exception as e:
+                print('get {} {} error in page: {} as {}'.format(host_data.get('identifier'), j, i, e))
+                continue
+
+            if host_info.is_valid():
+                host_info.save()
+            else:
+                print('save eror')
+    return redirect('/hostmanage/host_index/')
+
+
+
 class HostIndexView(LoginRequiredMixin, ListView):
     template_name = 'hostmanage/index.html'
     context_object_name = 'host_list'
