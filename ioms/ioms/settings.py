@@ -173,69 +173,69 @@ REST_FRAMEWORK = {
 }
 
 #log
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'verbose': {
-            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
-        },
-        'simple': {
-            'format': '%(levelname)s %(message)s'
-        },
-    },
-    # 'filters': {
-    #     'special': {
-    #         '()': 'ioms.logging.SpecialFilter',
-    #         'foo': 'bar',
-    #     },
-    #     'require_debug_true': {
-    #         '()': 'django.utils.log.RequireDebugTrue',
-    #     },
-    # },
-    'handlers': {
-        'null': {
-            'level': 'DEBUG',
-            'class': 'logging.NullHandler',
-        },
-        'console': {
-            'level': 'INFO',
-            # 'filters': ['require_debug_true'],
-            'class': 'logging.StreamHandler',
-            'formatter': 'simple',
-        },
-        # 'mail_admins': {
-        #     'level': 'ERROR',
-        #     'class': 'django.utils.log.AdminEmailHandler',
-        #     'filters': ['special']
-        # },
-        'file': {
-            'class': 'logging.FileHandler',
-            'filename': './ioms.log',
-        },
-        # 'ansible_logs': {
-        #         'level': 'DEBUG',
-        #         'class': 'logging.FileHandler',
-        #         'formatter': 'main',
-        #         'filename': os.path.join(PROJECT_DIR, 'logs', 'ansible.log')
-        # },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console', 'file'],
-            'level': 'ERROR'
-            # 'propagate': True,
-        },
-        'django.request': {
-            'handlers': ['console', 'file'],
-            'level': 'ERROR',
-            # 'propagate': False,
-        },
-        # 'myproject.custom': {
-        #     'handlers': ['console', 'file'],
-        #     'level': 'INFO',
-        #     # 'filters': ['special']
-        # }
-    }
-}
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'formatters': {
+#         'verbose': {
+#             'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+#         },
+#         'simple': {
+#             'format': '%(levelname)s %(message)s'
+#         },
+#     },
+#     # 'filters': {
+#     #     'special': {
+#     #         '()': 'ioms.logging.SpecialFilter',
+#     #         'foo': 'bar',
+#     #     },
+#     #     'require_debug_true': {
+#     #         '()': 'django.utils.log.RequireDebugTrue',
+#     #     },
+#     # },
+#     'handlers': {
+#         'null': {
+#             'level': 'DEBUG',
+#             'class': 'logging.NullHandler',
+#         },
+#         'console': {
+#             'level': 'INFO',
+#             # 'filters': ['require_debug_true'],
+#             'class': 'logging.StreamHandler',
+#             'formatter': 'simple',
+#         },
+#         # 'mail_admins': {
+#         #     'level': 'ERROR',
+#         #     'class': 'django.utils.log.AdminEmailHandler',
+#         #     'filters': ['special']
+#         # },
+#         'file': {
+#             'class': 'logging.FileHandler',
+#             'filename': './ioms.log',
+#         },
+#         # 'ansible_logs': {
+#         #         'level': 'DEBUG',
+#         #         'class': 'logging.FileHandler',
+#         #         'formatter': 'main',
+#         #         'filename': os.path.join(PROJECT_DIR, 'logs', 'ansible.log')
+#         # },
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['console', 'file'],
+#             'level': 'ERROR'
+#             # 'propagate': True,
+#         },
+#         'django.request': {
+#             'handlers': ['console', 'file'],
+#             'level': 'ERROR',
+#             # 'propagate': False,
+#         },
+#         # 'myproject.custom': {
+#         #     'handlers': ['console', 'file'],
+#         #     'level': 'INFO',
+#         #     # 'filters': ['special']
+#         # }
+#     }
+# }
 

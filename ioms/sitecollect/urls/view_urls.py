@@ -9,7 +9,7 @@
 from django.contrib import admin
 from django.urls import path
 
-from .views import SiteTypeDetailView, SiteTypeListView, SiteTypeAddView, SiteTypeUpdateView, SiteTypeModelDeleteView, \
+from ..views import SiteTypeDetailView, SiteTypeListView, SiteTypeAddView, SiteTypeUpdateView, SiteTypeModelDeleteView, \
     SiteListView, SiteManageView, SiteDetailView, SiteAddView, SiteUpdateView, SiteDeleteView, \
     SiteTypeApiView
 # from rest_framework import routers
@@ -32,12 +32,4 @@ urlpatterns = [
     path('site/<int:pk>/', SiteDetailView.as_view(), name='site_detail'),
     path('site/<int:pk>/update/', SiteUpdateView.as_view(), name='site_update'),
     path('site/<int:pk>/delete/', SiteDeleteView.as_view(), name='site_delete'),
-    # path('site_index/', SiteIndex.as_view(), name='site_index'),
-    # path('site_add/', SiteAddView.as_view(), name='site_add'),
-    # path('site_type_index/', SiteType.as_view(), name='site_type_index'),
-    # path('site_type_add/', SiteTypeAddView.as_view(), name='site_type_add'),
-    # path('site_type/', SiteTypeView.as_view(), name='site_type'),
-
-    # path('site_type/<int:pk>/', SiteTypeDetailView.as_view(), name='site_type_detail'),
-
 ]

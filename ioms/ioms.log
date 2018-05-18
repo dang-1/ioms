@@ -8,3 +8,446 @@ You're accessing the development server over HTTPS, but it only supports HTTP.
 
 You're accessing the development server over HTTPS, but it only supports HTTP.
 
+Internal Server Error: /api2/hostmanage/host-list/
+Traceback (most recent call last):
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/urls/base.py", line 74, in reverse
+    extra, resolver = resolver.namespace_dict[ns]
+KeyError: 'rest_framework'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/templatetags/rest_framework.py", line 131, in optional_logout
+    logout_url = reverse('rest_framework:logout')
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/urls/base.py", line 84, in reverse
+    raise NoReverseMatch("%s is not a registered namespace" % key)
+django.urls.exceptions.NoReverseMatch: 'rest_framework' is not a registered namespace
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/core/handlers/base.py", line 158, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/core/handlers/base.py", line 156, in _get_response
+    response = response.render()
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/response.py", line 106, in render
+    self.content = self.rendered_content
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/response.py", line 72, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/renderers.py", line 725, in render
+    ret = template.render(context, request=renderer_context['request'])
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 910, in render_annotated
+    return self.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/loader_tags.py", line 155, in render
+    return compiled_parent._render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 910, in render_annotated
+    return self.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/loader_tags.py", line 67, in render
+    result = block.nodelist.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 910, in render_annotated
+    return self.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/loader_tags.py", line 67, in render
+    result = block.nodelist.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 910, in render_annotated
+    return self.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/loader_tags.py", line 67, in render
+    result = block.nodelist.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 910, in render_annotated
+    return self.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/defaulttags.py", line 314, in render
+    return nodelist.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 910, in render_annotated
+    return self.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/library.py", line 192, in render
+    output = self.func(*resolved_args, **resolved_kwargs)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/templatetags/rest_framework.py", line 133, in optional_logout
+    snippet = format_html('<li class="navbar-text">{user}</li>', user=escape(user))
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/utils/functional.py", line 196, in wrapper
+    return func(*args, **kwargs)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/utils/html.py", line 40, in escape
+    str(text).replace('&', '&amp;').replace('<', '&lt;')
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/utils/functional.py", line 216, in inner
+    return func(self._wrapped, *args)
+  File "/data/django2/ioms/ioms/users/models.py", line 27, in __str__
+    return self.emailß
+AttributeError: 'User' object has no attribute 'emailß'
+Internal Server Error: /api2/hostmanage/host-list/
+Traceback (most recent call last):
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/urls/base.py", line 74, in reverse
+    extra, resolver = resolver.namespace_dict[ns]
+KeyError: 'rest_framework'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/templatetags/rest_framework.py", line 131, in optional_logout
+    logout_url = reverse('rest_framework:logout')
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/urls/base.py", line 84, in reverse
+    raise NoReverseMatch("%s is not a registered namespace" % key)
+django.urls.exceptions.NoReverseMatch: 'rest_framework' is not a registered namespace
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/core/handlers/base.py", line 158, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/core/handlers/base.py", line 156, in _get_response
+    response = response.render()
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/response.py", line 106, in render
+    self.content = self.rendered_content
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/response.py", line 72, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/renderers.py", line 725, in render
+    ret = template.render(context, request=renderer_context['request'])
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 910, in render_annotated
+    return self.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/loader_tags.py", line 155, in render
+    return compiled_parent._render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 910, in render_annotated
+    return self.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/loader_tags.py", line 67, in render
+    result = block.nodelist.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 910, in render_annotated
+    return self.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/loader_tags.py", line 67, in render
+    result = block.nodelist.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 910, in render_annotated
+    return self.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/loader_tags.py", line 67, in render
+    result = block.nodelist.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 910, in render_annotated
+    return self.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/defaulttags.py", line 314, in render
+    return nodelist.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 910, in render_annotated
+    return self.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/library.py", line 192, in render
+    output = self.func(*resolved_args, **resolved_kwargs)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/templatetags/rest_framework.py", line 133, in optional_logout
+    snippet = format_html('<li class="navbar-text">{user}</li>', user=escape(user))
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/utils/functional.py", line 196, in wrapper
+    return func(*args, **kwargs)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/utils/html.py", line 40, in escape
+    str(text).replace('&', '&amp;').replace('<', '&lt;')
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/utils/functional.py", line 216, in inner
+    return func(self._wrapped, *args)
+  File "/data/django2/ioms/ioms/users/models.py", line 27, in __str__
+    return self.emailß
+AttributeError: 'User' object has no attribute 'emailß'
+"GET /api2/hostmanage/host-list/ HTTP/1.1" 500 259490
+Internal Server Error: /api2/hostmanage/host-list/
+Traceback (most recent call last):
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/var/pyenv/versions/3.5.2/lib/python3.5/contextlib.py", line 30, in inner
+    return func(*args, **kwds)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/viewsets.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/views.py", line 483, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/views.py", line 443, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/views.py", line 480, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/mixins.py", line 45, in list
+    return self.get_paginated_response(serializer.data)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/serializers.py", line 765, in data
+    ret = super(ListSerializer, self).data
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/serializers.py", line 262, in data
+    self._data = self.to_representation(self.instance)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/serializers.py", line 683, in to_representation
+    self.child.to_representation(item) for item in iterable
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/serializers.py", line 683, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/serializers.py", line 510, in to_representation
+    fields = self._readable_fields
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/utils/functional.py", line 36, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/serializers.py", line 376, in _readable_fields
+    field for field in self.fields.values()
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/serializers.py", line 363, in fields
+    for key, value in self.get_fields().items():
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/serializers.py", line 1020, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/serializers.py", line 1097, in get_field_names
+    serializer_class=self.__class__.__name__
+AssertionError: ("Creating a ModelSerializer without either the 'fields' attribute or the 'exclude' attribute has been deprecated since 3.3.0, and is now disallowed. Add an explicit fields = '__all__' to the HostSerializer serializer.",)
+Internal Server Error: /api2/hostmanage/host-list/
+Traceback (most recent call last):
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/var/pyenv/versions/3.5.2/lib/python3.5/contextlib.py", line 30, in inner
+    return func(*args, **kwds)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/viewsets.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/views.py", line 483, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/views.py", line 443, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/views.py", line 480, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/mixins.py", line 45, in list
+    return self.get_paginated_response(serializer.data)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/serializers.py", line 765, in data
+    ret = super(ListSerializer, self).data
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/serializers.py", line 262, in data
+    self._data = self.to_representation(self.instance)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/serializers.py", line 683, in to_representation
+    self.child.to_representation(item) for item in iterable
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/serializers.py", line 683, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/serializers.py", line 510, in to_representation
+    fields = self._readable_fields
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/utils/functional.py", line 36, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/serializers.py", line 376, in _readable_fields
+    field for field in self.fields.values()
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/serializers.py", line 363, in fields
+    for key, value in self.get_fields().items():
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/serializers.py", line 1020, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/serializers.py", line 1097, in get_field_names
+    serializer_class=self.__class__.__name__
+AssertionError: ("Creating a ModelSerializer without either the 'fields' attribute or the 'exclude' attribute has been deprecated since 3.3.0, and is now disallowed. Add an explicit fields = '__all__' to the HostSerializer serializer.",)
+"GET /api2/hostmanage/host-list/ HTTP/1.1" 500 146190
+Internal Server Error: /api2/hostmanage/host-list/
+Traceback (most recent call last):
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/relations.py", line 376, in to_representation
+    url = self.get_url(value, self.view_name, request, format)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/relations.py", line 314, in get_url
+    return self.reverse(view_name, kwargs=kwargs, request=request, format=format)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/reverse.py", line 50, in reverse
+    url = _reverse(viewname, args, kwargs, request, format, **extra)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/reverse.py", line 63, in _reverse
+    url = django_reverse(viewname, args=args, kwargs=kwargs, **extra)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/urls/base.py", line 88, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/urls/resolvers.py", line 632, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'hoststatus-detail' not found. 'hoststatus-detail' is not a valid view function or pattern name.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/core/handlers/base.py", line 158, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/core/handlers/base.py", line 156, in _get_response
+    response = response.render()
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/response.py", line 106, in render
+    self.content = self.rendered_content
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/response.py", line 72, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/renderers.py", line 724, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/renderers.py", line 697, in get_context
+    'post_form': self.get_rendered_html_form(data, view, 'POST', request),
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/renderers.py", line 520, in get_rendered_html_form
+    return self.render_form_for_serializer(serializer)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/renderers.py", line 530, in render_form_for_serializer
+    {'style': {'template_pack': 'rest_framework/horizontal'}}
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/renderers.py", line 381, in render
+    return template.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 910, in render_annotated
+    return self.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/defaulttags.py", line 211, in render
+    nodelist.append(node.render_annotated(context))
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 910, in render_annotated
+    return self.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/defaulttags.py", line 314, in render
+    return nodelist.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 910, in render_annotated
+    return self.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/library.py", line 192, in render
+    output = self.func(*resolved_args, **resolved_kwargs)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/templatetags/rest_framework.py", line 90, in render_field
+    return renderer.render_field(field, style)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/renderers.py", line 360, in render_field
+    return template.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 910, in render_annotated
+    return self.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/defaulttags.py", line 161, in render
+    values = self.sequence.resolve(context, True)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 676, in resolve
+    obj = self.var.resolve(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 802, in resolve
+    value = self._resolve_lookup(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 864, in _resolve_lookup
+    current = current()
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/relations.py", line 207, in iter_options
+    self.get_choices(cutoff=self.html_cutoff),
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/relations.py", line 194, in get_choices
+    for item in queryset
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/relations.py", line 194, in <listcomp>
+    for item in queryset
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/relations.py", line 391, in to_representation
+    raise ImproperlyConfigured(msg % self.view_name)
+django.core.exceptions.ImproperlyConfigured: Could not resolve URL for hyperlinked relationship using view name "hoststatus-detail". You may have failed to include the related model in your API, or incorrectly configured the `lookup_field` attribute on this field.
+Internal Server Error: /api2/hostmanage/host-list/
+Traceback (most recent call last):
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/relations.py", line 376, in to_representation
+    url = self.get_url(value, self.view_name, request, format)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/relations.py", line 314, in get_url
+    return self.reverse(view_name, kwargs=kwargs, request=request, format=format)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/reverse.py", line 50, in reverse
+    url = _reverse(viewname, args, kwargs, request, format, **extra)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/reverse.py", line 63, in _reverse
+    url = django_reverse(viewname, args=args, kwargs=kwargs, **extra)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/urls/base.py", line 88, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/urls/resolvers.py", line 632, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'hoststatus-detail' not found. 'hoststatus-detail' is not a valid view function or pattern name.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/core/handlers/base.py", line 158, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/core/handlers/base.py", line 156, in _get_response
+    response = response.render()
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/response.py", line 106, in render
+    self.content = self.rendered_content
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/response.py", line 72, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/renderers.py", line 724, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/renderers.py", line 697, in get_context
+    'post_form': self.get_rendered_html_form(data, view, 'POST', request),
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/renderers.py", line 520, in get_rendered_html_form
+    return self.render_form_for_serializer(serializer)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/renderers.py", line 530, in render_form_for_serializer
+    {'style': {'template_pack': 'rest_framework/horizontal'}}
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/renderers.py", line 381, in render
+    return template.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 910, in render_annotated
+    return self.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/defaulttags.py", line 211, in render
+    nodelist.append(node.render_annotated(context))
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 910, in render_annotated
+    return self.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/defaulttags.py", line 314, in render
+    return nodelist.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 910, in render_annotated
+    return self.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/library.py", line 192, in render
+    output = self.func(*resolved_args, **resolved_kwargs)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/templatetags/rest_framework.py", line 90, in render_field
+    return renderer.render_field(field, style)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/renderers.py", line 360, in render_field
+    return template.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 910, in render_annotated
+    return self.render(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/defaulttags.py", line 161, in render
+    values = self.sequence.resolve(context, True)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 676, in resolve
+    obj = self.var.resolve(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 802, in resolve
+    value = self._resolve_lookup(context)
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/django/template/base.py", line 864, in _resolve_lookup
+    current = current()
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/relations.py", line 207, in iter_options
+    self.get_choices(cutoff=self.html_cutoff),
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/relations.py", line 194, in get_choices
+    for item in queryset
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/relations.py", line 194, in <listcomp>
+    for item in queryset
+  File "/usr/local/var/pyenv/versions/django2/lib/python3.5/site-packages/rest_framework/relations.py", line 391, in to_representation
+    raise ImproperlyConfigured(msg % self.view_name)
+django.core.exceptions.ImproperlyConfigured: Could not resolve URL for hyperlinked relationship using view name "hoststatus-detail". You may have failed to include the related model in your API, or incorrectly configured the `lookup_field` attribute on this field.
+"GET /api2/hostmanage/host-list/ HTTP/1.1" 500 261943

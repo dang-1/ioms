@@ -12,7 +12,7 @@ from django.urls import reverse_lazy
 from rest_framework.views import APIView
 from rest_framework.response import  Response
 from rest_framework import status
-from .serializers import SiteTypeSerializer
+# from .serializers import SiteTypeSerializer
 from .models import SiteTypeModel, SiteCollectModel
 from .form import  SiteForm, SiteTypeForm
 

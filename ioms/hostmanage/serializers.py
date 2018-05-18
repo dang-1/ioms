@@ -7,8 +7,13 @@ from .models import Host
 class HostSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = Host
-		fields = ('outer_ip', 'inner_ip')
-
+		fields = (
+			'hostname',
+			'status',
+			'outer_ip',
+			'inner_ip',
+			'osversion',
+		)
 
 
 

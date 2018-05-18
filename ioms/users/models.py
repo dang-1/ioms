@@ -24,7 +24,7 @@ class User(AbstractUser):
 
 
     def __str__(self):
-        return self.emailß
+        return self.email
 
     #disable watch password
     @property

@@ -24,7 +24,6 @@
 #     path('user/', UserViewSet.as_view(), name='user-api'),
 # ]
 
-
 from django.conf.urls import url, include
 from rest_framework import routers
 from .. import api

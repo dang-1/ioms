@@ -7,14 +7,21 @@
 # @Mail    : 93651849@qq.com
 
 from rest_framework import serializers
-from .models import SiteTypeModel
+from rest_framework.serializers import ModelSerializer
+from .models import SiteCollectModel, SiteTypeModel
 
-class SiteTypeSerializer(serializers.Serializer):
-    id = serializers.IntegerField(read_only=True)
-    site_type_name = serializers.CharField(required=False, allow_blank=True, max_length=100)
-    # class Meta:
-    #     model = SiteTypeModel
-    #     fields = ('id', 'site_type_name')
+
+
+class SiteTypeSerializers(ModelSerializer):
+    class Meta:
+        model = SiteTypeModel
+        fields = ('id', 'site_type_name')
+
+
+
+
+
+
 
 
 
