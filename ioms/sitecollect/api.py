@@ -9,11 +9,11 @@
 from .serializers import SiteTypeSerializers
 from .models import SiteTypeModel, SiteCollectModel
 
-from rest_framework import generics
+from rest_framework import generics, viewsets
 # from rest_framework.permissions import Is
 
 
-class SiteTypeList(generics.ListCreateAPIView):
+class SiteTypeListView(viewsets.ModelViewSet):
     queryset = SiteTypeModel.objects.all()
     serializer_class = SiteTypeSerializers
 

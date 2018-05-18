@@ -20,6 +20,7 @@ from .views import IndexView
 api_patterns = [
     path('users/', include('users.urls.api_urls'), name='api-users'),
     path('hostmanage/', include('hostmanage.urls.api_urls'), name='api-hostmanage'),
+    path('site/', include('sitecollect.urls.api_urls'), name='api-sitecollect'),
 ]
 
 urlpatterns = [
