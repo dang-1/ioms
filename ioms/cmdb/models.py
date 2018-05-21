@@ -8,9 +8,9 @@ from hostmanage.models import Host
 __all__ = ["GsStatus", "ZoneName", "DbConfig", "ConfigManage"]
 
 
-class Project(models.Model):
-    id = models.AutoField(primary_key=True)
-    project_name = models.CharField(max_length=48, null=False)
+# class Project(models.Model):
+#     id = models.AutoField(primary_key=True)
+#     project_name = models.CharField(max_length=48, null=False)
 
 
 class ZoneName(models.Model):
@@ -57,7 +57,8 @@ class DbConfig(models.Model):
 
 
 class ConfigManage(models.Model):
-    project = models.ForeignKey(Project, on_delete=models.SET_NULL, related_name="gs_project_set", blank=True, null=True)
+    id = models.AutoField(primary_key=True)
+    # project = models.ForeignKey(Project, on_delete=models.SET_NULL, related_name="gs_project_set", blank=True, null=True)
     used = models.CharField(max_length=50, verbose_name="是否使用")
     gs_ip = models.ForeignKey(Host, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="host ip's id")
     # gs_zone = models.CharField(max_length=50, verbose_name="区域")
