@@ -7,11 +7,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import TemplateView, ListView, DetailView
-
+from django.shortcuts import redirect
 from django.http import HttpResponse
 from .models import *
 from .serializers import HostSerializer
-from .form import HostFrom
+from .form import HostFrom, HostRoleForm, PorjectFrom
 
 def update_host_view(request):
     error_info = {}
@@ -23,29 +23,78 @@ def update_host_view(request):
         hosts_data = json.loads(requests.get(page_url_api).text)['data']
         for j in range(len(hosts_data)):
             host_data = hosts_data[j]
-            try:
-                host_info = HostForm({
-                    # 'instance_id': host_data.get('identifier', 'xxx'),
-                    # 'public_ip': ','.join(host_data.get("public_ip_addresses", 'xxx')),
-                    # 'private_ip': ','.join(host_data.get('private_ip_addresses', 'xxx')),
-                    # 'hostname': host_data.get('hostname', 'xxx'),
-                    # 'project': host_data.get("project").get('bastion_group_name', 'xxx'),
-                    # 'role': ','.join(host_data.get('tags').get('roles', 'xxx'))}
-                    'instance_id': host_data.get('identifier'),
-                    'public_ip': ','.join(host_data.get("public_ip_addresses")),
-                    'private_ip': ','.join(host_data.get('private_ip_addresses')),
-                    'hostname': host_data.get('hostname'),
-                    'project': host_data.get("project").get('bastion_group_name'),
-                    'role': None if not host_data.get('tags').get('roles') else ','.join(host_data.get('tags').get('roles'))}
-                )
-            except Exception as e:
-                print('get {} {} error in page: {} as {}'.format(host_data.get('identifier'), j, i, e))
-                continue
+            # try:
+            instance_id = host_data.get('identifier', '')
+            public_ip = ','.join(host_data.get("public_ip_addresses"))
+            private_ip = ','.join(host_data.get('private_ip_addresses'))
+            hostname = host_data.get('hostname', '')
+            project = host_data.get("project").get('bastion_group_name', '')
+            # role = None if not host_data.get('tags').get('roles') else ','.join(host_data.get('tags').get('roles'))
+            role = host_data.get('tags').get('roles')
+            # print('{} {} {} {} {} {}'.format(instance_id, public_ip, private_ip, hostname, project, role))
+            # print('{} {} {} {} {} {}'.format(type(instance_id), type(public_ip), type(private_ip), type(hostname),
+            #                                      type(project), type(role)))
+            # print(role)
+            if role:
+                for i in role:
+                    print(i)
+                    try:
+                        a = HostRole.objects.get(role=i)
+                    except:
+                        r = HostRoleForm({'role': i})
+                        if r.is_valid():
+                            print('valid')
+                            r.save()
+                        else:
+                            print('save error')
+                            # r = HostRole.objects.get(role=i)
+            if project:
+                try:
+                    pro = ProjectName.objects.get(project_name=project)
+                except:
+                    p = PorjectFrom({'project_name':project})
+                    if p.is_valid():
+                        p.save()
+                    else:
+                        print('save pro error')
+            pro = ProjectName.objects.get(project_name=project)
+            print(1)
+            h = Host(
+                instance_id=instance_id,
+                outer_ip=public_ip,
+                inner_ip=private_ip,
+                hostname=hostname
+            )
+            h.save()
+            print(2)
+            if role:
+                print(role)
+                for r in role:
+                    h.role.add(HostRole.objects.get(role=r))
+                # h.role.set = (HostRole.objects.get(role=ro) for ro in role)
+                # h.save()
+                # host_info = HostForm({
+                #     # 'instance_id': host_data.get('identifier', 'xxx'),
+                #     # 'public_ip': ','.join(host_data.get("public_ip_addresses", 'xxx')),
+                #     # 'private_ip': ','.join(host_data.get('private_ip_addresses', 'xxx')),
+                #     # 'hostname': host_data.get('hostname', 'xxx'),
+                #     # 'project': host_data.get("project").get('bastion_group_name', 'xxx'),
+                #     # 'role': ','.join(host_data.get('tags').get('roles', 'xxx'))}
+                #     'instance_id': host_data.get('identifier'),
+                #     'public_ip': ','.join(host_data.get("public_ip_addresses")),
+                #     'private_ip': ','.join(host_data.get('private_ip_addresses')),
+                #     'hostname': host_data.get('hostname'),
+                #     'project': host_data.get("project").get('bastion_group_name'),
+                #     'role': None if not host_data.get('tags').get('roles') else ','.join(host_data.get('tags').get('roles'))}
+                # )
+            # except Exception as e:
+            print('get {} {} error in page: {} as'.format(host_data.get('identifier'), j, i))
+                # continue
 
-            if host_info.is_valid():
-                host_info.save()
-            else:
-                print('save eror')
+            # if host_info.is_valid():
+            #     host_info.save()
+            # else:
+            #     print('save eror')
     return redirect('/hostmanage/host_index/')
 
 

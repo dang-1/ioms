@@ -11,7 +11,8 @@ from .models import Host, HostRole, HostStatus, ProjectName, CloudPlat
 class HostFrom(forms.ModelForm):
     class Meta:
         model = Host
-        fields = '__all__'
+        # fields = '__all__'
+        fields = ['hostname', 'outer_ip', 'inner_ip', 'role', 'project', 'instance_id']
 
 
 class HostRoleForm(forms.ModelForm):
