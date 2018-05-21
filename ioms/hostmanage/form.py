@@ -7,8 +7,38 @@
 # @Mail    : 93651849@qq.com
 from django import forms
 
+from .models import Host, HostRole, HostStatus, ProjectName, CloudPlat
+class HostFrom(forms.ModelForm):
+    class Meta:
+        model = Host
+        fields = '__all__'
 
-class HostDetailFrom(forms.Form):
-    host_id = forms.CharField(max_length=50, widget=forms.TextInput())
-    # password = forms.CharField(max_length=50, widget=forms.PasswordInput())
 
+class HostRoleForm(forms.ModelForm):
+    class Meta:
+        model = HostRole
+        fields = ['role']
+
+
+class PorjectFrom(forms.ModelForm):
+    class Meta:
+        model = ProjectName
+        fields = ['project_name']
+
+
+class CloudPlatForm(forms.ModelForm):
+    class Meta:
+        model = CloudPlat
+        fields = ['cloud_platform_name']
+
+
+class HostStatusForm(forms.ModelForm):
+    class Meta:
+        model = HostStatus
+        fields = ['status']
+
+
+# class SiteForm(forms.ModelForm):
+#     class Meta:
+#         model = SiteCollectModel
+#         fields = '__all__'

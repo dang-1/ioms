@@ -1,13 +1,17 @@
 #coding: utf-8
+import json
+import requests
+
 from rest_framework import viewsets
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import TemplateView, ListView, DetailView
-from .serializers import HostSerializer
+
 from django.http import HttpResponse
 from .models import *
-from .form import HostDetailFrom
+from .serializers import HostSerializer
+from .form import HostFrom
 
 def update_host_view(request):
     error_info = {}
