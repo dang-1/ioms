@@ -27,8 +27,8 @@ class GsStatus(models.Model):
     gs status
     '''
     id = models.AutoField(primary_key=True)
-    status = models.CharField(max_length=48, null=False, unique=True)
-    status_explain = models.CharField(max_length=48, blank=True, unique=True)
+    status = models.CharField(max_length=48, null=False, unique=True, verbose_name='字段id')
+    status_explain = models.CharField(max_length=48, blank=True, verbose_name='字段说明')
 
     def __str__(self):
         return self.status

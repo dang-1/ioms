@@ -28,12 +28,13 @@ urlpatterns = [
 
     #index page
     path('', IndexView.as_view(), name='index'),
-    path('cmdb/', include('cmdb.urls'), name='cmdb'),
+
 
     # general view
     path('users/', include('users.urls.view_urls'), name='users'),
     path('hostmanage/', include('hostmanage.urls.view_urls'), name='hostmanage'),
     path('sitecollect/', include('sitecollect.urls.view_urls'), name='sitecollect'),
+    path('cmdb/', include('cmdb.urls.view_urls'), name='cmdb'),
 
     #api url view map
     path('api2/', include(api_patterns)),

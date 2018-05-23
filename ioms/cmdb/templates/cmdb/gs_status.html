@@ -5,15 +5,17 @@
 <p>host index page</p>
 
 <table>
-    <caption>角色列表</caption>
+    <caption>状态列表</caption>
     <tr>
+        <!--<th>状态id</th>-->
         <th>状态id</th>
         <th>状态说明</th>
     </tr>
     {% for gs_status in gs_status_list %}
     <tr>
-        <td>{{ gs_status.id }}</td>
+        <!--<td>{{ gs_status.id }}</td>-->
         <td>{{ gs_status.status }}</td>
+        <td>{{ gs_status.status_explain }}</td>
     </tr>
     {% endfor%}
 </table>
