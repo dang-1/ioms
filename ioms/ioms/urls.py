@@ -21,21 +21,18 @@ api_patterns = [
     path('users/', include('users.urls.api_urls'), name='api-users'),
     path('hostmanage/', include('hostmanage.urls.api_urls'), name='api-hostmanage'),
     path('site/', include('sitecollect.urls.api_urls'), name='api-sitecollect'),
+    path('cmdb/', include('cmdb.urls.api_urls'), name='api-cmdb'),
 ]
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
     #index page
     path('', IndexView.as_view(), name='index'),
-
-
     # general view
     path('users/', include('users.urls.view_urls'), name='users'),
     path('hostmanage/', include('hostmanage.urls.view_urls'), name='hostmanage'),
     path('sitecollect/', include('sitecollect.urls.view_urls'), name='sitecollect'),
     path('cmdb/', include('cmdb.urls.view_urls'), name='cmdb'),
-
     #api url view map
     path('api2/', include(api_patterns)),
 ]
