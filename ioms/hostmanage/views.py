@@ -6,7 +6,7 @@ from rest_framework import viewsets
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic import TemplateView, ListView, DetailView, View
 from django.shortcuts import redirect
 from django.http import HttpResponse
 from .models import *
