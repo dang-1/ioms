@@ -14,7 +14,7 @@ from .serializers import HostSerializer
 from .form import HostFrom, HostRoleForm, PorjectFrom
 
 def update_host_view(request):
-    error_info = {}
+    # error_info = {}
     iop_host_api_url = "https://iop-api.tap4fun.com/real_servers/unsecure_list?"
     get_total_info = json.loads(requests.get(iop_host_api_url).text)
     total_page = int(get_total_info["total_pages"]) #ok
@@ -36,12 +36,12 @@ def update_host_view(request):
             #                                      type(project), type(role)))
             # print(role)
             if role:
-                for i in role:
-                    print(i)
+                for role_one in role:
+                    print(role_one)
                     try:
-                        a = HostRole.objects.get(role=i)
+                        a = HostRole.objects.get(role=role_one)
                     except:
-                        r = HostRoleForm({'role': i})
+                        r = HostRoleForm({'role': role_one})
                         if r.is_valid():
                             print('valid')
                             r.save()
@@ -59,14 +59,17 @@ def update_host_view(request):
                         print('save pro error')
             pro = ProjectName.objects.get(project_name=project)
             print(1)
-            h = Host(
-                instance_id=instance_id,
-                outer_ip=public_ip,
-                inner_ip=private_ip,
-                hostname=hostname
-            )
-            h.save()
-            print(2)
+            try:
+                h = Host(
+                    instance_id=instance_id,
+                    outer_ip=public_ip,
+                    inner_ip=private_ip,
+                    hostname=hostname
+                )
+                h.save()
+                print(2)
+            except Exception as e:
+                print('save {} error as {}'.format(instance_id, e))
             if role:
                 print(role)
                 for r in role:
@@ -88,7 +91,7 @@ def update_host_view(request):
                 #     'role': None if not host_data.get('tags').get('roles') else ','.join(host_data.get('tags').get('roles'))}
                 # )
             # except Exception as e:
-            print('get {} {} error in page: {} as'.format(host_data.get('identifier'), j, i))
+            print('save {} ok in page: {} {}'.format(instance_id, j, i))
                 # continue
 
             # if host_info.is_valid():
