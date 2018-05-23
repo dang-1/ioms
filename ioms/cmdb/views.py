@@ -25,5 +25,17 @@ class GsStatusView(LoginRequiredMixin, ListView):
         return context
 
 
+class ZoneNameView(LoginRequiredMixin, ListView):
+    template_name = 'cmdb/zone_name.html'
+    context_object_name = 'zone_name_list'
+    model = ZoneName
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title_name'] = 'iomp: zone name page'
+        return context
+
+
+class GsListView(LoginRequiredMixin, ListView):
+    template_name = 'cmdb/gs_list.html'
 
