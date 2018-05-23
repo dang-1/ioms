@@ -10,12 +10,14 @@
         <!--<th>状态id</th>-->
         <th>状态id</th>
         <th>状态说明</th>
+        <th>total</th>
     </tr>
     {% for gs_status in gs_status_list %}
     <tr>
         <!--<td>{{ gs_status.id }}</td>-->
         <td>{{ gs_status.status }}</td>
         <td>{{ gs_status.status_explain }}</td>
+        <td>{{ gs_status.configmanage_set.count }}</td>
     </tr>
     {% endfor%}
 </table>

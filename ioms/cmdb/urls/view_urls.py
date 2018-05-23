@@ -9,7 +9,7 @@
 from django.urls import path
 # from rest_framework import routers
 
-from ..views import GsStatusView,ZoneNameView
+from ..views import GsStatusView, ZoneNameView, GsListView
 
 app_name = 'cmdb'
 
@@ -17,6 +17,7 @@ app_name = 'cmdb'
 urlpatterns = [
     path('gs-status/', GsStatusView.as_view(), name='gs-status'),
     path('zone-name/', ZoneNameView.as_view(), name='zone-name'),
+    path('gs-list/', GsListView.as_view(), name='gs-list'),
     # path('host_index/', HostIndexView.as_view(), name="host_index"),
     # path('status_list/', StatusView.as_view(), name='status_list'),
     # path('site_index/', SiteIndex.as_view(), name='site_index'),
