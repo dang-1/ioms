@@ -15,14 +15,9 @@ from .serializers import HostSerializer, HostRoleSerializer
 from .models import Host, HostRole
 
 class RoleView(viewsets.ModelViewSet):
-    queryset = HostRole.objects.all()
+    queryset = HostRole.objects.all().order_by('id')
     serializer_class = HostRoleSerializer
 
-
-class HostListView(viewsets.ModelViewSet):
-    queryset = Host.objects.all().order_by('id')
-    serializer_class = HostSerializer
-    # pass
 
 class HostView(viewsets.ModelViewSet):
     '''
@@ -30,10 +25,10 @@ class HostView(viewsets.ModelViewSet):
     '''
     queryset = Host.objects.all()
     serializer_class = HostSerializer
+    paginate_by = 20
+    page_size = 15
 
-class HostView2(generics.ListCreateAPIView):
-    queryset = Host.objects.all()
-    serializer_class = HostSerializer
+
 
 # class HostView(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
 #     queryset = Host.objects.all()

@@ -11,7 +11,7 @@ from .. import api
 
 
 router = routers.DefaultRouter()
-router.register(r'host-list', api.HostListView)
+# router.register(r'host-list', api.HostListView)
 router.register(r'host', api.HostView)
 router.register(r'role', api.RoleView)
 # routers.reverse(r'index', api.HostView)

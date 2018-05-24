@@ -171,13 +171,13 @@ class RoleView(LoginRequiredMixin, ListView):
         return context
 
 
-class StatusView(LoginRequiredMixin, ListView):
+class HostStatusView(LoginRequiredMixin, ListView):
     template_name = 'hostmanage/status_list.html'
     context_object_name = 'status_list'
     model = HostStatus
 
     def get_context_data(self, **kwargs):
-        context = super(StatusView, self).get_context_data(**kwargs)
+        context = super(HostStatusView, self).get_context_data(**kwargs)
         context['title_name'] = 'iomp: host status page'
         return context
 

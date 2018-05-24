@@ -15,7 +15,7 @@
 # ]
 from django.urls import path
 
-from ..views import update_host_view,HostIndexView, StatusView, HostStatusDetailView, upload
+from ..views import update_host_view,HostIndexView, HostStatusView, HostStatusDetailView, upload
 
 app_name = 'hostmanage'
 
@@ -23,7 +23,7 @@ app_name = 'hostmanage'
 urlpatterns = [
     path('host_sync/', update_host_view, name="host_sync"),
     path('host_index/', HostIndexView.as_view(), name="host_index"),
-    path('status_list/', StatusView.as_view(), name='status_list'),
+    path('status_list/', HostStatusView.as_view(), name='status_list'),
     path('host_status/<int:pk>/', HostStatusDetailView.as_view(), name='host_status_detail'),
     path('upload/', upload, name='upload')
     #path('site_type/<int:pk>/', SiteTypeDetailView.as_view(), name='site_type_detail'),
