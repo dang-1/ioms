@@ -6,32 +6,19 @@
 # @Software: PyCharm
 # @Mail    : 93651849@qq.com
 
-
-# from django.conf.urls import url
-
-# from .views import *
-
-# app_name = 'hostmanage'
-
 # urlpatterns = [
-#     url(r'^host_index/$', HostIndex.as_view(), name='host_index'),
 #     url(r'^host_detail/(?P<pk>[0-9]+)/$', HostDetailView.as_view(), name='host_detail'),
 #     url(r'^host_detail/project_list/$', ProjectListView.as_view(), name='project_list'),
 #     url(r'^host_detail/cloudplat_list/$', CloudPlatView.as_view(), name='cloudplat_list'),
 #     url(r'^host_detail/role_list/$', RoleView.as_view(), name='role_list'),
 #     #url(r'^host_add', host_add, name='host_add'),
 # ]
-from django.contrib import admin
 from django.urls import path
-from rest_framework import routers
 
-from ..views import update_host_view,HostIndexView, StatusView, HostViewSet, HostStatusDetailView, upload
+from ..views import update_host_view,HostIndexView, StatusView, HostStatusDetailView, upload
 
 app_name = 'hostmanage'
 
-
-router = routers.DefaultRouter()
-router.register(r'host', HostViewSet)
 
 urlpatterns = [
     path('host_sync/', update_host_view, name="host_sync"),
@@ -49,5 +36,4 @@ urlpatterns = [
     # # path('user_list/', Login.as_view(), name='user_list'),
     # path('useradd/', UserAdd.as_view(), name='useradd'),
     # path('user_list/', UserList.as_view(), name='user_list'),
-
 ]

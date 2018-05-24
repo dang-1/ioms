@@ -5,19 +5,65 @@
 # @FileName: api.py
 # @Software: PyCharm
 # @Mail    : 93651849@qq.com
-
+from django.http import Http404
+from rest_framework import mixins, generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import serializers, viewsets, routers
 
-from .serializers import HostSerializer
-from .models import Host
+from .serializers import HostSerializer, HostRoleSerializer
+from .models import Host, HostRole
+
+class RoleView(viewsets.ModelViewSet):
+    queryset = HostRole.objects.all()
+    serializer_class = HostRoleSerializer
+
 
 class HostListView(viewsets.ModelViewSet):
     queryset = Host.objects.all().order_by('id')
     serializer_class = HostSerializer
     # pass
 
+class HostView(viewsets.ModelViewSet):
+    '''
+    api
+    '''
+    queryset = Host.objects.all()
+    serializer_class = HostSerializer
+
+class HostView2(generics.ListCreateAPIView):
+    queryset = Host.objects.all()
+    serializer_class = HostSerializer
+
+# class HostView(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
+#     queryset = Host.objects.all()
+#     serializer_class = HostSerializer
+#
+#     def get(self, request, *args, **kwargs):
+#         return self.list(request, *args, **kwargs)
+#
+#     def post(self, request, *args, **kwargs):
+#         return self.create(request, *args, **kwargs)
+# class HostView(generics.ListCreateAPIView):
+#     queryset = Host.objects.all()
+#     serializer_class = HostSerializer
+
+
+# class HostDetailView(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
+#     queryset = Host.objects.all()
+#     serializer_class = HostSerializer
+#
+#     def get(self, request, *args, **kwargs):
+#         return self.retrieve(request, *args, **kwargs)
+#
+#     def put(self, request, *args, **kwargs):
+#         return self.update(request, *args, **kwargs)
+#
+#     def delete(self, request, *args, **kwargs):
+#         return self.destroy(request, *args, **kwargs)
+class HostDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Host.objects.all()
+    serializer_class = HostSerializer
 
 
 # from .serializers import UserSerializer

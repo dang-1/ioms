@@ -16,6 +16,7 @@ from .form import HostFrom, HostRoleForm, PorjectFrom
 def update_host_view(request):
     # error_info = {}
     iop_host_api_url = "https://iop-api.tap4fun.com/real_servers/unsecure_list?"
+    #identifier
     get_total_info = json.loads(requests.get(iop_host_api_url).text)
     total_page = int(get_total_info["total_pages"]) #ok
     for i in range(1, total_page+1):
@@ -131,12 +132,7 @@ class HostDetailView(LoginRequiredMixin, ListView):
         print('info: {}'.format(host_detail_info))
         return super(HostDetailView, self).get_queryset().filter(hostname=host_detail_info)
 
-class HostViewSet(viewsets.ModelViewSet):
-    '''
-    api
-    '''
-    queryset = Host.objects.all()
-    serializer_class = HostSerializer
+
 
 class ProjectListView(LoginRequiredMixin, ListView):
     template_name = 'hostmanage/project_list.html'

@@ -5,22 +5,23 @@
 # @FileName: api_urls.py
 # @Software: PyCharm
 # @Mail    : 93651849@qq.com
-
-
-
 from django.conf.urls import url, include
 from rest_framework import routers
 from .. import api
 
+
 router = routers.DefaultRouter()
 router.register(r'host-list', api.HostListView)
-# router.register(r'users', api.UserViewSet)
-# # router.register(r'users2', api.UserViewSet2.as_view())
+router.register(r'host', api.HostView)
+router.register(r'role', api.RoleView)
+# routers.reverse(r'index', api.HostView)
 
-#
-urlpatterns = router.urls
 
-# urlpatterns = [
-#     url(r'^', include(router.urls)),
-#     # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
-# ]
+# urlpatterns = router.urls
+
+urlpatterns = [
+    url(r'^', include(router.urls)),
+    # url(r'host/', api.HostView.as_view(), name='index'),
+    # url(r'host/<int:pk>/', api.HostDetailView.as_view(), name='index'), #get put destory
+
+]

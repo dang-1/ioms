@@ -67,7 +67,7 @@ class Host(models.Model):
     instance_id = models.CharField(max_length=50,null=True, blank=True, verbose_name="实例id")
     instance_name = models.CharField(max_length=50,null=True, blank=True, verbose_name="实例名字")
     virtual_type = models.CharField(max_length=50,null=True, blank=True, verbose_name="虚拟化类型")
-    role = models.ManyToManyField(HostRole, blank=True, verbose_name='角色')
+    role = models.ManyToManyField(HostRole, blank=True, related_name='roles',  verbose_name='角色')
     start_time = models.CharField(max_length=50,null=True, blank=True, verbose_name="注册时间 DateField")
     end_time = models.CharField(max_length=50,null=True, blank=True, verbose_name="销毁时间")
     project = models.ForeignKey(ProjectName, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="项目")
