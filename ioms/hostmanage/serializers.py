@@ -2,13 +2,25 @@
 
 from rest_framework import serializers
 
-from .models import Host, HostRole
+from .models import Host, HostRole, ProjectName, CloudPlat
 
 
 class HostRoleSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = HostRole
 		fields = ('role',)
+
+
+class ProjectNameSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = ProjectName
+		fields = ('id', 'project_name')
+
+
+class CloudPlatSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = CloudPlat
+		fields = ('id', 'provider', 'cloud_platform_name', 'locate', 'city')
 
 
 # class HostSerializer(serializers.HyperlinkedModelSerializer):

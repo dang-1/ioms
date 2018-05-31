@@ -11,12 +11,22 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import serializers, viewsets, routers
 
-from .serializers import HostSerializer, HostRoleSerializer
-from .models import Host, HostRole
+from .serializers import HostSerializer, HostRoleSerializer, ProjectNameSerializer, CloudPlatSerializer
+from .models import Host, HostRole, ProjectName, CloudPlat
 
 class RoleView(viewsets.ModelViewSet):
     queryset = HostRole.objects.all().order_by('id')
     serializer_class = HostRoleSerializer
+
+
+class ProjectNameView(viewsets.ModelViewSet):
+    queryset = ProjectName.objects.all().order_by('id')
+    serializer_class = ProjectNameSerializer
+
+
+class CloudPlatView(viewsets.ModelViewSet):
+    queryset = CloudPlat.objects.all().order_by('id')
+    serializer_class = CloudPlatSerializer
 
 
 class HostView(viewsets.ModelViewSet):
@@ -27,6 +37,7 @@ class HostView(viewsets.ModelViewSet):
     serializer_class = HostSerializer
     paginate_by = 20
     page_size = 15
+
 
 
 
@@ -56,9 +67,9 @@ class HostView(viewsets.ModelViewSet):
 #
 #     def delete(self, request, *args, **kwargs):
 #         return self.destroy(request, *args, **kwargs)
-class HostDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Host.objects.all()
-    serializer_class = HostSerializer
+# class HostDetailView(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Host.objects.all()
+#     serializer_class = HostSerializer
 
 
 # from .serializers import UserSerializer

@@ -1,15 +1,13 @@
 #coding: utf-8
 from django.shortcuts import render
 
-from .form import UserForm, LoginForm,UserAddForm
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponseRedirect
-
-
-from django.views.generic import TemplateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseRedirect
+from django.views.generic import TemplateView, ListView
 
 from .models import User
+from .form import UserForm, LoginForm,UserAddForm
 
 __all__ = [
     'Login', 'user_logout', 'UserList', 'UserAdd', 'test_page'

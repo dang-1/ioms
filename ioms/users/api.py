@@ -8,10 +8,11 @@
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import serializers, viewsets, routers
+from rest_framework import serializers, routers
+from rest_framework import viewsets, generics
 from .serializers import UserSerializer
 from .models import User
-from rest_framework import viewsets, generics
+
 # class UserInfoListView(APIView):
 #     def get(self, request, format=None):
 #         users = User.objects.all()

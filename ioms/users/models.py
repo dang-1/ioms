@@ -2,14 +2,22 @@
 import uuid
 from collections import OrderedDict
 
+from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import ugettext_lazy as _ #翻译相关
-
+from django.utils import timezone
 # from django.common.mixins import NoDeleteModelMixin
 # Create your models here.
 
-__all__ = ['User']
+__all__ = ['User', 'UserGroup']
+
+def date_expired_default():
+    try:
+        years = int(settings.DEFAULT_EXPIRED_YEARS)
+    except TypeError:
+        years = 70
+    return timezone.now() + timezone.timedelta(days=365*years)
 
 class User(AbstractUser):
     id = models.UUIDField(default=uuid.uuid4, primary_key=True)
@@ -19,12 +27,18 @@ class User(AbstractUser):
     email = models.EmailField(max_length=128, unique=True)
     phone = models.CharField(max_length=20, blank=True, null=True)
     wechat = models.CharField(max_length=20, blank=True, null=True)
+    groups = models.ManyToManyField('UserGroup', related_name='users', blank=True, verbose_name='user group')
+
+    comment = models.TextField(max_length=200, blank=True, verbose_name='comment')
+    date_expired = models.DateTimeField(default=date_expired_default, blank=True, null=True,
+                                        verbose_name='Date expired')
+    created_by = models.CharField(max_length=30, default='', verbose_name='Created by')
 
     # zabbix_tmp_pass = models.CharField(max_length=20, blank=True, null=True)
 
 
     def __str__(self):
-        return self.email
+        return self.username
 
     #disable watch password
     @property
@@ -78,15 +92,15 @@ class User(AbstractUser):
         ordering = ['username']
 
 
-# class UserGroup(models.Model):
-#     id = models.UUIDField(default=uuid.uuid4, primary_key=True)
-#     name = models.CharField(max_length=128)
-#     comment = models.CharField(blank=True)
-#     date_created = models.DateTimeField(auto_now_add=True,null=True)
-#     created_by = models.CharField(max_length=100, null=True, blank=True)
-#
-#     def __str__(self):
-#         return self.name
+class UserGroup(models.Model):
+    id = models.UUIDField(default=uuid.uuid4, primary_key=True)
+    name = models.CharField(max_length=128, verbose_name='group name')
+    comment = models.CharField(max_length=123, blank=True, verbose_name='comment')
+    date_created = models.DateTimeField(auto_now_add=True,null=True,verbose_name='date created')
+    created_by = models.CharField(max_length=100, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
 
 
 
