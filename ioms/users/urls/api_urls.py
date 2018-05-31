@@ -11,7 +11,7 @@
 # from django.conf.urls import url, include
 # from rest_framework import routers
 # # from tutorial.quickstart import views
-# app_name = 'users-api'
+app_name = 'users-api'
 #
 # # urlpatterns = [
 # #     path(),
@@ -26,17 +26,25 @@
 
 from django.conf.urls import url, include
 from rest_framework import routers
+from rest_framework_bulk.routes import BulkRouter
+from django.urls import path
 from .. import api
 
 router = routers.DefaultRouter()
 router.register(r'users', api.UserViewSet)
+router.register(r'groups', api.GroupView, 'gropu')
 # router.register(r'users2', api.UserViewSet2.as_view())
+# router2 = BulkRouter()
+# router2.register(r'user3', api.UserView)
 
 
-urlpatterns = router.urls
 
 # urlpatterns = [
-#     url(r'^', include(router.urls)),
+#     # path('token/', api.UserToken.as_view(), name='user-token'),
+#     # path('token/', api.UserToken.as_view(), name='user-token'),
+#     # url(r'^', include(router.urls)),
 #     # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+#
 # ]
+urlpatterns = router.urls #+ router2.urls
 

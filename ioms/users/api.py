@@ -5,14 +5,23 @@
 # @FileName: api.py
 # @Software: PyCharm
 # @Mail    : 93651849@qq.com
-
+from django.contrib.auth import authenticate
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import serializers, routers
+# from common.utils import reverse, get_object_or_none
 from rest_framework import viewsets, generics
-from .serializers import UserSerializer
-from .models import User
+from .serializers import UserSerializer, GroupSerializer
+from .models import User, UserGroup
+from rest_framework_bulk import BulkModelViewSet, ListBulkCreateUpdateDestroyAPIView
 
+# class UserViewSet(BulkModelViewSet):
+#     queryset = User.objects.all()
+#     serializer_class = UserSerializer
+#     filter_fields = ('username', 'email', 'name', 'id')
+
+# class UserView(ListBulkCreateUpdateDestroyAPIView):
+#     queryset = User.objects.all()
+#     serializer_class = UserSerializer
 # class UserInfoListView(APIView):
 #     def get(self, request, format=None):
 #         users = User.objects.all()
@@ -28,7 +37,9 @@ class UserViewSet(viewsets.ModelViewSet):
 class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
 
-
+class GroupView(viewsets.ModelViewSet):
+    queryset = UserGroup.objects.all().order_by('name')
+    serializer_class = GroupSerializer
     # def get_object(self, pk):
     #     try:
     #         return User.objects.get(pk=pk)

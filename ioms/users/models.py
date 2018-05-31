@@ -28,7 +28,6 @@ class User(AbstractUser):
     phone = models.CharField(max_length=20, blank=True, null=True)
     wechat = models.CharField(max_length=20, blank=True, null=True)
     groups = models.ManyToManyField('UserGroup', related_name='users', blank=True, verbose_name='user group')
-
     comment = models.TextField(max_length=200, blank=True, verbose_name='comment')
     date_expired = models.DateTimeField(default=date_expired_default, blank=True, null=True,
                                         verbose_name='Date expired')
