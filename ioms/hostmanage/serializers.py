@@ -25,6 +25,7 @@ class CloudPlatSerializer(serializers.ModelSerializer):
 
 # class HostSerializer(serializers.HyperlinkedModelSerializer):
 class HostSerializer(serializers.ModelSerializer):
+	role_display = serializers.SerializerMethodField()
 	# roles = HostRoleSerializer(many=True, read_only=True)
 	# host_role = serializers.SlugRelatedField(many=True, slug_field='role')
 	class Meta:
@@ -37,9 +38,12 @@ class HostSerializer(serializers.ModelSerializer):
 			'inner_ip',
 			'osversion',
 			'role',
-			# 'host_role',
+			'role_display',
 		)
 		read_only_fields = ('id',)
 		depth = 1
+	@staticmethod
+	def get_role_display(obj):
+		return ",".join([x.role for x in obj.role.all()])
 
 

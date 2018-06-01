@@ -12,6 +12,8 @@ from rest_framework.response import Response
 from rest_framework import viewsets, generics
 from .serializers import UserSerializer, GroupSerializer
 from .models import User, UserGroup
+from .permissions import IsValidUser
+from .authentication import Authtication
 from rest_framework_bulk import BulkModelViewSet, ListBulkCreateUpdateDestroyAPIView
 
 # class UserViewSet(BulkModelViewSet):
@@ -29,6 +31,8 @@ from rest_framework_bulk import BulkModelViewSet, ListBulkCreateUpdateDestroyAPI
 #         return Response(serializer.data)
 
 class UserViewSet(viewsets.ModelViewSet):
+    authentication_classes = [Authtication, ]
+    # permission_classes = [IsValidUser, ]  # 权限
     queryset = User.objects.all().order_by('username')
     serializer_class = UserSerializer
     # paginate_by = 3
