@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<p>host index page</p>
+
+<table>
+    <caption>数据库列表</caption>
+    <tr>
+        <!--<th>状态id</th>-->
+        <th>数据库id</th>
+        <th>状态说明</th>
+        <th>total</th>
+    </tr>
+    {% for db in db_list %}
+    <tr>
+        <!--<td>{{ gs_status.id }}</td>-->
+        <td>{{ db.id }}</td>
+        <td>{{ db.host_ip }}</td>
+        <td>{{ db.db_user }}</td>
+        <td>{{ db.db_port }}</td>
+        <td>{{ db.db_name }}</td>
+        <td>{{ db.status }}</td>
+
+    </tr>
+    {% endfor%}
+</table>
+
+
+{% if is_paginated %}
+<div>
+    <span>
+        <!--{% if first %}-->
+            <!--<a href={% url "hostmanage:host_index" %}?page=1>1</a>-->
+        <!--{% endif %}-->
+        {% if page_obj.has_previous %}
+            <a href={% url "hostmanage:role_list" %}?page={{ page_obj.previous_page_number }}>上一页</a>
+        {% endif %}
+        <span class="page-current">
+            第{{ page_obj.number }}页 ，共{{ page_obj.paginator.num_pages }}页。
+        </span>
+        {% if page_obj.has_next %}
+            <a href={% url "hostmanage:role_list" %}?page={{ page_obj.next_page_number }}>下一页</a>
+        {% endif %}
+
+    </span>
+</div>
+{% endif %}
+
+
+{% endblock %}

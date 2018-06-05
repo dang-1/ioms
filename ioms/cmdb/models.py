@@ -34,21 +34,7 @@ class GsStatus(models.Model):
         return self.status
 
 
-class DbConfig(models.Model):
-    '''
-    database config
-    '''
-    id = models.AutoField(primary_key=True)
-    host_ip = models.ForeignKey(Host, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="host ip's id")
-    db_user = models.CharField(max_length=42, verbose_name='database user')
-    db_port = models.CharField(max_length=42, default='3306', verbose_name='database port')
-    db_name = models.CharField(max_length=42, verbose_name='database name')
-    status = models.CharField(max_length=42, null=False, verbose_name='database status')
 
-    def __str__(self):
-        return self.db_name
-    class Meta:
-        ordering = ['host_ip', 'db_name']
 
 
 
@@ -63,10 +49,10 @@ class ConfigManage(models.Model):
     gs_accelerate_port = models.CharField(max_length=50, verbose_name="加速端口")
     gs_dir = models.CharField(max_length=50, verbose_name="游戏服目录")
     gs_name = models.CharField(max_length=50, verbose_name="游戏服名字")
-    gs_db = models.ForeignKey(DbConfig, on_delete=models.SET_NULL, related_name="gs_db_set", blank=True, null=True,
-                              verbose_name="gs db id")
-    gs_log_db = models.ForeignKey(DbConfig, on_delete=models.SET_NULL, related_name="gs_log_db_set", blank=True,
-                                  null=True, verbose_name="gs log db id")
+    # gs_db = models.ForeignKey(DbConfig, on_delete=models.SET_NULL, related_name="gs_db_set", blank=True, null=True,
+    #                           verbose_name="gs db id")
+    # gs_log_db = models.ForeignKey(DbConfig, on_delete=models.SET_NULL, related_name="gs_log_db_set", blank=True,
+    #                               null=True, verbose_name="gs log db id")
     gs_status = models.ForeignKey(GsStatus, on_delete=models.SET_NULL, blank=True, null=True,
                                   verbose_name="gs status id")
     gs_open_time = models.CharField(max_length=50, verbose_name="开服时间")
@@ -82,3 +68,21 @@ class ConfigManage(models.Model):
     class Meta:
         ordering = ['gs_zone', 'gs_id']
 
+
+class DbConfig(models.Model):
+    '''
+    database config
+    '''
+    id = models.AutoField(primary_key=True)
+    host_ip = models.ForeignKey(Host, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="host ip's id")
+    db_user = models.CharField(max_length=42, verbose_name='database user')
+    db_port = models.CharField(max_length=42, default='3306', verbose_name='database port')
+    db_name = models.CharField(max_length=42, verbose_name='database name')
+    status = models.CharField(max_length=42, null=False, verbose_name='database status')
+    config_manage = models.ForeignKey(ConfigManage, on_delete=models.SET_NULL, blank=True, null=True,
+                                      verbose_name='db_config')
+
+    def __str__(self):
+        return self.db_name
+    class Meta:
+        ordering = ['host_ip', 'db_name']
