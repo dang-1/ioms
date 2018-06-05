@@ -14,6 +14,9 @@ router = routers.DefaultRouter()
 # router.register(r'host-list', api.HostListView)
 router.register(r'host', api.HostView)
 router.register(r'role', api.RoleView)
+router.register(r'paroject', api.ProjectNameView)
+router.register(r'cloud-platform', api.CloudPlatSerializer)
+router.register(r'host-status', api.HostStatusView)
 # routers.reverse(r'index', api.HostView)
 
 

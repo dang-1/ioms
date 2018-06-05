@@ -25,7 +25,7 @@ class Authtication(BaseAuthentication):
             s = Session.objects.get(session_key=session_key)
         except:
             raise exceptions.AuthenticationFailed("session key get error")
-        print(1, request._request.user)
+        # print(1, request._request.user)
         user_id = s.get_decoded()['_auth_user_id']
         user = User.objects.get(pk=user_id)
         if not user_id:

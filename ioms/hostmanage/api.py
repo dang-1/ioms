@@ -11,8 +11,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import serializers, viewsets, routers
 
-from .serializers import HostSerializer, HostRoleSerializer, ProjectNameSerializer, CloudPlatSerializer
-from .models import Host, HostRole, ProjectName, CloudPlat
+from .serializers import HostSerializer, HostRoleSerializer, ProjectNameSerializer, CloudPlatSerializer, HostStatusSerializer
+from .models import Host, HostRole, ProjectName, CloudPlat, HostStatus
 
 class RoleView(viewsets.ModelViewSet):
     queryset = HostRole.objects.all().order_by('id')
@@ -27,6 +27,11 @@ class ProjectNameView(viewsets.ModelViewSet):
 class CloudPlatView(viewsets.ModelViewSet):
     queryset = CloudPlat.objects.all().order_by('id')
     serializer_class = CloudPlatSerializer
+
+
+class HostStatusView(viewsets.ModelViewSet):
+    queryset = HostStatus.objects.all().order_by('id')
+    serializer_class = HostStatusSerializer
 
 
 class HostView(viewsets.ModelViewSet):
