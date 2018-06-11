@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import IndexView
+from .views import IndexView, IndexView2
 
 api_patterns = [
     path('users/', include('users.urls.api_urls'), name='api-users'),
@@ -28,11 +28,13 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #index page
     path('', IndexView.as_view(), name='index'),
+    path('iomp', IndexView2.as_view(), name='iomp_index'),
     # general view
     path('users/', include('users.urls.view_urls'), name='users'),
     path('hostmanage/', include('hostmanage.urls.view_urls'), name='hostmanage'),
     path('sitecollect/', include('sitecollect.urls.view_urls'), name='sitecollect'),
     path('cmdb/', include('cmdb.urls.view_urls'), name='cmdb'),
+    path('blog/', include('blog.urls'), name='blog'),
     #api url view map
     path('api2/', include(api_patterns)),
 ]

@@ -24,15 +24,25 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 #     #     pass
 #     return render(request, template_name)
 
-# class IndexView(TemplateView):
-class IndexView(LoginRequiredMixin, TemplateView):
+class IndexView(TemplateView):
     template_name = 'index.html'
-
-    def get(self, request, *args, **kwargs):
-        return super(IndexView, self).get(request, *args, **kwargs, )
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
+        context['title_name'] = 'site index page'
+        return context
+
+
+
+
+class IndexView2(LoginRequiredMixin, TemplateView):
+    template_name = 'index2.html'
+
+    def get(self, request, *args, **kwargs):
+        return super(IndexView2, self).get(request, *args, **kwargs, )
+
+    def get_context_data(self, **kwargs):
+        context = super(IndexView2, self).get_context_data(**kwargs)
         context['title_name'] = 'iomp: index page'
         return context
 

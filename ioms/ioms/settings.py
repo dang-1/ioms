@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'hostmanage.apps.HostmanageConfig',
     'sitecollect.apps.SitecollectConfig',
     'users.apps.UsersConfig',
+    'blog.apps.BlogConfig',
     'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',

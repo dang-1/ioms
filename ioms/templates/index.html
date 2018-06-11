@@ -1,49 +1,26 @@
-{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    {% if title_name %}
+      <title>{{ title_name }}</title>
+    {% else %}
+    <title>iomp</title>
+    {% endif %}
+    <!-- <title>{% block title %}{% endblock %}</title> -->
 
-{% block content %}
-<h1>index page</h1>
+    <link rel="icon" href="{% static 'img/logo.png' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'img/logo.png' %}" type="image/x-icon">
+    <!--<link href={% static "css/base.css" %} rel="stylesheet" type="text/css" media="all"/>-->
+</head>
+<body>
 
-<h2>需求管理实现：</h2>
+    <p>index page</p>
 
-<li>
-    <a>仪表盘</a>
-</li>
+    <p>go to manage page: <a href="{% url 'iomp_index' %}" >IOMP</a></p>
+    <p>go to blog page: <a href="{% url 'blog:blog_index' %}" >BLOG</a></p>
 
-<li>
-    <a>资产管理</a>
-    <ul>
-        <li>主机列表--大致实现</li>
-        <li>注册主机--未实现</li>
-        <li>删除主机--未实现</li>
-    </ul>
-</li>
-<li>
-    <a>链接管理</a>
-    <ul>
-        <li>链接列表--大致实现</li>
-        <li>链接类型--大致实现</li>
-        <li>添加链接--大致实现</li>
-        <li>添加链接类型--大致实现</li>
-    </ul>
-</li>
-<li>
-    <a>配置管理--未实现</a>
-    <ul>
-        <li>游戏服配置--未实现</li>
-        <li>网关配置--未实现</li>
-        <li>其他配置--未实现</li>
-    </ul>
-</li>
-<li>
-    <a>用户管理--未实现</a>
-    <ul>
-        <li>用户列表--大致实现</li>
-        <li>添加用户--大致实现</li>
-        <li>组管理--未实现</li>
-        <li>添加组--未实现</li>
-    </ul>
-</li>
-
-<p>===========</p>
-
-{% endblock %}
+</body>
+</html>
