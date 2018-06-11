@@ -33,6 +33,9 @@ class GsStatus(models.Model):
     def __str__(self):
         return self.status
 
+    class Meta:
+        ordering = ['id', 'status']
+
 
 
 
@@ -75,12 +78,13 @@ class DbConfig(models.Model):
     '''
     id = models.AutoField(primary_key=True)
     host_ip = models.ForeignKey(Host, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="host ip's id")
-    db_user = models.CharField(max_length=42, verbose_name='database user')
+    # db_user = models.CharField(max_length=42, verbose_name='database user')
     db_port = models.CharField(max_length=42, default='3306', verbose_name='database port')
     db_name = models.CharField(max_length=42, verbose_name='database name')
     status = models.CharField(max_length=42, null=False, verbose_name='database status')
     config_manage = models.ForeignKey(ConfigManage, on_delete=models.SET_NULL, blank=True, null=True,
                                       verbose_name='db_config')
+    db_type = models.CharField(max_length=48, null=True, verbose_name='数据库用途')
 
     def __str__(self):
         return self.db_name
