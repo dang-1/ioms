@@ -7,18 +7,48 @@
 # @Mail    : 93651849@qq.com
 
 from rest_framework import serializers
-
+from rest_framework.serializers import ModelSerializer
 from .models import ConfigManage
 
-class ConfigMangeSerializer(serializers.HyperlinkedModelSerializer):
-	class Meta:
-		model = ConfigManage
-		fields = (
+# class ConfigMangeSerializer(serializers.HyperlinkedModelSerializer):
+class ConfigMangeSerializer(ModelSerializer):
+    class Meta:
+        # gszone_display = serializers.SerializerMethodField()
+        model = ConfigManage
+        depth = 1
+        # fields = "__all__"
+        fields = (
             'id',
             'used',
             'gs_id',
+            'gs_zone',
+            # 'gszone_display',
+            'gs_id',
+            'gs_alias',
+            'gs_accelerate_port',
+            'gs_dir',
+            'gs_name',
+            'gs_status',
+            'gs_open_time',
+            'gs_branch',
+            'gs_branch_commit_id',
+            'gs_merged',
+            'gs_merged_time',
+            'gs_merged_to_id'
         )
-
+        # @staticmethod
+        # def get_gszone_display(obj):
+        #     return [x.id for x in obj.gs_zone]
+# class UserSerializer(ModelSerializer):
+#     groups_display = serializers.SerializerMethodField()
+#     class Meta:
+#         model = User
+#         fields = ('id', 'username', 'email', 'is_staff', 'name', 'groups_display', 'groups')
+#         depth = 1
+#         read_only_fields = ('id',)
+#     @staticmethod
+#     def get_groups_display(obj):
+#         return ",".join([x.name for x in obj.groups.all()])
 # used = models.CharField(max_length=50, verbose_name="是否使用")
 #     gs_ip = models.ForeignKey(Host, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="host ip's id")
 #     gs_zone = models.ForeignKey(ZoneName, on_delete=models.SET_NULL, related_name="gs_zone_name_set",

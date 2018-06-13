@@ -15,5 +15,6 @@ from .models import ConfigManage
 class ConfigManageView(viewsets.ModelViewSet):
     queryset = ConfigManage.objects.all().order_by('id')
     serializer_class = ConfigMangeSerializer
+    depth = 1
     # pass
 

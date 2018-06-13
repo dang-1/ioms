@@ -5,10 +5,7 @@
 # @FileName: api_urls.py
 # @Software: PyCharm
 # @Mail    : 93651849@qq.com
-
-
-
-from django.conf.urls import url, include
+# from django.conf.urls import url, include
 from rest_framework import routers
 from .. import api
 
