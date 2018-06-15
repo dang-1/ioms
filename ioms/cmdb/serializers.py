@@ -7,13 +7,15 @@
 # @Mail    : 93651849@qq.com
 
 from rest_framework import serializers
-from rest_framework.serializers import ModelSerializer
-from .models import ConfigManage
+# from rest_framework.serializers import ModelSerializer
+from .models import ConfigManage, DbConfig
 
 # class ConfigMangeSerializer(serializers.HyperlinkedModelSerializer):
-class ConfigMangeSerializer(ModelSerializer):
+class ConfigMangeSerializer(serializers.ModelSerializer):
     class Meta:
         # gszone_display = serializers.SerializerMethodField()
+        gs_zone_name = serializers.RelatedField(source='gs_zone', read_only=True)
+        # db_display = serializers.RelatedField(many=True)
         model = ConfigManage
         depth = 1
         # fields = "__all__"
@@ -21,7 +23,7 @@ class ConfigMangeSerializer(ModelSerializer):
             'id',
             'used',
             'gs_id',
-            'gs_zone',
+            # 'gs_zone_name',
             # 'gszone_display',
             'gs_id',
             'gs_alias',
@@ -34,11 +36,33 @@ class ConfigMangeSerializer(ModelSerializer):
             'gs_branch_commit_id',
             'gs_merged',
             'gs_merged_time',
-            'gs_merged_to_id'
+            'gs_merged_to_id',
+            # 'db_display',
         )
         # @staticmethod
         # def get_gszone_display(obj):
         #     return [x.id for x in obj.gs_zone]
+        @staticmethod
+        def get_db_display(obj):
+            return ",".join([x.db_name for x in obj.dbconfig_set.all()])
+class DbConfigSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DbConfig
+        fields = ('id', 'host_ip', 'db_name')
+        depth = 1
+
+class GsConfigSerializer(serializers.ModelSerializer):
+    # config_manage = serializers.StringRelatedField(many=True) #返回str
+    config_manage = DbConfigSerializer(many=True, read_only=True) #返回对应的信息
+    # config_manage = serializers.PrimaryKeyRelatedField(many=True, read_only=True) #返回pk
+
+    class Meta:
+        model = ConfigManage
+        fields = "__all__"
+        depth = 1
+
+
+
 # class UserSerializer(ModelSerializer):
 #     groups_display = serializers.SerializerMethodField()
 #     class Meta:

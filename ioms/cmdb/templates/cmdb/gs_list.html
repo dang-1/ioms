@@ -9,6 +9,7 @@
     <tr>
         <!--<th>状态id</th>-->
         <th>id</th>
+        <th>hostname</th>
         <th>ip</th>
         <th>zone</th>
         <th>逻辑服id</th>
@@ -23,20 +24,23 @@
         <th>zone</th>
     </tr>
     {% for gs_config in gs_config_list %}
-    <tr>
-        <td>{{ gs_config.id }}</td>
-        <td>{{ gs_config.gs_ip.outer_ip }}</td>
-        <td>{{ gs_config.gs_zone.zone_name }}</td>
-        <td>{{ gs_config.gs_id }}</td>
-        <td>{{ gs_config.gs_alias }}</td>
-        <td>{{ gs_config.gs_accelerate_port }}</td>
-        <td>{{ gs_config.gs_dir }}</td>
-        <td>{{ gs_config.gs_name }}</td>
-        <td>{{ gs_config.gs_status.status_explain }}</td>
-        <td>{{ gs_config.gs_open_time }}</td>
-        <td>{{ gs_config.gs_branch }}</td>
-        <td>{{ gs_config.gs_branch_commit_id }}</td>
-    </tr>
+    {% if gs_config.used == '1' %}
+        <tr>
+            <td>{{ gs_config.id }}</td>
+            <td>{{ gs_config.gs_ip.hostname }}</td>
+            <td>{{ gs_config.gs_ip.outer_ip }}</td>
+            <td>{{ gs_config.gs_zone.zone_name }}</td>
+            <td>{{ gs_config.gs_id }}</td>
+            <td>{{ gs_config.gs_alias }}</td>
+            <td>{{ gs_config.gs_accelerate_port }}</td>
+            <td>{{ gs_config.gs_dir }}</td>
+            <td>{{ gs_config.gs_name }}</td>
+            <td>{{ gs_config.gs_status.status_explain }}</td>
+            <td>{{ gs_config.gs_open_time }}</td>
+            <td>{{ gs_config.gs_branch }}</td>
+            <td>{{ gs_config.gs_branch_commit_id }}</td>
+        </tr>
+    {% endif %}
     {% endfor%}
 </table>
 

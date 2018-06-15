@@ -12,14 +12,14 @@ class ZoneName(models.Model):
     eg: ch un korea 
     '''
     id = models.AutoField(primary_key=True)
-    contry = models.CharField(max_length=48, null=True)
-    zone_name = models.CharField(max_length=48, null=False)
+    contry = models.CharField(max_length=48, null=True, verbose_name="国家")
+    zone_name = models.CharField(max_length=48, null=False, verbose_name="区域")
 
     def __str__(self):
         return self.zone_name
 
     class Meta:
-        ordering = ["zone_name"]
+        ordering = ["id"]
 
 
 class GsStatus(models.Model):
@@ -37,15 +37,12 @@ class GsStatus(models.Model):
         ordering = ['id', 'status']
 
 
-
-
-
-
 class ConfigManage(models.Model):
     id = models.AutoField(primary_key=True)
     used = models.CharField(max_length=50, verbose_name="是否使用")
-    gs_ip = models.ForeignKey(Host, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="host ip's id")
-    gs_zone = models.ForeignKey(ZoneName, on_delete=models.SET_NULL, related_name="gs_zone_name_set",
+    gs_ip = models.ForeignKey(Host, on_delete=models.SET_NULL, blank=True, null=True, related_name="gs_ip_info",
+                              verbose_name="host ip's id")
+    gs_zone = models.ForeignKey(ZoneName, on_delete=models.SET_NULL, related_name="gs_zone_name",
                                 blank=True, null=True, verbose_name="zone id")
     gs_id = models.CharField(max_length=50, verbose_name="游戏服id")
     gs_alias = models.CharField(max_length=50, verbose_name="唯一标识符")
@@ -57,13 +54,16 @@ class ConfigManage(models.Model):
     # gs_log_db = models.ForeignKey(DbConfig, on_delete=models.SET_NULL, related_name="gs_log_db_set", blank=True,
     #                               null=True, verbose_name="gs log db id")
     gs_status = models.ForeignKey(GsStatus, on_delete=models.SET_NULL, blank=True, null=True,
-                                  verbose_name="gs status id")
+                                  related_name="gs_status", verbose_name="gs status id")
     gs_open_time = models.CharField(max_length=50, verbose_name="开服时间")
     gs_branch = models.CharField(max_length=50, verbose_name="分支名")
     gs_branch_commit_id = models.CharField(max_length=50, verbose_name="分支的commit id")
     gs_merged = models.CharField(max_length=50, verbose_name="是否合服")
     gs_merged_time = models.CharField(max_length=50, verbose_name="合服时间")
     gs_merged_to_id = models.CharField(max_length=50, verbose_name="合入id")
+
+    # create_time =
+    # update_time =
 
     def __str__(self):
         return self.gs_name
@@ -77,13 +77,15 @@ class DbConfig(models.Model):
     database config
     '''
     id = models.AutoField(primary_key=True)
-    host_ip = models.ForeignKey(Host, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="host ip's id")
+    host_ip = models.ForeignKey(Host, on_delete=models.SET_NULL, blank=True, null=True,
+                                related_name="host_ip", verbose_name="host ip's id")
     # db_user = models.CharField(max_length=42, verbose_name='database user')
+    # db_type = models.CharField(max_length=42, verbose_name="数据库类型")
     db_port = models.CharField(max_length=42, default='3306', verbose_name='database port')
     db_name = models.CharField(max_length=42, verbose_name='database name')
     status = models.CharField(max_length=42, null=False, verbose_name='database status')
     config_manage = models.ForeignKey(ConfigManage, on_delete=models.SET_NULL, blank=True, null=True,
-                                      verbose_name='db_config')
+                                      related_name="config_manage", verbose_name='db_config')
     db_type = models.CharField(max_length=48, null=True, verbose_name='数据库用途')
 
     def __str__(self):
