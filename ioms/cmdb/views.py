@@ -39,7 +39,7 @@ class ZoneNameView(LoginRequiredMixin, ListView):
 class GsListView(LoginRequiredMixin, ListView):
     template_name = 'cmdb/gs_list.html'
     context_object_name = 'gs_config_list'
-    model = ConfigManage
+    model = GsConfig
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

@@ -9,17 +9,23 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import serializers, viewsets, routers
 
-from .serializers import ConfigMangeSerializer, GsConfigSerializer
-from .models import ConfigManage
+from .serializers import ConfigMangeSerializer, GsConfigSerializer, DbConfigSerializer
+from .models import GsConfig, DbConfig
 
 class ConfigManageView(viewsets.ModelViewSet):
-    queryset = ConfigManage.objects.all().order_by('id')
+    queryset = GsConfig.objects.all().order_by('id')
     serializer_class = ConfigMangeSerializer
     depth = 1
     # pass
 
 class GsConfigManageView(viewsets.ModelViewSet):
-    queryset = ConfigManage.objects.all().order_by('id')
+    queryset = GsConfig.objects.all().order_by('id')
     serializer_class = GsConfigSerializer
+    depth = 1
+
+
+class DbConfigView(viewsets.ModelViewSet):
+    queryset = DbConfig.objects.all()
+    serializer_class = DbConfigSerializer
     depth = 1
 

@@ -12,6 +12,7 @@ from .. import api
 router = routers.DefaultRouter()
 router.register(r'gs-list', api.ConfigManageView)
 router.register(r'gs-list1', api.GsConfigManageView)
+router.register(r'db-list', api.DbConfigView)
 # router.register(r'users', api.UserViewSet)
 # # router.register(r'users2', api.UserViewSet2.as_view())
 
