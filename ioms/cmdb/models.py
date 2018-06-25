@@ -62,6 +62,7 @@ class DbConfig(models.Model):
     not use
     '''
     id = models.AutoField(primary_key=True)
+    alias = models.CharField(max_length=48, blank=True, verbose_name="别名")
     master_ip = models.ForeignKey(Host, on_delete=models.SET_NULL, blank=True, null=True,
                                 related_name="master_ip_info", verbose_name="master ip's id")
     slave_ip = models.ForeignKey(Host, on_delete=models.SET_NULL, blank=True, null=True,
@@ -70,8 +71,8 @@ class DbConfig(models.Model):
     #                             related_name="host_ip", verbose_name="host ip's id")
     # db_user = models.CharField(max_length=42, verbose_name='database user')
     # db_type = models.CharField(max_length=42, verbose_name="数据库类型")
-
-    db_port = models.CharField(max_length=42, default='3306', verbose_name='database port')
+    db_port = models.CharField(max_length=42, default=3306, verbose_name='database port')
+    db_slave_port = models.CharField(max_length=42, default=3306, verbose_name='database slave port')
     # db_name = models.CharField(max_length=42, verbose_name='database name')
     status = models.CharField(max_length=42, null=False, verbose_name='database status, online of offline')
     open_time = models.CharField(max_length=42, null=False, blank=True, verbose_name='database open time')
