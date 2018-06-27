@@ -37,11 +37,12 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'users.apps.UsersConfig',
     'cmdb.apps.CmdbConfig',
     'hostmanage.apps.HostmanageConfig',
     'sitecollect.apps.SitecollectConfig',
-    'users.apps.UsersConfig',
     'blog.apps.BlogConfig',
+    'db.apps.DbConfig',
     'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
