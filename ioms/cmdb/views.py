@@ -56,3 +56,6 @@ class DbListView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['title_name'] = 'iomp: db config page'
         return context
+
+
+

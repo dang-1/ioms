@@ -9,18 +9,29 @@
     <tr>
         <!--<th>状态id</th>-->
         <th>数据库id</th>
+        <th>project</th>
+        <th>alias</th>
+        <th>master_ip</th>
+        <th>master_port</th>
+        <th>slave_ip</th>
+        <th>slave_port</th>
         <th>状态说明</th>
         <th>total</th>
+        <th>more info</th>
     </tr>
     {% for db in db_list %}
     <tr>
         <!--<td>{{ gs_status.id }}</td>-->
         <td>{{ db.id }}</td>
-        <td>{{ db.host_ip }}</td>
-        <td>{{ db.db_user }}</td>
+        <td>{{ db.master_ip.project.project_name }}</td>
+        <td>{{ db.alias }}</td>
+        <td>{{ db.master_ip.outer_ip }}</td>
         <td>{{ db.db_port }}</td>
-        <td>{{ db.db_name }}</td>
+        <td>{{ db.slave_ip.outer_ip }}</td>
+        <td>{{ db.db_slave_port }}</td>
         <td>{{ db.status }}</td>
+        <td> </td>
+        <th><a href="">详细信息</a></th>
 
     </tr>
     {% endfor%}

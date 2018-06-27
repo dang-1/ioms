@@ -9,7 +9,8 @@
 from django.urls import path
 # from rest_framework import routers
 
-from ..views import GsStatusView, ZoneNameView, GsListView, DbListView
+from ..views import GsStatusView, ZoneNameView, GsListView, \
+    DbListView
 
 app_name = 'cmdb'
 

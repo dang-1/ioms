@@ -111,6 +111,8 @@ class GsConfig(models.Model):
     gs_merged_to_id = models.CharField(max_length=50, verbose_name="合入id")
     gs_db_name = models.CharField(max_length=42, blank=True, null=True, verbose_name='database name')
     gs_log_db_name = models.CharField(max_length=42, blank=True, null=True, verbose_name='database log name')
+    gs_db_info = models.ForeignKey(DbConfig, on_delete=models.SET_NULL, blank=True, null=True, related_name="gs_db_info",
+                                   verbose_name="数据库信息")
     gs_db_ip = models.ForeignKey(DbConfig, on_delete=models.SET_NULL, blank=True, null=True,
                                  related_name="gs_db_ip_info", verbose_name="db ip's id")
     gs_db_slave_ip = models.ForeignKey(DbConfig, on_delete=models.SET_NULL, blank=True, null=True,
