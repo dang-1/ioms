@@ -3,8 +3,16 @@ from django.db import models
 from hostmanage.models import Host
 
 
+class DbType(models.Model):
+    id = models.AutoField(primary_key=True)
+    type = models.CharField(max_length=48, null=False, verbose_name="type")
+    explain = models.CharField(max_length=96, blank=True, verbose_name="说明")
+
+
 class MasterDb(models.Model):
     id = models.AutoField(primary_key=True)
+    type = models.ForeignKey(DbType, on_delete=models.SET_NULL, blank=True, null=True, related_name="type_info",
+                             verbose_name="db type")
     host_info = models.ForeignKey(Host, on_delete=models.SET_NULL, blank=True, null=True, related_name="host_info",
                               verbose_name="host ip's id")
     alias = models.CharField(max_length=48, blank=True, verbose_name="别名")
@@ -37,6 +45,7 @@ class SlaveDb(models.Model):
 
     class Meta:
         ordering = ['id', 'alias']
+        # unique_together = ('host_info', 'db_port')
 
 
 

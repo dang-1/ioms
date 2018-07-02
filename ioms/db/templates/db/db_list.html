@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<p>host index page</p>
+
+<table>
+    <caption>数据库列表</caption>
+    <tr>
+        <th>数据库id</th>
+        <th>别名</th>
+        <th>端口</th>
+        <th>状态</th>
+        <th>主机ip</th>
+        <th>打开时间</th>
+        <th>类型</th>
+        <th>其他</th>
+
+    </tr>
+    {% for db in db_list %}
+
+    <tr>
+        <td>{{ db.id }}</td>
+        <td>{{ db.alias }}</td>
+        <td>{{ db.db_port }}</td>
+        <td>{{ db.status }}</td>
+        <td>{{ db.host_info.outer_ip }}</td>
+        <td>{{ db.open_time }}</td>
+        <td>{{ db.type.explain }}</td>
+        <td><a href="">详情</a></td>
+    </tr>
+    {% endfor%}
+</table>
+
+
+{% if is_paginated %}
+<div>
+    <span>
+        <!--{% if first %}-->
+            <!--<a href={% url "hostmanage:host_index" %}?page=1>1</a>-->
+        <!--{% endif %}-->
+        {% if page_obj.has_previous %}
+            <a href={% url "hostmanage:role_list" %}?page={{ page_obj.previous_page_number }}>上一页</a>
+        {% endif %}
+        <span class="page-current">
+            第{{ page_obj.number }}页 ，共{{ page_obj.paginator.num_pages }}页。
+        </span>
+        {% if page_obj.has_next %}
+            <a href={% url "hostmanage:role_list" %}?page={{ page_obj.next_page_number }}>下一页</a>
+        {% endif %}
+
+    </span>
+</div>
+{% endif %}
+
+
+{% endblock %}

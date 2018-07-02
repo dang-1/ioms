@@ -35,6 +35,7 @@ urlpatterns = [
     path('sitecollect/', include('sitecollect.urls.view_urls'), name='sitecollect'),
     path('cmdb/', include('cmdb.urls.view_urls'), name='cmdb'),
     path('blog/', include('blog.urls'), name='blog'),
+    path('db/', include('db.urls.view_urls'), name='db'),
     #api url view map
     path('api2/', include(api_patterns)),
 ]
