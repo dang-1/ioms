@@ -22,3 +22,13 @@ ops system
 3. mysite 使用官方文档 django 2.0 
 
 
+## dir explain
+
+dir name | explain
+-- | --
+ioms | main project
+mysite | official doc, 2.1
+iomp |
+iooo |
+
+
