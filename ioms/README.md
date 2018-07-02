@@ -5,10 +5,14 @@
 content | version
 --| --
 python | 3.6.2
-django | 2.0
+django | 2.0.6
 
+```python
+#install
 pip install djangorestframework-bulk
 
+
+```
 
 ## app feature
 ### ioms/

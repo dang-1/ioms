@@ -35,8 +35,9 @@ class SlaveDb(models.Model):
                               verbose_name="host ip's id")
     alias = models.CharField(max_length=48, blank=True, verbose_name="别名")
     db_port = models.CharField(max_length=42, default=3306, verbose_name='database port')
-    db_master = models.ForeignKey(MasterDb, on_delete=models.SET_NULL, related_name="slave_info", null=True, blank=True,
-                                 verbose_name="从库")
+    # db_master = models.ForeignKey(MasterDb, on_delete=models.SET_NULL, related_name="slave_info", null=True, blank=True,
+    #                              verbose_name="从库")
+    db_master = models.OneToOneField(MasterDb, on_delete=models.SET_NULL, null=True, verbose_name="master info")
     status = models.CharField(max_length=42, null=False, verbose_name='database status, online of offline')
     open_time = models.CharField(max_length=42, null=False, blank=True, verbose_name='database open time')
 
