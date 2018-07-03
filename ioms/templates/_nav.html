@@ -30,6 +30,15 @@
     </ul>
 </li>
 <li id="links">
+    <a href="{% url 'db:db-list' %}">
+        <span class="nav-label">数据库管理</span>
+    </a>
+    <ul class="nav nav-second-level active">
+        <li id="host-list"><a href="{% url 'db:db-list' %}">游戏服列表</a> </li>
+
+    </ul>
+</li>
+<li id="links">
     <a href="{% url 'cmdb:gs-list' %}">
         <span class="nav-label">配置管理</span>
     </a>

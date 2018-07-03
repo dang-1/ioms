@@ -16,6 +16,7 @@ app_name = 'db'
 
 urlpatterns = [
     path('db-list/', DbListView.as_view(), name='db-list'),
+    # path('db-detail/<int:pk>/', DbDetailView.as_view(), name='db-detail'),
     # path('gs-status/', GsStatusView.as_view(), name='gs-status'),
     # path('zone-name/', ZoneNameView.as_view(), name='zone-name'),
     # path('gs-list/', GsListView.as_view(), name='gs-list'),
