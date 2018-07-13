@@ -6,6 +6,7 @@
 # @Software: PyCharm
 # @Mail    : 93651849@qq.com
 from django.contrib.auth import authenticate
+from django.shortcuts import render,HttpResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 # from common.utils import reverse, get_object_or_none
@@ -54,5 +55,9 @@ class GroupView(viewsets.ModelViewSet):
 #         usernames = [user.name for user in User.objects.all()]
 #         return Response(usernames)
 
+class AuthView(APIView):
+    authentication_classes = []
 
+    def get(self, request):
+        retaurn
 

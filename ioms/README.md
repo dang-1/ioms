@@ -11,6 +11,8 @@ django | 2.0.6
 #install
 pip install djangorestframework-bulk
 
+pip install Pillow
+
 
 ```
 

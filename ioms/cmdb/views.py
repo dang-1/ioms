@@ -46,6 +46,9 @@ class GsListView(LoginRequiredMixin, ListView):
         context['title_name'] = 'iomp: gs config page'
         return context
 
+    def post(self):
+        return 'xxx'
+
 
 class DbListView(LoginRequiredMixin, ListView):
     template_name = 'cmdb/db_list.html'

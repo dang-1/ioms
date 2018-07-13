@@ -41,10 +41,6 @@ router.register(r'groups', api.GroupView, 'gropu')
 
 # urlpatterns = [
 #     # path('token/', api.UserToken.as_view(), name='user-token'),
-#     # path('token/', api.UserToken.as_view(), name='user-token'),
-#     # url(r'^', include(router.urls)),
-#     # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
-#
 # ]
 urlpatterns = router.urls #+ router2.urls
 

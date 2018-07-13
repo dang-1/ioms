@@ -32,11 +32,12 @@ class CloudPlat(models.Model):
     id = models.AutoField(primary_key=True)
     provider = models.CharField(max_length=48, null=False, verbose_name="提供商")
     cloud_platform_name = models.CharField(max_length=48, null=False, verbose_name="云平台名字")
+    zone = models.CharField(max_length=48, verbose_name="区域")
     locate = models.CharField(max_length=48, null=True, verbose_name="国家")
     city = models.CharField(max_length=48, null=True, verbose_name="城市")
 
     def __str__(self):
-        return self.cloud_platform_name
+        return "{}-{}".format(self.cloud_platform_name, self.zone)
 
 
 class HostStatus(models.Model):
@@ -72,6 +73,9 @@ class Host(models.Model):
     end_time = models.CharField(max_length=50,null=True, blank=True, verbose_name="销毁时间")
     project = models.ForeignKey(ProjectName, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="项目")
     explain = models.CharField(max_length=128, null=True, blank=True, verbose_name="说明")
+
+    create_at = models.DateField(auto_now_add=True, verbose_name="创建时间")
+    update_at = models.DateField(auto_now=True, verbose_name="更新时间")
 
     def __str__(self):
         return self.hostname

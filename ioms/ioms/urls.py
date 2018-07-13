@@ -22,6 +22,7 @@ api_patterns = [
     path('hostmanage/', include('hostmanage.urls.api_urls'), name='api-hostmanage'),
     path('site/', include('sitecollect.urls.api_urls'), name='api-sitecollect'),
     path('cmdb/', include('cmdb.urls.api_urls'), name='api-cmdb'),
+    path('db/', include('db.urls.api_urls'), name='api-db'),
 ]
 
 urlpatterns = [
