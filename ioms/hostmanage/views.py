@@ -101,6 +101,16 @@ def update_host_view(request):
             #     print('save eror')
     return redirect('/hostmanage/host_index/')
 
+class HostRoleView(LoginRequiredMixin, ListView):
+    template_name = 'hostmanage/role_list.html'
+    context_object_name = 'role_list'
+    model = HostRole
+    # paginate_by = 30
+
+    def get_context_data(self, **kwargs):
+        context = super(HostRoleView, self).get_context_data(**kwargs)
+        context['title_name'] = 'iomp: role page'
+        return context
 
 
 class HostIndexView(LoginRequiredMixin, ListView):

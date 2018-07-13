@@ -9,9 +9,13 @@ class HostRole(models.Model):
     '''
     id = models.AutoField(primary_key=True)
     role = models.CharField(max_length=48, null=False, unique=True, verbose_name="角色")
+    explain = models.CharField(max_length=128, null=True, verbose_name="说明")
 
     def __str__(self):
         return self.role
+
+    class Meta:
+        ordering = ['id']
 
 
 class ProjectName(models.Model):
@@ -32,7 +36,7 @@ class CloudPlat(models.Model):
     id = models.AutoField(primary_key=True)
     provider = models.CharField(max_length=48, null=False, verbose_name="提供商")
     cloud_platform_name = models.CharField(max_length=48, null=False, verbose_name="云平台名字")
-    zone = models.CharField(max_length=48, verbose_name="区域")
+    zone = models.CharField(max_length=48, default="none", verbose_name="区域")
     locate = models.CharField(max_length=48, null=True, verbose_name="国家")
     city = models.CharField(max_length=48, null=True, verbose_name="城市")
 
@@ -74,8 +78,8 @@ class Host(models.Model):
     project = models.ForeignKey(ProjectName, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="项目")
     explain = models.CharField(max_length=128, null=True, blank=True, verbose_name="说明")
 
-    create_at = models.DateField(auto_now_add=True, verbose_name="创建时间")
-    update_at = models.DateField(auto_now=True, verbose_name="更新时间")
+    create_at = models.DateField(auto_now_add=True, null=True, verbose_name="创建时间")
+    update_at = models.DateField(auto_now=True, null=True, verbose_name="更新时间")
 
     def __str__(self):
         return self.hostname
