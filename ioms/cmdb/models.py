@@ -41,10 +41,11 @@ class GsStatus(models.Model):
 
 class Tag(models.Model):
     """
-    标签
+    标签，用于部署的时候判断部署的分支。
     """
     id = models.AutoField(primary_key=True)
     tag_name = models.CharField(max_length=48, null=False, unique=True, verbose_name='标签')
+    tag_explain = models.CharField(max_length=128, null=False, verbose_name="标签说明")
 
     def __str__(self):
         return self.tag_name

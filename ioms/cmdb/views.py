@@ -217,12 +217,14 @@ def update_merge_info(request, pk):
         db_port = gs_one.gs_db.db_port
     db_name = gs_one.gs_db_name
 
-    if db_ip.startswith('47'):
-        db_user = 'db_analysis'
-        # db_password =
-    else:
-        db_user = 'x'
-        # db_password = 'x'
+    print(db_ip, db_port, db_name, db_password)
+
+    # if db_ip.startswith('47'):
+    #     db_user = 'db_analysis'
+    #     # db_password =
+    # else:
+    #     db_user = 'x'
+    #     # db_password = 'x'
 
     test_one = ConnMysql(db_ip, db_port, db_user, db_password, 'utf8', db_name, get_sql())
     data = test_one.run()
