@@ -233,7 +233,7 @@ def update_merge_info(request, pk):
 
     try:
         # gs_one.big_r = data['bigR']
-        gs.dau = data['dau']
+        gs_one.dau = data['dau']
         # gs.level = "{}-{}-{}".format(data['level_1'], data['level_2'], data['level_3'])
         # gs.power_alliance_m = data['power_alliance_m']
         # gs.powerest_alliance_m = data['powerest_alliance_m']
@@ -241,10 +241,10 @@ def update_merge_info(request, pk):
         # gs.pvp = data['pvp']
         # gs.R = data['R']
         # gs.revenue = data['revenue']
-        gs.power_m = data['power_m']
-        gs.udid = data['udid']
-        gs.users = data['users']
-        gs.save()
+        gs_one.power_m = data['power_m']
+        gs_one.udid = data['udid']
+        gs_one.users = data['users']
+        gs_one.save()
     except Exception as e:
         print("save {} error as {}".format(gs.id, e))
     redirect("cmdb:merge-info")
