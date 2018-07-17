@@ -201,7 +201,6 @@ def update_all_merge_info(request):
     return redirect("cmdb:merge-info")
 
 def update_merge_info(request, pk):
-
     # print(pk)
     try:
         gs_one = get_object_or_404(GsConfig, pk=pk)
@@ -230,6 +229,7 @@ def update_merge_info(request, pk):
     #ip, port, user, password, char_set, database, sql_list
     test_one = ConnMysql(db_ip, int(db_port), db_user, db_password, 'utf8', db_name, get_sql())
     data = test_one.run()
+    print(data)
 
     try:
         # gs_one.big_r = data['bigR']
