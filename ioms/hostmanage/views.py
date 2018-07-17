@@ -1,7 +1,7 @@
 #coding: utf-8
 import json
 import requests
-
+from django.conf import settings
 from rest_framework import viewsets
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -13,13 +13,16 @@ from .models import *
 from .serializers import HostSerializer
 from .form import HostFrom, HostRoleForm, PorjectFrom
 
-db_config = '/Users/tangjianming/config.json'
-with open(db_config, 'r') as f:
-    api_info = json.load(f)
+
+# db_password  = settings.CONFIG['gs_password']
+#
+# db_config = '/Users/tangjianming/config.json'
+# with open(db_config, 'r') as f:
+#     api_info = json.load(f)
 
 def update_host_view(request):
     # error_info = {}
-    iop_host_api_url = api_info["api_info"]
+    iop_host_api_url = settings.CONFIG["api_info"]
     #identifier
     get_total_info = json.loads(requests.get(iop_host_api_url).text)
     total_page = int(get_total_info["total_pages"]) #ok

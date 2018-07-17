@@ -9,10 +9,11 @@ django | 2.0.6
 
 ```python
 #install
+pip install --upgrade pip
 pip install djangorestframework-bulk
-
+pip install pymysql
 pip install Pillow
-
+pip install requests
 
 ```
 
