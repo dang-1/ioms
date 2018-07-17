@@ -246,7 +246,7 @@ def update_merge_info(request, pk):
         gs_one.users = data['users']
         gs_one.save()
     except Exception as e:
-        print("save {} error as {}".format(gs.id, e))
+        print("save {} error as {}".format(gs_one.id, e))
     redirect("cmdb:merge-info")
 
     # print(db_ip)
