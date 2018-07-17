@@ -5,19 +5,33 @@
 <p>host index page</p>
 
 <table>
-    <caption>角色列表</caption>
+    <caption>数据库列表</caption>
     <tr>
-        <th>项目id</th>
-        <th>项目名称</th>
-        <th>说明</th>
-        <th>机器数量</th>
+        <!--<th>状态id</th>-->
+        <th>gs_id</th>
+        <th>游戏服</th>
+        <th>区域</th>
+        <th>dau</th>
+        <th>power_m</th>
+        <th>pvp</th>
+        <th>udid</th>
+        <th>users</th>
+        <th>更新时间</th>
+        <th>update</th>
     </tr>
-    {% for role in role_list %}
+    {% for gs in gs_list %}
     <tr>
-        <td>{{ role.id }}</td>
-        <td>{{ role.role }}</td>
-        <td>{{ role.explain }}</td>
-        <td>{{ role.roles.all.count }}</td>
+        <td>{{ gs.id }}</td>
+        <td>{{ gs.gs_name }}</td>
+        <td>{{ gs.gs_zone.zone_name_explain }}</td>
+        <td>{{ gs.dau }}</td>
+        <td>{{ gs.power_m }}</td>
+        <td>{{ gs.pvp }}</td>
+        <td>{{ gs.udid }}</td>
+        <td>{{ gs.users }}</td>
+        <td>{{ gs.update_at|date:"Y-m-d H:i:s" }}</td>
+        <th><a href="{% url 'cmdb:update-one-info-merge' gs.id %}">update</a></th>
+
     </tr>
     {% endfor%}
 </table>

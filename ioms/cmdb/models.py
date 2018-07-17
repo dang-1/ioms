@@ -46,6 +46,12 @@ class Tag(models.Model):
     id = models.AutoField(primary_key=True)
     tag_name = models.CharField(max_length=48, null=False, unique=True, verbose_name='标签')
 
+    def __str__(self):
+        return self.tag_name
+
+    class Meta:
+        ordering = ['id']
+
 
 # class KeConfig(models.Model):
 #     id = models.AutoField(primary_key=True)
@@ -57,34 +63,34 @@ class Tag(models.Model):
 #     tag = models.ForeignKey(Tag, on_delete=models.SET_NULL, blank=True, null=True, related_name="gs_tag",
 #                             verbose_name="标签字段")
 
-class DbConfig(models.Model):
-    '''
-    database config
-    not use
-    '''
-    id = models.AutoField(primary_key=True)
-    alias = models.CharField(max_length=48, blank=True, verbose_name="别名")
-    master_ip = models.ForeignKey(Host, on_delete=models.SET_NULL, blank=True, null=True,
-                                related_name="master_ip_info", verbose_name="master ip's id")
-    slave_ip = models.ForeignKey(Host, on_delete=models.SET_NULL, blank=True, null=True,
-                                related_name="slave_ip_info", verbose_name="slave ip's id")
-    # host_ip = models.ForeignKey(Host, on_delete=models.SET_NULL, blank=True, null=True,
-    #                             related_name="host_ip", verbose_name="host ip's id")
-    # db_user = models.CharField(max_length=42, verbose_name='database user')
-    # db_type = models.CharField(max_length=42, verbose_name="数据库类型")
-    db_port = models.CharField(max_length=42, default=3306, verbose_name='database port')
-    db_slave_port = models.CharField(max_length=42, default=3306, verbose_name='database slave port')
-    # db_name = models.CharField(max_length=42, verbose_name='database name')
-    status = models.CharField(max_length=42, null=False, verbose_name='database status, online of offline')
-    open_time = models.CharField(max_length=42, null=False, blank=True, verbose_name='database open time')
-    # config_manage = models.ForeignKey(GsConfig, on_delete=models.SET_NULL, blank=True, null=True,
-    #                                   related_name="config_manage", verbose_name='db_config')
-    # db_type = models.CharField(max_length=48, null=True, verbose_name='数据库用途')
-
-    def __str__(self):
-        return str(self.id)
-    class Meta:
-        ordering = ['id']
+# class DbConfig(models.Model):
+#     '''
+#     database config
+#     not use
+#     '''
+#     id = models.AutoField(primary_key=True)
+#     alias = models.CharField(max_length=48, blank=True, verbose_name="别名")
+#     master_ip = models.ForeignKey(Host, on_delete=models.SET_NULL, blank=True, null=True,
+#                                 related_name="master_ip_info", verbose_name="master ip's id")
+#     slave_ip = models.ForeignKey(Host, on_delete=models.SET_NULL, blank=True, null=True,
+#                                 related_name="slave_ip_info", verbose_name="slave ip's id")
+#     # host_ip = models.ForeignKey(Host, on_delete=models.SET_NULL, blank=True, null=True,
+#     #                             related_name="host_ip", verbose_name="host ip's id")
+#     # db_user = models.CharField(max_length=42, verbose_name='database user')
+#     # db_type = models.CharField(max_length=42, verbose_name="数据库类型")
+#     db_port = models.CharField(max_length=42, default=3306, verbose_name='database port')
+#     db_slave_port = models.CharField(max_length=42, default=3306, verbose_name='database slave port')
+#     # db_name = models.CharField(max_length=42, verbose_name='database name')
+#     status = models.CharField(max_length=42, null=False, verbose_name='database status, online of offline')
+#     open_time = models.CharField(max_length=42, null=False, blank=True, verbose_name='database open time')
+#     # config_manage = models.ForeignKey(GsConfig, on_delete=models.SET_NULL, blank=True, null=True,
+#     #                                   related_name="config_manage", verbose_name='db_config')
+#     # db_type = models.CharField(max_length=48, null=True, verbose_name='数据库用途')
+#
+#     def __str__(self):
+#         return str(self.id)
+#     class Meta:
+#         ordering = ['id']
 
 class GsConfig(models.Model):
     id = models.AutoField(primary_key=True)
@@ -93,7 +99,9 @@ class GsConfig(models.Model):
                               verbose_name="host ip's id")
     gs_zone = models.ForeignKey(ZoneName, on_delete=models.SET_NULL, related_name="gs_zone_name",
                                 blank=True, null=True, verbose_name="zone id，安卓 or ios")
-    tag = models.ForeignKey(Tag, on_delete=models.SET_NULL, blank=True, null=True, related_name="gs_tag",
+    # tag = models.ForeignKey(Tag, on_delete=models.SET_NULL, blank=True, null=True, related_name="gs_tag",
+    #                         verbose_name="标签字段")
+    tag = models.ManyToManyField(Tag, blank=True, related_name="gs_tag",
                             verbose_name="标签字段")
     gs_id = models.IntegerField(verbose_name="游戏服id")
     gs_alias = models.CharField(max_length=50, verbose_name="唯一标识符")
@@ -112,17 +120,32 @@ class GsConfig(models.Model):
     gs_merged_to_id = models.CharField(max_length=50, verbose_name="合入id")
     gs_db_name = models.CharField(max_length=42, blank=True, null=True, verbose_name='database name')
     gs_log_db_name = models.CharField(max_length=42, blank=True, null=True, verbose_name='database log name')
-    gs_db_info = models.ForeignKey(DbConfig, on_delete=models.SET_NULL, blank=True, null=True, related_name="gs_db_info",
-                                   verbose_name="数据库信息")
+    # gs_db_info = models.ForeignKey(DbConfig, on_delete=models.SET_NULL, blank=True, null=True, related_name="gs_db_info",
+    #                                verbose_name="数据库信息")
     gs_db = models.ForeignKey(MasterDb, on_delete=models.SET_NULL, blank=True, null=True, related_name="gs_db",
                               verbose_name="main db")
-    gs_db_ip = models.ForeignKey(DbConfig, on_delete=models.SET_NULL, blank=True, null=True,
-                                 related_name="gs_db_ip_info", verbose_name="db ip's id")
-    gs_db_slave_ip = models.ForeignKey(DbConfig, on_delete=models.SET_NULL, blank=True, null=True,
-                                       related_name="gs_db_slave_ip_info", verbose_name="db ip's id")
+    # gs_db_ip = models.ForeignKey(DbConfig, on_delete=models.SET_NULL, blank=True, null=True,
+    #                              related_name="gs_db_ip_info", verbose_name="db ip's id")
+    # gs_db_slave_ip = models.ForeignKey(DbConfig, on_delete=models.SET_NULL, blank=True, null=True,
+    #                                    related_name="gs_db_slave_ip_info", verbose_name="db ip's id")
 
-    # create_time =
-    # update_time =
+    #merge info
+    # big_r = models.IntegerField(null=True, verbose_name="")
+    dau = models.IntegerField(null=True, verbose_name="")
+    # level = models.CharField(null=True, max_length=128, verbose_name="")
+    power_alliance_m = models.FloatField(null=True, verbose_name="")
+    # powerest_alliance_m = models.FloatField(null=True, verbose_name="")
+    # powerest_m = models.FloatField(null=True, verbose_name="")
+    power_m = models.FloatField(null=True, verbose_name="实力")
+    # pvp = models.FloatField(null=True, verbose_name="")
+    # R = models.IntegerField(null=True, verbose_name="")
+    # revenue = models.FloatField(null=True, verbose_name="")
+    udid = models.IntegerField(null=True, verbose_name="")
+    users = models.IntegerField(null=True, verbose_name="用户数量")
+
+
+    create_at = models.DateTimeField(auto_now_add=True, null=True, verbose_name="创建时间")
+    update_at = models.DateTimeField(auto_now=True, null=True, verbose_name="更新时间")
 
     def __str__(self):
         return self.gs_name

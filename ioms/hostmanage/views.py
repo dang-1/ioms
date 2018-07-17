@@ -13,9 +13,13 @@ from .models import *
 from .serializers import HostSerializer
 from .form import HostFrom, HostRoleForm, PorjectFrom
 
+db_config = '/Users/tangjianming/config.json'
+with open(db_config, 'r') as f:
+    api_info = json.load(f)
+
 def update_host_view(request):
     # error_info = {}
-    iop_host_api_url = "https://iop-api.tap4fun.com/real_servers/unsecure_list?"
+    iop_host_api_url = api_info["api_info"]
     #identifier
     get_total_info = json.loads(requests.get(iop_host_api_url).text)
     total_page = int(get_total_info["total_pages"]) #ok
@@ -101,6 +105,7 @@ def update_host_view(request):
             #     print('save eror')
     return redirect('/hostmanage/host_index/')
 
+
 class HostRoleView(LoginRequiredMixin, ListView):
     template_name = 'hostmanage/role_list.html'
     context_object_name = 'role_list'
@@ -110,6 +115,18 @@ class HostRoleView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super(HostRoleView, self).get_context_data(**kwargs)
         context['title_name'] = 'iomp: role page'
+        return context
+
+
+class ProjectListView(LoginRequiredMixin, ListView):
+    template_name = 'hostmanage/project_list.html'
+    context_object_name = 'project_list'
+    model = ProjectName
+    # paginate_by = 20
+
+    def get_context_data(self, **kwargs):
+        context = super(ProjectListView, self).get_context_data(**kwargs)
+        context['title_name'] = 'iomp: host project page'
         return context
 
 
@@ -144,16 +161,7 @@ class HostDetailView(LoginRequiredMixin, ListView):
 
 
 
-class ProjectListView(LoginRequiredMixin, ListView):
-    template_name = 'hostmanage/project_list.html'
-    context_object_name = 'project_list'
-    model = ProjectName
-    paginate_by = 20
 
-    def get_context_data(self, **kwargs):
-        context = super(ProjectListView, self).get_context_data(**kwargs)
-        context['title_name'] = 'iomp: host project page'
-        return context
 
 
 

@@ -21,6 +21,14 @@ from django.urls import reverse_lazy
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_DIR = os.path.dirname(BASE_DIR)
 
+config_file = '/Users/tangjianming/config.json'
+with open(config_file, 'r') as f:
+    CONFIG = json.load(f)
+db_host = CONFIG['ioms_db_host']
+db_port = CONFIG['ioms_db_port']
+db_name = CONFIG['ioms_db_name']
+db_user = CONFIG['ioms_db_user']
+db_password  = CONFIG['ioms_db_password']
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
@@ -98,15 +106,8 @@ LOGIN_URL = reverse_lazy('users:login')
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
-db_config = '/Users/tangjianming/config.json'
-with open(db_config, 'r') as f:
-    db_info = json.load(f)
 
-db_host = db_info['ioms_db_host']
-db_port = db_info['ioms_db_port']
-db_name = db_info['ioms_db_name']
-db_user = db_info['ioms_db_user']
-db_password  = db_info['ioms_db_password']
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',

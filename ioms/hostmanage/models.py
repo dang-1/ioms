@@ -75,7 +75,8 @@ class Host(models.Model):
     role = models.ManyToManyField(HostRole, blank=True, related_name='roles',  verbose_name='角色')
     start_time = models.CharField(max_length=50,null=True, blank=True, verbose_name="注册时间 DateField")
     end_time = models.CharField(max_length=50,null=True, blank=True, verbose_name="销毁时间")
-    project = models.ForeignKey(ProjectName, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="项目")
+    project = models.ForeignKey(ProjectName, on_delete=models.SET_NULL, blank=True, null=True,
+                                related_name="project", verbose_name="项目")
     explain = models.CharField(max_length=128, null=True, blank=True, verbose_name="说明")
 
     create_at = models.DateField(auto_now_add=True, null=True, verbose_name="创建时间")

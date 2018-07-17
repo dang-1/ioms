@@ -25,8 +25,9 @@
     <ul class="nav nav-second-level active">
         <li id="host-list"><a href="{% url 'hostmanage:host_index' %}">链接列表</a> </li>
         <li id="host-list"><a href="{% url 'hostmanage:status_list' %}">状态列表</a></li>
-        <li id="host-list"><a href="{% url 'hostmanage:host_index' %}">链接类型</a> </li>
-        <li id="host-list"><a href="{% url 'hostmanage:host_index' %}">添加链接类型</a> </li>
+        <li id="host-list"><a href="{% url 'hostmanage:role' %}">角色管理</a> </li>
+        <li id="host-list"><a href="{% url 'hostmanage:host_index' %}">项目管理</a></li>
+        <li id="host-list"><a href="{% url 'hostmanage:host_index' %}">云平台管理</a></li>
     </ul>
 </li>
 <li id="links">
@@ -46,7 +47,7 @@
         <li id="host-list"><a href="{% url 'cmdb:gs-list' %}">游戏服列表</a> </li>
         <li id="host-list"><a href="{% url 'cmdb:gs-status' %}">状态列表</a></li>
         <li id="host-list"><a href="{% url 'cmdb:zone-name' %}">区域列表</a> </li>
-        <li id="host-list"><a href="{% url 'cmdb:db-list' %}">数据库列表</a> </li>
+        <li id="host-list"><a href="{% url 'cmdb:merge-info' %}">合服信息</a></li>
 
     </ul>
 </li>

@@ -8,7 +8,7 @@
 
 from rest_framework import serializers
 # from rest_framework.serializers import ModelSerializer
-from .models import GsConfig, DbConfig
+from .models import GsConfig #DbConfig
 
 # class ConfigMangeSerializer(serializers.HyperlinkedModelSerializer):
 class ConfigMangeSerializer(serializers.ModelSerializer):
@@ -47,22 +47,22 @@ class ConfigMangeSerializer(serializers.ModelSerializer):
             return ",".join([x.db_name for x in obj.dbconfig_set.all()])
 
 
-class DbConfigSerializer(serializers.ModelSerializer):
-
-    # master_outer_ip = serializers.SlugRelatedField(many=True, read_only=True, slug_field="outer_ip")
-    master_outer_ip = serializers.SlugRelatedField(
-        many=True,
-        read_only=True,
-        slug_field='title'
-     )
-    class Meta:
-        model = DbConfig
-        fields = ("id","db_port", "status", "open_time", "master_outer_ip")
-        # fields = "__all__"
-        depth = 1
-
-    def get_master_outer_ip(self, obj):
-        return obj.master_ip.outer_ip
+# class DbConfigSerializer(serializers.ModelSerializer):
+#
+#     # master_outer_ip = serializers.SlugRelatedField(many=True, read_only=True, slug_field="outer_ip")
+#     master_outer_ip = serializers.SlugRelatedField(
+#         many=True,
+#         read_only=True,
+#         slug_field='title'
+#      )
+#     class Meta:
+#         model = DbConfig
+#         fields = ("id","db_port", "status", "open_time", "master_outer_ip")
+#         # fields = "__all__"
+#         depth = 1
+#
+#     def get_master_outer_ip(self, obj):
+#         return obj.master_ip.outer_ip
 
 # class DbConfigSerializer(serializers.ModelSerializer):
 #     class Meta:
@@ -71,15 +71,15 @@ class DbConfigSerializer(serializers.ModelSerializer):
 #         depth = 1
 
 
-class GsConfigSerializer(serializers.ModelSerializer):
-    # config_manage = serializers.StringRelatedField(many=True) #返回str
-    config_manage = DbConfigSerializer(many=True, read_only=True) #依赖上一个序列化，返回对应的信息
-    # config_manage = serializers.PrimaryKeyRelatedField(many=True, read_only=True) #返回pk
-
-    class Meta:
-        model = GsConfig
-        fields = "__all__"
-        depth = 1
+# class GsConfigSerializer(serializers.ModelSerializer):
+#     # config_manage = serializers.StringRelatedField(many=True) #返回str
+#     # config_manage = DbConfigSerializer(many=True, read_only=True) #依赖上一个序列化，返回对应的信息
+#     # config_manage = serializers.PrimaryKeyRelatedField(many=True, read_only=True) #返回pk
+#
+#     class Meta:
+#         model = GsConfig
+#         fields = "__all__"
+#         depth = 1
 
 
 

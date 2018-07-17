@@ -9,8 +9,8 @@
 from django.urls import path
 # from rest_framework import routers
 
-from ..views import GsStatusView, ZoneNameView, GsListView, \
-    DbListView
+from ..views import GsStatusView, ZoneNameView, GsListView, MergeListView, \
+    update_merge_info, update_all_merge_info
 
 app_name = 'cmdb'
 
@@ -19,7 +19,10 @@ urlpatterns = [
     path('gs-status/', GsStatusView.as_view(), name='gs-status'),
     path('zone-name/', ZoneNameView.as_view(), name='zone-name'),
     path('gs-list/', GsListView.as_view(), name='gs-list'),
-    path('db-list/', DbListView.as_view(), name='db-list'),
+    path('merge-info/', MergeListView.as_view(), name='merge-info'),
+    path('merge-info/update/', update_all_merge_info, name='update-all-info-merge'),
+    path('merge-info/<int:pk>/update/', update_merge_info, name='update-one-info-merge'),
+    # path('db-list/', DbListView.as_view(), name='db-list'),
     # path('host_index/', HostIndexView.as_view(), name="host_index"),
     # path('status_list/', StatusView.as_view(), name='status_list'),
     # path('site_index/', SiteIndex.as_view(), name='site_index'),
