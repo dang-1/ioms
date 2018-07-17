@@ -45,7 +45,7 @@ class Tag(models.Model):
     """
     id = models.AutoField(primary_key=True)
     tag_name = models.CharField(max_length=48, null=False, unique=True, verbose_name='标签')
-    tag_explain = models.CharField(max_length=128, null=False, verbose_name="标签说明")
+    tag_explain = models.CharField(max_length=128, null=True, blank=True, verbose_name="标签说明")
 
     def __str__(self):
         return self.tag_name
@@ -112,7 +112,8 @@ class GsConfig(models.Model):
 
     gs_status = models.ForeignKey(GsStatus, on_delete=models.SET_NULL, blank=True, null=True,
                                   related_name="gs_status", verbose_name="gs status id")
-    gs_open_time = models.CharField(max_length=50, verbose_name="开服时间")
+    # gs_open_time = models.CharField(max_length=50, verbose_name="开服时间")
+    gs_open_time = models.DateTimeField(null=True, verbose_name="开服时间")
 
     gs_branch = models.CharField(max_length=50, verbose_name="分支名")
     gs_branch_commit_id = models.CharField(max_length=50, verbose_name="分支的commit id")
