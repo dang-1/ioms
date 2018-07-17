@@ -228,7 +228,7 @@ def update_merge_info(request, pk):
     db_user = 'db_user'
 
     #ip, port, user, password, char_set, database, sql_list
-    test_one = ConnMysql(db_ip, db_port, db_user, db_password, 'utf8', db_name, get_sql())
+    test_one = ConnMysql(db_ip, int(db_port), db_user, db_password, 'utf8', db_name, get_sql())
     data = test_one.run()
 
     try:
