@@ -86,7 +86,7 @@ def get_sql():
             where users.last_login_day>'{}-{}-{}' ;".format(
         now_before_15.year, now_before_15.month, now_before_15.day)
     # return [sql1, sql2, sql3, sql4, sql5, sql6, sql7, sql8, sql9, sql10, sql11, sql12, sql13]
-    return [sql2, sql3, sql4, sql9]
+    return [sql1, sql2, sql3, sql4, sql9]
 
 class ConnMysql:
     def __init__(self, ip, port, user, password, char_set, database, sql_list):
