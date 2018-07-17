@@ -244,7 +244,7 @@ def update_merge_info(request, pk):
         gs_one.power_m = data['power_m']
         gs_one.udid = data['udid']
         gs_one.users = data['user_count']
-        gs_one.gs_open_time = data['open_time']
+        gs_one.gs_open_time = datetime.datetime.strptime(data['open_time'], "%Y-%m-%d %H:%M:%S")
         gs_one.save()
     except Exception as e:
         print("save {} error as {}".format(gs_one.id, e))
