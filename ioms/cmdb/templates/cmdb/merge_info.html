@@ -16,6 +16,7 @@
         <th>pvp</th>
         <th>udid</th>
         <th>users</th>
+        <th>open time</th>
         <th>更新时间</th>
         <th>update</th>
     </tr>
@@ -29,6 +30,7 @@
         <td>{{ gs.pvp }}</td>
         <td>{{ gs.udid }}</td>
         <td>{{ gs.users }}</td>
+        <td>{{ gs.gs_open_time }}</td>
         <td>{{ gs.update_at|date:"Y-m-d H:i:s" }}</td>
         <th><a href="{% url 'cmdb:update-one-info-merge' gs.id %}">update</a></th>
 
