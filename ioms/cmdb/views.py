@@ -191,7 +191,7 @@ def update_all_merge_info(request):
             db_port = gs_one.gs_db.db_port
         db_name = gs_one.gs_db_name
 
-        proc = multiprocessing.Process(target=ConnMysql(db_ip, db_port, user, password, char_set, database, sql_list).run)
+        proc = multiprocessing.Process(target=ConnMysql(db_ip, int(db_port), user, password, char_set, database, sql_list).run)
         procs.append(proc)
         proc.start()
     for proc in procs:
@@ -227,6 +227,7 @@ def update_merge_info(request, pk):
     #     # db_password = 'x'
     db_user = 'db_user'
 
+    #ip, port, user, password, char_set, database, sql_list
     test_one = ConnMysql(db_ip, db_port, db_user, db_password, 'utf8', db_name, get_sql())
     data = test_one.run()
 
