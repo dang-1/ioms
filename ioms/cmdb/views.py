@@ -243,7 +243,7 @@ def update_merge_info(request, pk):
         # gs.revenue = data['revenue']
         gs_one.power_m = data['power_m']
         gs_one.udid = data['udid']
-        gs_one.users = data['users']
+        gs_one.users = data['user_count']
         gs_one.save()
     except Exception as e:
         print("save {} error as {}".format(gs_one.id, e))
