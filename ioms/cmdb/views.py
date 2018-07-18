@@ -108,7 +108,7 @@ class ConnMysql:
             self.return_data.update(data[0])
         except Exception as e:
             print("execute {} error in {} as {}".format(sql, self.ip, e))
-            sys.exit(1)
+            # sys.exit(1)
         finally:
             conn.close()
     def run(self):
@@ -213,7 +213,7 @@ def update_merge_info(request, pk):
         db_ip = gs_one.gs_db.host_info.outer_ip
         db_port = gs_one.gs_db.db_port
     db_name = gs_one.gs_db_name
-    # print(db_ip, db_port, db_name, db_password)
+    print(db_ip, db_port, db_name, db_password)
     db_user = 'db_user'
     #ip, port, user, password, char_set, database, sql_list
     test_one = ConnMysql(db_ip, int(db_port), db_user, db_password, 'utf8', db_name, get_sql())
