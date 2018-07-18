@@ -28,6 +28,247 @@ from .form import TagForm
 db_password  = settings.CONFIG['gs_password']
 
 
+#================================status begin==============================================
+class GsStatusView(LoginRequiredMixin, ListView):
+    template_name = 'cmdb/gs_status_list.html'
+    context_object_name = 'gs_status_list'
+    model = GsStatus
+    paginate_by = 30
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title_name'] = 'iomp: gs status page'
+        return context
+
+
+# class GsDetailView(LoginRequiredMixin, DetailView):
+#     template_name = "cmdb/gs_detail.html"
+#     model = GsConfig
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['title_name'] = 'iomp: cmdb gs detail page'
+#         return context
+
+
+# class TagUpdateView(LoginRequiredMixin, UpdateView):
+#     model = Tag
+#     fields = ['tag_name', 'tag_explain']
+#     template_name = 'cmdb/tag_update.html'
+#     success_url = "/cmdb/tag/list/"
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['title_name'] = 'iomp: cmdb tag update page'
+#         return context
+#
+#
+# class TagAddView(LoginRequiredMixin, CreateView):
+#     model = Tag
+#     form_class = TagForm
+#     template_name = "cmdb/tag_add.html"
+#     success_url = "/cmdb/tag/list/"
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['title_name'] = 'ioms: tag add page'
+#         return context
+#
+#
+# class TagDeleteView(LoginRequiredMixin, DeleteView):
+#     model = Tag
+#     fields = ['tag_name', 'tag_explain']
+#     template_name = 'cmdb/tag_delete.html'
+#     success_url = '/cmdb/tag/list/'
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['title_name'] = 'ioms: tag delete page'
+#         return context
+
+#================================status end==============================================
+
+#================================zonename begin==============================================
+
+class ZoneNameView(LoginRequiredMixin, ListView):
+    template_name = 'cmdb/zone_name.html'
+    context_object_name = 'zone_name_list'
+    model = ZoneName
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title_name'] = 'iomp: zone name page'
+        return context
+
+
+# class TagDetailView(LoginRequiredMixin, DetailView):
+#     template_name = "cmdb/tag_detail.html"
+#     model = Tag
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['title_name'] = 'iomp: cmdb tag detail page'
+#         return context
+#
+#
+# class TagUpdateView(LoginRequiredMixin, UpdateView):
+#     model = Tag
+#     fields = ['tag_name', 'tag_explain']
+#     template_name = 'cmdb/tag_update.html'
+#     success_url = "/cmdb/tag/list/"
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['title_name'] = 'iomp: cmdb tag update page'
+#         return context
+#
+#
+# class TagAddView(LoginRequiredMixin, CreateView):
+#     model = Tag
+#     form_class = TagForm
+#     template_name = "cmdb/tag_add.html"
+#     success_url = "/cmdb/tag/list/"
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['title_name'] = 'ioms: tag add page'
+#         return context
+#
+#
+# class TagDeleteView(LoginRequiredMixin, DeleteView):
+#     model = Tag
+#     fields = ['tag_name', 'tag_explain']
+#     template_name = 'cmdb/tag_delete.html'
+#     success_url = '/cmdb/tag/list/'
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['title_name'] = 'ioms: tag delete page'
+#         return context
+#================================zone name==============================================
+#================================tag begin==============================================
+
+class TagListView(LoginRequiredMixin, ListView):
+    template_name = 'cmdb/tag_list.html'
+    context_object_name = 'tag_list'
+    model = Tag
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title_name'] = 'iomp: cmdb tag page'
+        return context
+
+
+class TagDetailView(LoginRequiredMixin, DetailView):
+    template_name = "cmdb/tag_detail.html"
+    model = Tag
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title_name'] = 'iomp: cmdb tag detail page'
+        return context
+
+
+class TagUpdateView(LoginRequiredMixin, UpdateView):
+    model = Tag
+    fields = ['tag_name', 'tag_explain']
+    template_name = 'cmdb/tag_update.html'
+    success_url = "/cmdb/tag/list/"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title_name'] = 'iomp: cmdb tag update page'
+        return context
+
+
+class TagAddView(LoginRequiredMixin, CreateView):
+    model = Tag
+    form_class = TagForm
+    template_name = "cmdb/tag_add.html"
+    success_url = "/cmdb/tag/list/"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title_name'] = 'ioms: tag add page'
+        return context
+
+
+class TagDeleteView(LoginRequiredMixin, DeleteView):
+    model = Tag
+    fields = ['tag_name', 'tag_explain']
+    template_name = 'cmdb/tag_delete.html'
+    success_url = '/cmdb/tag/list/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title_name'] = 'ioms: tag delete page'
+        return context
+
+#================================tag begin==============================================
+
+#================================gs begin==============================================
+
+class GsListView(LoginRequiredMixin, ListView):
+    template_name = 'cmdb/gs_list.html'
+    context_object_name = 'gs_config_list'
+    model = GsConfig
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title_name'] = 'iomp: gs config page'
+        return context
+
+    def post(self):
+        return 'xxx'
+
+
+class GsDetailView(LoginRequiredMixin, DetailView):
+    template_name = "cmdb/gs_detail.html"
+    model = GsConfig
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title_name'] = 'iomp: cmdb gs detail page'
+        return context
+
+
+class GsUpdateView(LoginRequiredMixin, UpdateView):
+    model = GsConfig
+    fields = ['tag', 'gs_zone', 'gs_status', 'gs_accelerate_port']
+    template_name = 'cmdb/gs_update.html'
+    success_url = "/cmdb/gs/list/"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title_name'] = 'iomp: cmdb gs update page'
+        return context
+
+
+# class TagAddView(LoginRequiredMixin, CreateView):
+#     model = Tag
+#     form_class = TagForm
+#     template_name = "cmdb/tag_add.html"
+#     success_url = "/cmdb/tag/list/"
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['title_name'] = 'ioms: tag add page'
+#         return context
+#
+#
+# class TagDeleteView(LoginRequiredMixin, DeleteView):
+#     model = Tag
+#     fields = ['tag_name', 'tag_explain']
+#     template_name = 'cmdb/tag_delete.html'
+#     success_url = '/cmdb/tag/list/'
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['title_name'] = 'ioms: tag delete page'
+#         return context
+
+#================================gs end==============================================
+#================================merge begin==============================================
 def get_sql():
     '''return sql list'''
     # time config
@@ -120,74 +361,7 @@ class ConnMysql:
     	    self.conn_mysql(sql_one)
         return self.return_data
 
-#================================status begin==============================================
-class GsStatusView(LoginRequiredMixin, ListView):
-    template_name = 'cmdb/gs_status.html'
-    context_object_name = 'gs_status_list'
-    model = GsStatus
-    paginate_by = 30
 
-    def get_context_data(self, **kwargs):
-        # context = super(GsStatusView, self).get_context_data(**kwargs)
-        context = super().get_context_data(**kwargs)
-        context['title_name'] = 'iomp: gs status page'
-        return context
-
-
-#================================status end==============================================
-
-#================================zonename begin==============================================
-
-class ZoneNameView(LoginRequiredMixin, ListView):
-    template_name = 'cmdb/zone_name.html'
-    context_object_name = 'zone_name_list'
-    model = ZoneName
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title_name'] = 'iomp: zone name page'
-        return context
-
-#================================zone name==============================================
-#================================gs begin==============================================
-
-class GsListView(LoginRequiredMixin, ListView):
-    template_name = 'cmdb/gs_list.html'
-    context_object_name = 'gs_config_list'
-    model = GsConfig
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title_name'] = 'iomp: gs config page'
-        return context
-
-    def post(self):
-        return 'xxx'
-
-
-class GsDetailView(LoginRequiredMixin, DetailView):
-    template_name = "cmdb/gs_detail.html"
-    model = GsConfig
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title_name'] = 'iomp: cmdb gs detail page'
-        return context
-
-
-class GsUpdateView(LoginRequiredMixin, UpdateView):
-    model = GsConfig
-    fields = ['tag', 'gs_zone', 'gs_status', 'gs_accelerate_port']
-    template_name = 'cmdb/gs_update.html'
-    success_url = "/cmdb/gs/list/"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title_name'] = 'iomp: cmdb gs update page'
-        return context
-
-#================================gs end==============================================
-#================================merge begin==============================================
 class MergeListView(LoginRequiredMixin, ListView):
     template_name = 'cmdb/merge_info.html'
     context_object_name = 'gs_list'
@@ -279,62 +453,3 @@ def update_merge_info(request, pk):
     return redirect("cmdb:merge-info")
 
 #================================merge end==============================================
-#================================tag begin==============================================
-
-class TagListView(LoginRequiredMixin, ListView):
-    template_name = 'cmdb/tag_list.html'
-    context_object_name = 'tag_list'
-    model = Tag
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title_name'] = 'iomp: cmdb tag page'
-        return context
-
-
-class TagDetailView(LoginRequiredMixin, DetailView):
-    template_name = "cmdb/tag_detail.html"
-    model = Tag
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title_name'] = 'iomp: cmdb tag detail page'
-        return context
-
-
-class TagUpdateView(LoginRequiredMixin, UpdateView):
-    model = Tag
-    fields = ['tag_name', 'tag_explain']
-    template_name = 'cmdb/tag_update.html'
-    success_url = "/cmdb/tag/list/"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title_name'] = 'iomp: cmdb tag update page'
-        return context
-
-
-class TagAddView(LoginRequiredMixin, CreateView):
-    model = Tag
-    form_class = TagForm
-    template_name = "cmdb/tag_add.html"
-    success_url = "/cmdb/tag/list/"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title_name'] = 'ioms: tag add page'
-        return context
-
-
-class TagDeleteView(LoginRequiredMixin, DeleteView):
-    model = Tag
-    fields = ['tag_name', 'tag_explain']
-    template_name = 'cmdb/tag_delete.html'
-    success_url = '/cmdb/tag/list/'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title_name'] = 'ioms: tag delete page'
-        return context
-
-#================================tag begin==============================================
