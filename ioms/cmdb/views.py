@@ -45,7 +45,7 @@ def get_sql():
     sql3 = "select count(DISTINCT open_udid) udid from player_track_statics \
             left join users on player_track_statics.user_id=users.id \
             where track_date='{}-{}-{}' and datediff(track_date,user_created_at)>0;".format(
-        now.year, now.month, now.day)
+        now_before_1.year, now_before_1.month, now_before_1.day)
     sql4 = "select distinct (case when c=0 then (select value from server_infos \
             where name='open_time') else (select date(updated_at) from server_infos \
             where name='merge_time') end) open_time from server_infos,(select count(name) c from server_infos \
