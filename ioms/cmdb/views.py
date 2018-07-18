@@ -9,29 +9,27 @@ import multiprocessing
 from django.conf import settings
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.db.models import Q
 
 from rest_framework import viewsets
-from django.contrib.auth.decorators import login_required
+
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 
 # from .serializers import HostSerializer
-
 from .models import Tag, GsStatus, ZoneName, GsConfig
 from .form import TagForm
 
-# db_config = settings.config_file
-# with open(db_config, 'r') as f:
-#     db_info = json.load(f)
-
+# config
 db_password  = settings.CONFIG['gs_password']
-# db_password = db_info['gs_db_passwod']
+
 
 def get_sql():
+    '''return sql list'''
     # time config
     now = datetime.datetime.now()
     now_before_1 = now - datetime.timedelta(1)
@@ -92,6 +90,7 @@ def get_sql():
     return [sql1, sql2, sql3, sql4, sql9]
 
 class ConnMysql:
+    '''excute sql, return dict'''
     def __init__(self, ip, port, user, password, char_set, database, sql_list):
         self.ip = ip
         self.port = port
@@ -121,7 +120,7 @@ class ConnMysql:
     	    self.conn_mysql(sql_one)
         return self.return_data
 
-
+#================================status begin==============================================
 class GsStatusView(LoginRequiredMixin, ListView):
     template_name = 'cmdb/gs_status.html'
     context_object_name = 'gs_status_list'
@@ -135,6 +134,10 @@ class GsStatusView(LoginRequiredMixin, ListView):
         return context
 
 
+#================================status end==============================================
+
+#================================zonename begin==============================================
+
 class ZoneNameView(LoginRequiredMixin, ListView):
     template_name = 'cmdb/zone_name.html'
     context_object_name = 'zone_name_list'
@@ -145,6 +148,8 @@ class ZoneNameView(LoginRequiredMixin, ListView):
         context['title_name'] = 'iomp: zone name page'
         return context
 
+#================================zone name==============================================
+#================================gs begin==============================================
 
 class GsListView(LoginRequiredMixin, ListView):
     template_name = 'cmdb/gs_list.html'
@@ -160,6 +165,29 @@ class GsListView(LoginRequiredMixin, ListView):
         return 'xxx'
 
 
+class GsDetailView(LoginRequiredMixin, DetailView):
+    template_name = "cmdb/gs_detail.html"
+    model = GsConfig
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title_name'] = 'iomp: cmdb gs detail page'
+        return context
+
+
+class GsUpdateView(LoginRequiredMixin, UpdateView):
+    model = GsConfig
+    fields = ['tag', 'gs_zone', 'gs_status', 'gs_accelerate_port']
+    template_name = 'cmdb/gs_update.html'
+    success_url = "/cmdb/gs/list/"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title_name'] = 'iomp: cmdb gs update page'
+        return context
+
+#================================gs end==============================================
+#================================merge begin==============================================
 class MergeListView(LoginRequiredMixin, ListView):
     template_name = 'cmdb/merge_info.html'
     context_object_name = 'gs_list'
@@ -250,8 +278,8 @@ def update_merge_info(request, pk):
         print("save {} error as {}".format(gs_one.id, e))
     return redirect("cmdb:merge-info")
 
-
-#tag
+#================================merge end==============================================
+#================================tag begin==============================================
 
 class TagListView(LoginRequiredMixin, ListView):
     template_name = 'cmdb/tag_list.html'
@@ -280,6 +308,11 @@ class TagUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'cmdb/tag_update.html'
     success_url = "/cmdb/tag/list/"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title_name'] = 'iomp: cmdb tag update page'
+        return context
+
 
 class TagAddView(LoginRequiredMixin, CreateView):
     model = Tag
@@ -303,3 +336,5 @@ class TagDeleteView(LoginRequiredMixin, DeleteView):
         context = super().get_context_data(**kwargs)
         context['title_name'] = 'ioms: tag delete page'
         return context
+
+#================================tag begin==============================================

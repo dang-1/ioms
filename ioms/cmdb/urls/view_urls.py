@@ -9,11 +9,15 @@
 from django.urls import path
 # from rest_framework import routers
 
-from ..views import GsStatusView, ZoneNameView, GsListView, MergeListView, \
+from ..views import GsStatusView, ZoneNameView, MergeListView, \
     update_merge_info, update_all_merge_info
+
 
 #tag
 from ..views import TagListView, TagDetailView, TagUpdateView, TagAddView, TagDeleteView
+
+#gs
+from ..views import GsListView, GsDetailView, GsUpdateView
 
 app_name = 'cmdb'
 
@@ -25,10 +29,14 @@ urlpatterns = [
     path('tag/<int:pk>/update/', TagUpdateView.as_view(), name='tag-update'),
     path('tag/<int:pk>/delete/', TagDeleteView.as_view(), name='tag-delete'),
 
+    path('gs/list/', GsListView.as_view(), name='gs-list'),
+    path('gs/<int:pk>/detail/', GsDetailView.as_view(), name='gs-detail'),
+    path('gs/<int:pk>/update/', GsUpdateView.as_view(), name='gs-update'),
+
 
     path('gs-status/', GsStatusView.as_view(), name='gs-status'),
     path('zone-name/', ZoneNameView.as_view(), name='zone-name'),
-    path('gs-list/', GsListView.as_view(), name='gs-list'),
+    # path('gs-list/', GsListView.as_view(), name='gs-list1'),
     path('merge-info/', MergeListView.as_view(), name='merge-info'),
     path('merge-info/update/', update_all_merge_info, name='update-all-info-merge'),
     path('merge-info/<int:pk>/update/', update_merge_info, name='update-one-info-merge'),

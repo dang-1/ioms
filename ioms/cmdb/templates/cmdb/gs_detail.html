@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>详情</h1>
+
+<table>
+    <caption>详细信息</caption>
+    <tr>
+        <th>字段</th>
+        <th>说明</th>
+    </tr>
+    <tr>
+        <td>id</td>
+        <td>{{ object.id }}</td>
+    </tr>
+    <tr>
+        <td>gs id</td>
+        <td>{{ object.gs_id }}</td>
+    </tr>
+    <tr>
+        <td>是否使用</td>
+        <td>{{ object.used }}</td>
+    </tr>
+    <tr>
+        <td>机器信息</td>
+        <td>{{ object.gs_ip.outer_ip }}, {{ object.gs_ip.hostname }}</td>
+    </tr>
+    <tr>
+        <td>区域</td>
+        <td>{{ object.gs_zone.zone_name }}</td>
+    </tr>
+    <tr>
+        <td>标签</td>
+        <td>{{ object.tag.all }}</td>
+    </tr>
+    <tr>
+        <td>别名</td>
+        <td>{{ object.gs_alias }}</td>
+    </tr>
+    <tr>
+        <td>加速端口</td>
+        <td>{{ object.gs_accelerate_port }}</td>
+    </tr>
+    <tr>
+        <td>游戏目录</td>
+        <td>{{ object.gs_dir }}</td>
+    </tr>
+    <tr>
+        <td>游戏名</td>
+        <td>{{ object.gs_name }}</td>
+    </tr>
+    <tr>
+        <td>状态</td>
+        <td>{{ object.gs_status.status_explain }}</td>
+    </tr>
+    <tr>
+        <td>开服时间</td>
+        <td>{{ object.gs_open_time }}</td>
+    </tr>
+    <tr>
+        <td>分支信息</td>
+        <td>{{ object.gs_branch }}, {{ object.gs_branch_commit_id }}</td>
+    </tr>
+    <tr>
+        <td>合服信息</td>
+    </tr>
+    <tr>
+        <td>数据库</td>
+        <td>{{ object.gs_db.host_info.outer_ip }},{{ object.gs_db.host_info.hostname }}, {{ object.gs_db_name }}, {{object.gs_log_db_name }}</td>
+    </tr>
+
+
+</table>
+
+<p>
+    <td><a href={% url "cmdb:gs-list" %}>返回列表</a></td>
+    <td><a href="">更新</a></td>
+    <td><a href="">删除</a></td>
+</p>
+
+{% endblock %}

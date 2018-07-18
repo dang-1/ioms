@@ -22,13 +22,14 @@
         <th>逻辑服id</th>
         <th>alias</th>
         <th>加速端口</th>
-        <th>程序目录</th>
+        <!--<th>程序目录</th>-->
         <th>游戏服名</th>
         <th>状态</th>
         <th>开服时间</th>
         <th>分支名</th>
         <th>分支id</th>
         <th>zone</th>
+        <th>操作</th>
     </tr>
     {% for gs_config in gs_config_list %}
     {% if gs_config.used == '1' %}
@@ -40,12 +41,16 @@
             <td>{{ gs_config.gs_id }}</td>
             <td>{{ gs_config.gs_alias }}</td>
             <td>{{ gs_config.gs_accelerate_port }}</td>
-            <td>{{ gs_config.gs_dir }}</td>
+            <!--<td>{{ gs_config.gs_dir }}</td>-->
             <td>{{ gs_config.gs_name }}</td>
             <td>{{ gs_config.gs_status.status_explain }}</td>
             <td>{{ gs_config.gs_open_time }}</td>
             <td>{{ gs_config.gs_branch }}</td>
             <td>{{ gs_config.gs_branch_commit_id }}</td>
+            <td>
+                <a href={% url "cmdb:gs-detail" gs_config.id %}>详细</a>
+                <a href={% url "cmdb:gs-update" gs_config.id %}>更新</a>
+            </td>
         </tr>
     {% endif %}
     {% endfor%}
