@@ -12,10 +12,20 @@ from django.urls import path
 from ..views import GsStatusView, ZoneNameView, GsListView, MergeListView, \
     update_merge_info, update_all_merge_info
 
+#tag
+from ..views import TagListView, TagDetailView, TagUpdateView, TagAddView, TagDeleteView
+
 app_name = 'cmdb'
 
 
 urlpatterns = [
+    path('tag/list/', TagListView.as_view(), name='tag-list'),
+    path('tag/add/', TagAddView.as_view(), name='tag-add'),
+    path('tag/<int:pk>/detail/', TagDetailView.as_view(), name='tag-detail'),
+    path('tag/<int:pk>/update/', TagUpdateView.as_view(), name='tag-update'),
+    path('tag/<int:pk>/delete/', TagDeleteView.as_view(), name='tag-delete'),
+
+
     path('gs-status/', GsStatusView.as_view(), name='gs-status'),
     path('zone-name/', ZoneNameView.as_view(), name='zone-name'),
     path('gs-list/', GsListView.as_view(), name='gs-list'),
