@@ -183,7 +183,6 @@ def update_all_merge_info(request):
         #     redirect("cmdb:merge-info")
         print(gs_one.id)
         try:
-            # db_ip = gs_one.gs_db.slave_host_info.outer_ip
             db_ip = gs_one.gs_db.slavedb.host_info.outer_ip
             db_port = gs_one.gs_db.slavedb.db_port
         except:
@@ -208,29 +207,18 @@ def update_merge_info(request, pk):
         print("get pk {} error".format(pk))
         redirect("cmdb:merge-info")
     try:
-        # db_ip = gs_one.gs_db.slave_host_info.outer_ip
         db_ip = gs_one.gs_db.slavedb.host_info.outer_ip
         db_port = gs_one.gs_db.slavedb.db_port
     except:
         db_ip = gs_one.gs_db.host_info.outer_ip
         db_port = gs_one.gs_db.db_port
     db_name = gs_one.gs_db_name
-
-    print(db_ip, db_port, db_name, db_password)
-
-    # if db_ip.startswith('47'):
-    #     db_user = 'db_analysis'
-    #     # db_password =
-    # else:
-    #     db_user = 'x'
-    #     # db_password = 'x'
+    # print(db_ip, db_port, db_name, db_password)
     db_user = 'db_user'
-
     #ip, port, user, password, char_set, database, sql_list
     test_one = ConnMysql(db_ip, int(db_port), db_user, db_password, 'utf8', db_name, get_sql())
     data = test_one.run()
     print(data)
-
     try:
         # gs_one.big_r = data['bigR']
         gs_one.dau = data['dau']
@@ -244,16 +232,20 @@ def update_merge_info(request, pk):
         gs_one.power_m = data['power_m']
         gs_one.udid = data['udid']
         gs_one.users = data['user_count']
+
         try:
-            gs_one.gs_open_time = datetime.datetime.strptime(data['open_time'], "%Y-%m-%d")
-        except:
-            gs_one.gs_open_time = datetime.datetime.strptime(data['open_time'], '%a %b %d %H:%M:%S %Z %Y')
+            if len(data['open_time']) == 10:
+                gs_one.gs_open_time = datetime.datetime.strptime(data['open_time'], "%Y-%m-%d")
+            elif len(data['open_time']) == 19:
+                gs_one.gs_open_time = datetime.datetime.strptime(data['open_time'], "%Y-%m-%d %H:%M:%S")
+            else:
+                gs_one.gs_open_time = datetime.datetime.strptime(data['open_time'], '%a %b %d %H:%M:%S %Z %Y')
+        except Exception as e:
+            print("get {} open time error as {}".format(gs_one.gs_id, e))
         gs_one.save()
     except Exception as e:
         print("save {} error as {}".format(gs_one.id, e))
     return redirect("cmdb:merge-info")
-
-    # print(db_ip)
 
 
 # class DbListView(LoginRequiredMixin, ListView):
