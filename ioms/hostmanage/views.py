@@ -15,7 +15,7 @@ from django.urls import reverse_lazy
 
 from .models import *
 from .serializers import HostSerializer
-from .form import HostFrom, HostRoleForm, PorjectFrom
+from .form import HostFrom, HostRoleForm, PorjectFrom, HostRoleOneForm
 
 #================================host role begin==============================================
 
@@ -163,7 +163,7 @@ def update_host_view(request):
                     try:
                         a = HostRole.objects.get(role=role_one)
                     except:
-                        r = HostRoleForm({'role': role_one})
+                        r = HostRoleOneForm({'role': role_one})
                         if r.is_valid():
                             print('valid')
                             r.save()

@@ -21,6 +21,13 @@ class HostRoleForm(forms.ModelForm):
         # fields = ['role']
         fields = '__all__'
 
+
+class HostRoleOneForm(forms.ModelForm):
+    class Meta:
+        model = HostRole
+        fields = ['role']
+
+
 class PorjectFrom(forms.ModelForm):
     class Meta:
         model = ProjectName
