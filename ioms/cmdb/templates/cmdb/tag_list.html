@@ -10,6 +10,7 @@
         <th>标签id</th>
         <th>标签名</th>
         <th>标签说明</th>
+        <th>数量</th>
         <th>操作</th>
     </tr>
     {% for tag in tag_list %}
@@ -18,6 +19,7 @@
         <td>{{ tag.id }}</td>
         <td>{{ tag.tag_name }}</td>
         <td>{{ tag.tag_explain }}</td>
+        <td>{{ tag.configmanage_set.count }}</td>
         <th>
             <a href={% url "cmdb:tag-detail" tag.id %}>详情</a>
             <a href={% url "cmdb:tag-update" tag.id %}>修改</a>
