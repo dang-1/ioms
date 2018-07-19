@@ -24,7 +24,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 # from .serializers import HostSerializer
 from .models import Tag, GsStatus, ZoneName, GsConfig
-from .form import TagForm, GsStatusForm, ZoneNameForm
+from .form import TagForm, GsStatusForm, ZoneNameForm, GsConfigForm
 
 # config
 db_password  = settings.CONFIG['gs_password']
@@ -179,7 +179,7 @@ class TagUpdateView(LoginRequiredMixin, UpdateView):
     model = Tag
     fields = ['tag_name', 'tag_explain']
     template_name = 'cmdb/tag_update.html'
-    success_url = "/cmdb/tag/list/"
+    success_url = reverse_lazy("cmdb:tag-list")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -191,7 +191,7 @@ class TagAddView(LoginRequiredMixin, CreateView):
     model = Tag
     form_class = TagForm
     template_name = "cmdb/tag_add.html"
-    success_url = "/cmdb/tag/list/"
+    success_url = reverse_lazy("cmdb:tag-list")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -242,7 +242,7 @@ class GsUpdateView(LoginRequiredMixin, UpdateView):
     model = GsConfig
     fields = ['tag', 'gs_zone', 'gs_status', 'gs_accelerate_port']
     template_name = 'cmdb/gs_update.html'
-    success_url = "/cmdb/gs/list/"
+    success_url = reverse_lazy("cmdb:gs-list")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -250,18 +250,19 @@ class GsUpdateView(LoginRequiredMixin, UpdateView):
         return context
 
 
-# class TagAddView(LoginRequiredMixin, CreateView):
-#     model = Tag
-#     form_class = TagForm
-#     template_name = "cmdb/tag_add.html"
-#     success_url = "/cmdb/tag/list/"
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['title_name'] = 'ioms: tag add page'
-#         return context
-#
-#
+class GsAddView(LoginRequiredMixin, CreateView):
+    model = GsConfig
+    form_class = GsConfigForm
+    template_name = "union/add.html"
+    success_url = reverse_lazy("cmdb:gs-list")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title_name'] = 'ioms: gs config add page'
+        context['info'] = 'gs config'
+        return context
+
+
 # class TagDeleteView(LoginRequiredMixin, DeleteView):
 #     model = Tag
 #     fields = ['tag_name', 'tag_explain']

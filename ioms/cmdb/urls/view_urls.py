@@ -19,7 +19,7 @@ from ..views import ZoneNameView,ZoneNameAddView,ZoneNameUpdateView, ZoneNameDel
 from ..views import TagListView, TagDetailView, TagUpdateView, TagAddView, TagDeleteView
 
 #gs
-from ..views import GsListView, GsDetailView, GsUpdateView, GsStatusDeleteView
+from ..views import GsListView, GsDetailView, GsUpdateView, GsAddView, GsStatusDeleteView
 
 app_name = 'cmdb'
 
@@ -41,6 +41,7 @@ urlpatterns = [
     path('tag/<int:pk>/delete/', TagDeleteView.as_view(), name='tag-delete'),
 
     path('gs/list/', GsListView.as_view(), name='gs-list'),
+    path('gs/add/', GsAddView.as_view(), name='gs-add'),
     path('gs/<int:pk>/detail/', GsDetailView.as_view(), name='gs-detail'),
     path('gs/<int:pk>/update/', GsUpdateView.as_view(), name='gs-update'),
 

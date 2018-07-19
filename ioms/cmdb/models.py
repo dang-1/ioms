@@ -33,7 +33,7 @@ class GsStatus(models.Model):
     status_explain = models.CharField(max_length=48, blank=True, verbose_name='字段说明')
 
     def __str__(self):
-        return self.status
+        return "{}-{}".format(self.status, self.status_explain)
 
     class Meta:
         ordering = ['id', 'status']
@@ -61,10 +61,10 @@ class GsConfig(models.Model):
                               verbose_name="host ip's id")
     gs_zone = models.ForeignKey(ZoneName, on_delete=models.SET_NULL, related_name="gs_zone_name",
                                 blank=True, null=True, verbose_name="zone id，安卓 or ios")
-    # tag = models.ForeignKey(Tag, on_delete=models.SET_NULL, blank=True, null=True, related_name="gs_tag",
-    #                         verbose_name="标签字段")
-    tag = models.ManyToManyField(Tag, blank=True, related_name="gs_tag",
+    tag = models.ForeignKey(Tag, on_delete=models.SET_NULL, blank=True, null=True, related_name="gs_tag",
                             verbose_name="标签字段")
+    # tag = models.ManyToManyField(Tag, blank=True, related_name="gs_tag",
+    #                         verbose_name="标签字段")
     gs_id = models.IntegerField(verbose_name="游戏服id")
     gs_alias = models.CharField(max_length=50, verbose_name="唯一标识符")
     gs_accelerate_port = models.CharField(max_length=50, verbose_name="加速端口")
