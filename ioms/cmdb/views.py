@@ -438,20 +438,20 @@ def update_all_merge_info(request):
     all_gs_info = GsConfig.objects.filter(Q(gs_status__status=1), Q(tag__tag_name='an_all') | Q(tag__tag_name='cn_all') | Q(tag__tag_name='ios_all'))
     # all_gs_info = GsConfig.objects.all()
 
-    # p = multiprocessing.Pool()
-    # for gs_one in all_gs_info:
-    #     print(gs_one.id)
-    #     p.apply_async(update_one_merge_info, args=(gs_one.id, ))
-    # p.close()
-    # p.join()
+    p = multiprocessing.Pool()
+    for gs_one in all_gs_info:
+        print(gs_one.id)
+        p.apply_async(update_one_merge_info, args=(gs_one.id, ))
+    p.close()
+    p.join()
 
-    procs = []
-    for a in all_gs_info:
-        proc = multiprocessing.Process(target=update_one_merge_info, args=(a.id, ))
-        procs.append(proc)
-        proc.start()
-    for x in procs:
-        x.join()
+    # procs = []
+    # for a in all_gs_info:
+    #     proc = multiprocessing.Process(target=update_one_merge_info, args=(a.id, ))
+    #     procs.append(proc)
+    #     proc.start()
+    # for x in procs:
+    #     x.join()
     return redirect("cmdb:merge-info")
 
 def update_merge_info(request, pk):
