@@ -172,7 +172,7 @@ class SlaveDbListView(LoginRequiredMixin, ListView):
 # #
 class SlaveDbUpdateView(LoginRequiredMixin, UpdateView):
     model = SlaveDb
-    fields = ['alias', 'db_port', 'status', 'open_time']
+    fields = ['alias', 'db_port', 'db_master', 'status', 'open_time']
     template_name = 'db/db_type_update.html'
     success_url = reverse_lazy("db:slave-db-list")
 
