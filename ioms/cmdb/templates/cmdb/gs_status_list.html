@@ -18,7 +18,7 @@
         <!--<td>{{ gs_status.id }}</td>-->
         <td>{{ gs_status.status }}</td>
         <td>{{ gs_status.status_explain }}</td>
-        <td>{{ gs_status.configmanage_set.count }}</td>
+        <td>{{ gs_status.gs_status.count }}</td>
         <td><a href={% url "cmdb:gs-status-update" gs_status.id %}>更新</a></td>
         <td><a href={% url "cmdb:gs-status-delete" gs_status.id %}>删除</a></td>
     </tr>

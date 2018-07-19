@@ -19,7 +19,7 @@
         <td>{{ tag.id }}</td>
         <td>{{ tag.tag_name }}</td>
         <td>{{ tag.tag_explain }}</td>
-        <td>{{ tag.configmanage_set.count }}</td>
+        <td>{{ tag.gs_tag.count }}</td>
         <th>
             <a href={% url "cmdb:tag-detail" tag.id %}>详情</a>
             <a href={% url "cmdb:tag-update" tag.id %}>修改</a>
