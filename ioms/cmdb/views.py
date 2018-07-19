@@ -436,7 +436,7 @@ def update_one_merge_info(id):
 
 def update_all_merge_info(request):
     all_gs_info = GsConfig.objects.filter(Q(gs_status__status=1), Q(tag__tag_name='an_all') | Q(tag__tag_name='cn_all') | Q(tag__tag_name='ios_all'))
-    all_gs_info = GsConfig.objects.all()
+    # all_gs_info = GsConfig.objects.all()
     procs = []
     for gs_one in all_gs_info:
         # try:
