@@ -372,7 +372,8 @@ class ConnMysql:
 class MergeListView(LoginRequiredMixin, ListView):
     template_name = 'cmdb/merge_info.html'
     context_object_name = 'gs_list'
-    queryset = GsConfig.objects.exclude(tag__tag_name='throne')
+    # queryset = GsConfig.objects.exclude(tag__tag_name='throne')
+    queryset = GsConfig.objects.filter(Q(gs_status__status=1), Q(tag__tag_name='ios_all') | Q(tag__tag_name='cn_all') | Q(tag__tag_name='ios_all'))
     # model = GsConfig
 
     def get_context_data(self, **kwargs):
