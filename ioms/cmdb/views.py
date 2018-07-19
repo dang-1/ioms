@@ -448,50 +448,51 @@ def update_all_merge_info(request):
 
 def update_merge_info(request, pk):
     # print(pk)
-    try:
-        gs_one = get_object_or_404(GsConfig, pk=pk)
-    except:
-        print("get pk {} error".format(pk))
-        redirect("cmdb:merge-info")
-    try:
-        db_ip = gs_one.gs_db.slavedb.host_info.outer_ip
-        db_port = gs_one.gs_db.slavedb.db_port
-    except:
-        db_ip = gs_one.gs_db.host_info.outer_ip
-        db_port = gs_one.gs_db.db_port
-    db_name = gs_one.gs_db_name
-    print(db_ip, db_port, db_name, db_password)
-    db_user = 'db_user'
-    #ip, port, user, password, char_set, database, sql_list
-    test_one = ConnMysql(db_ip, int(db_port), db_user, db_password, 'utf8', db_name, get_sql())
-    data = test_one.run()
-    print(data)
-    try:
-        # gs_one.big_r = data['bigR']
-        gs_one.dau = data['dau']
-        # gs.level = "{}-{}-{}".format(data['level_1'], data['level_2'], data['level_3'])
-        # gs.power_alliance_m = data['power_alliance_m']
-        # gs.powerest_alliance_m = data['powerest_alliance_m']
-        # gs.powerest_m = data['powerest_m']
-        # gs.pvp = data['pvp']
-        # gs.R = data['R']
-        # gs.revenue = data['revenue']
-        gs_one.power_m = data['power_m']
-        gs_one.udid = data['udid']
-        gs_one.users = data['user_count']
-
-        try:
-            if len(data['open_time']) == 10:
-                gs_one.gs_open_time = datetime.datetime.strptime(data['open_time'], "%Y-%m-%d")
-            elif len(data['open_time']) == 19:
-                gs_one.gs_open_time = datetime.datetime.strptime(data['open_time'], "%Y-%m-%d %H:%M:%S")
-            else:
-                gs_one.gs_open_time = datetime.datetime.strptime(data['open_time'], '%a %b %d %H:%M:%S %Z %Y')
-        except Exception as e:
-            print("get {} open time error as {}".format(gs_one.gs_id, e))
-        gs_one.save()
-    except Exception as e:
-        print("save {} error as {}".format(gs_one.id, e))
+    # try:
+    #     gs_one = get_object_or_404(GsConfig, pk=pk)
+    # except:
+    #     print("get pk {} error".format(pk))
+    #     redirect("cmdb:merge-info")
+    # try:
+    #     db_ip = gs_one.gs_db.slavedb.host_info.outer_ip
+    #     db_port = gs_one.gs_db.slavedb.db_port
+    # except:
+    #     db_ip = gs_one.gs_db.host_info.outer_ip
+    #     db_port = gs_one.gs_db.db_port
+    # db_name = gs_one.gs_db_name
+    # print(db_ip, db_port, db_name, db_password)
+    # db_user = 'db_user'
+    # #ip, port, user, password, char_set, database, sql_list
+    # test_one = ConnMysql(db_ip, int(db_port), db_user, db_password, 'utf8', db_name, get_sql())
+    # data = test_one.run()
+    # print(data)
+    # try:
+    #     # gs_one.big_r = data['bigR']
+    #     gs_one.dau = data['dau']
+    #     # gs.level = "{}-{}-{}".format(data['level_1'], data['level_2'], data['level_3'])
+    #     # gs.power_alliance_m = data['power_alliance_m']
+    #     # gs.powerest_alliance_m = data['powerest_alliance_m']
+    #     # gs.powerest_m = data['powerest_m']
+    #     # gs.pvp = data['pvp']
+    #     # gs.R = data['R']
+    #     # gs.revenue = data['revenue']
+    #     gs_one.power_m = data['power_m']
+    #     gs_one.udid = data['udid']
+    #     gs_one.users = data['user_count']
+    #
+    #     try:
+    #         if len(data['open_time']) == 10:
+    #             gs_one.gs_open_time = datetime.datetime.strptime(data['open_time'], "%Y-%m-%d")
+    #         elif len(data['open_time']) == 19:
+    #             gs_one.gs_open_time = datetime.datetime.strptime(data['open_time'], "%Y-%m-%d %H:%M:%S")
+    #         else:
+    #             gs_one.gs_open_time = datetime.datetime.strptime(data['open_time'], '%a %b %d %H:%M:%S %Z %Y')
+    #     except Exception as e:
+    #         print("get {} open time error as {}".format(gs_one.gs_id, e))
+    #     gs_one.save()
+    # except Exception as e:
+    #     print("save {} error as {}".format(gs_one.id, e))
+    update_one_merge_info(pk)
     return redirect("cmdb:merge-info")
 
 #================================merge end==============================================
