@@ -2,8 +2,8 @@
 {% load tz %}
 {% block content %}
 
-<p>host index page</p>
-
+<p>merge info page</p>
+<p><a href={% url "cmdb:update-all-info-merge" %}>更新全部</a></p>
 <table>
     <caption>数据库列表</caption>
     <tr>

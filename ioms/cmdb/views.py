@@ -384,8 +384,8 @@ class MergeListView(LoginRequiredMixin, ListView):
         return 'xxx'
 
 def update_all_merge_info(request):
-    # all_gs_info = GsConfig.objects.filter(Q(gs_status__status=1), Q(tag__tag_name='ios_all') | Q(tag__tag_name='cn_all') | Q(tag__tag_name='ios_all'))
-    all_gs_info = GsConfig.objects.all()
+    all_gs_info = GsConfig.objects.filter(Q(gs_status__status=1), Q(tag__tag_name='ios_all') | Q(tag__tag_name='cn_all') | Q(tag__tag_name='ios_all'))
+    # all_gs_info = GsConfig.objects.all()
     procs = []
     for gs_one in all_gs_info:
         # try:
