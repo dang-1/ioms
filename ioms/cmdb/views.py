@@ -384,6 +384,56 @@ class MergeListView(LoginRequiredMixin, ListView):
     def post(self):
         return 'xxx'
 
+def update_one_merge_info(id):
+    try:
+        gs_one = get_object_or_404(GsConfig, pk=id)
+    except:
+        print("get pk {} error".format(id))
+        # redirect("cmdb:merge-info")
+        return False
+    try:
+        db_ip = gs_one.gs_db.slavedb.host_info.outer_ip
+        db_port = gs_one.gs_db.slavedb.db_port
+    except:
+        db_ip = gs_one.gs_db.host_info.outer_ip
+        db_port = gs_one.gs_db.db_port
+    db_name = gs_one.gs_db_name
+    print(db_ip, db_port, db_name, db_password)
+    db_user = 'db_user'
+    #ip, port, user, password, char_set, database, sql_list
+    test_one = ConnMysql(db_ip, int(db_port), db_user, db_password, 'utf8', db_name, get_sql())
+    data = test_one.run()
+    print(data)
+    try:
+        # gs_one.big_r = data['bigR']
+        gs_one.dau = data['dau']
+        # gs.level = "{}-{}-{}".format(data['level_1'], data['level_2'], data['level_3'])
+        # gs.power_alliance_m = data['power_alliance_m']
+        # gs.powerest_alliance_m = data['powerest_alliance_m']
+        # gs.powerest_m = data['powerest_m']
+        # gs.pvp = data['pvp']
+        # gs.R = data['R']
+        # gs.revenue = data['revenue']
+        gs_one.power_m = data['power_m']
+        gs_one.udid = data['udid']
+        gs_one.users = data['user_count']
+
+        try:
+            if len(data['open_time']) == 10:
+                gs_one.gs_open_time = datetime.datetime.strptime(data['open_time'], "%Y-%m-%d")
+            elif len(data['open_time']) == 19:
+                gs_one.gs_open_time = datetime.datetime.strptime(data['open_time'], "%Y-%m-%d %H:%M:%S")
+            else:
+                gs_one.gs_open_time = datetime.datetime.strptime(data['open_time'], '%a %b %d %H:%M:%S %Z %Y')
+        except Exception as e:
+            print("get {} open time error as {}".format(gs_one.gs_id, e))
+        gs_one.save()
+    except Exception as e:
+        print("save {} error as {}".format(gs_one.id, e))
+        return False
+    # return redirect("cmdb:merge-info")
+
+
 def update_all_merge_info(request):
     all_gs_info = GsConfig.objects.filter(Q(gs_status__status=1), Q(tag__tag_name='an_all') | Q(tag__tag_name='cn_all') | Q(tag__tag_name='ios_all'))
     # all_gs_info = GsConfig.objects.all()
@@ -395,15 +445,16 @@ def update_all_merge_info(request):
         #     print("get pk {} error".format(pk))
         #     redirect("cmdb:merge-info")
         print(gs_one.id)
-        try:
-            db_ip = gs_one.gs_db.slavedb.host_info.outer_ip
-            db_port = gs_one.gs_db.slavedb.db_port
-        except:
-            db_ip = gs_one.gs_db.host_info.outer_ip
-            db_port = gs_one.gs_db.db_port
-        db_name = gs_one.gs_db_name
+        # try:
+        #     db_ip = gs_one.gs_db.slavedb.host_info.outer_ip
+        #     db_port = gs_one.gs_db.slavedb.db_port
+        # except:
+        #     db_ip = gs_one.gs_db.host_info.outer_ip
+        #     db_port = gs_one.gs_db.db_port
+        # db_name = gs_one.gs_db_name
 
-        proc = multiprocessing.Process(target=ConnMysql(db_ip, int(db_port), user, password, char_set, database, sql_list).run)
+        # proc = multiprocessing.Process(target=ConnMysql(db_ip, int(db_port), user, password, char_set, database, sql_list).run)
+        proc= multiprocessing.Process(target=update_one_merge_info, args=(gs_one.id,))
         procs.append(proc)
         proc.start()
     for proc in procs:
