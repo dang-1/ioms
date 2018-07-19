@@ -1,31 +1,35 @@
 {% extends 'base.html' %}
 
+
 {% block content %}
 
 <p>host index page</p>
 
 <table>
-    <caption>状态列表</caption>
+    <caption>数据库列表</caption>
     <tr>
-        <!--<th>状态id</th>-->
-        <th>状态id</th>
-        <th>状态说明</th>
-        <th>total</th>
+        <th>id</th>
+        <th>类型</th>
+        <th>说明</th>
         <th>操作</th>
     </tr>
-    {% for gs_status in gs_status_list %}
+    {% for db_type in db_type_list %}
+
     <tr>
-        <!--<td>{{ gs_status.id }}</td>-->
-        <td>{{ gs_status.status }}</td>
-        <td>{{ gs_status.status_explain }}</td>
-        <td>{{ gs_status.configmanage_set.count }}</td>
-        <td><a href={% url "cmdb:gs-status-update" gs_status.id %}>更新</a></td>
-        <td><a href={% url "cmdb:gs-status-delete" gs_status.id %}>删除</a></td>
+        <td>{{ db_type.id }}</td>
+        <td>{{ db_type.type }}</td>
+        <td>{{ db_type.explain }}</td>
+        <td>
+            <a href={% url "db:db-type-update" db_type.id %}>更新</a>
+            <a href={% url "db:db-type-delete" db_type.id %}>删除</a>
+        </td>
     </tr>
     {% endfor%}
 </table>
+<p>
+    <a href={% url "db:db-type-add" %}>添加</a>
+</p>
 
-<p><a href={% url "cmdb:gs-status-add" %}>添加</a></p>
 {% if is_paginated %}
 <div>
     <span>
@@ -41,10 +45,10 @@
         {% if page_obj.has_next %}
             <a href={% url "hostmanage:role_list" %}?page={{ page_obj.next_page_number }}>下一页</a>
         {% endif %}
-
     </span>
 </div>
 {% endif %}
 
 
 {% endblock %}
+

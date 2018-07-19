@@ -11,20 +11,30 @@ from django.urls import path
 
 from ..views import DbListView
 
+#dbtype
+from ..views import DbTypeListView, DbTypeDetailView, DbTypeAddView, DbTypeUpdateView, DbTypeDeleteView
+#master
+from ..views import MasterDbListView, MasterDbAddView, MasterDbUpdateView
+#slave
+from ..views import SlaveDbListView, SlaveDbAddView, SlaveDbUpdateView
+
 app_name = 'db'
 
 
 urlpatterns = [
+    path('db-type/list/', DbTypeListView.as_view(), name='db-type-list'),
+    path('db_type/add/', DbTypeAddView.as_view(), name='db-type-add'),
+    path('db_type/<int:pk>/', DbTypeDetailView.as_view(), name='db-type-detail'),
+    path('db_type/<int:pk>/update/', DbTypeUpdateView.as_view(), name='db-type-update'),
+    path('db_type/<int:pk>/delete/', DbTypeDeleteView.as_view(), name='db-type-delete'),
+
     path('db-list/', DbListView.as_view(), name='db-list'),
-    # path('db-detail/<int:pk>/', DbDetailView.as_view(), name='db-detail'),
-    # path('gs-status/', GsStatusView.as_view(), name='gs-status'),
-    # path('zone-name/', ZoneNameView.as_view(), name='zone-name'),
-    # path('gs-list/', GsListView.as_view(), name='gs-list'),
-    # path('db-list/', DbListView.as_view(), name='db-list'),
-    # path('host_index/', HostIndexView.as_view(), name="host_index"),
-    # path('status_list/', StatusView.as_view(), name='status_list'),
-    # path('site_index/', SiteIndex.as_view(), name='site_index'),
-    # path('site_add/', SiteAddView.as_view(), name='site_add'),
-    # path('site_type_index/', SiteType.as_view(), name='site_type_index'),
-    # path('site_type_add/', SiteTypeAddView.as_view(), name='site_type_add'),
+
+    path('master-db/list/', MasterDbListView.as_view(), name='master-db-list'),
+    path('master-db/add/', MasterDbAddView.as_view(), name='master-db-add'),
+    path('master-db/<int:pk>/update', MasterDbUpdateView.as_view(), name='master-db-update'),
+
+    path('slave-db/list/', SlaveDbListView.as_view(), name='slave-db-list'),
+    path('slave-db/add/', SlaveDbAddView.as_view(), name='slave-db-add'),
+    path('slave-db/<int:pk>/update/', SlaveDbUpdateView.as_view(), name='slave-db-update'),
 ]

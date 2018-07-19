@@ -5,27 +5,28 @@
 <p>host index page</p>
 
 <table>
-    <caption>状态列表</caption>
+    <caption>角色列表</caption>
     <tr>
-        <!--<th>状态id</th>-->
-        <th>状态id</th>
-        <th>状态说明</th>
-        <th>total</th>
-        <th>操作</th>
+        <th>项目id</th>
+        <th>项目名称</th>
+        <th>说明</th>
+        <th>机器数量</th>
+        <th>管理</th>
     </tr>
-    {% for gs_status in gs_status_list %}
+    {% for role in role_list %}
     <tr>
-        <!--<td>{{ gs_status.id }}</td>-->
-        <td>{{ gs_status.status }}</td>
-        <td>{{ gs_status.status_explain }}</td>
-        <td>{{ gs_status.configmanage_set.count }}</td>
-        <td><a href={% url "cmdb:gs-status-update" gs_status.id %}>更新</a></td>
-        <td><a href={% url "cmdb:gs-status-delete" gs_status.id %}>删除</a></td>
+        <td>{{ role.id }}</td>
+        <td>{{ role.role }}</td>
+        <td>{{ role.explain }}</td>
+        <td>{{ role.roles.all.count }}</td>
+        <td>
+            <a href={% url 'hostmanage:host-role-update' role.id %}>更新</a>
+        </td>
     </tr>
     {% endfor%}
 </table>
+<p><a href={% url 'hostmanage:host-role-add' %}>添加</a></p>
 
-<p><a href={% url "cmdb:gs-status-add" %}>添加</a></p>
 {% if is_paginated %}
 <div>
     <span>

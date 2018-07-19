@@ -18,8 +18,8 @@ class HostFrom(forms.ModelForm):
 class HostRoleForm(forms.ModelForm):
     class Meta:
         model = HostRole
-        fields = ['role']
-
+        # fields = ['role']
+        fields = '__all__'
 
 class PorjectFrom(forms.ModelForm):
     class Meta:

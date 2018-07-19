@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>详情</h1>
+
+<table>
+    <caption>详细信息</caption>
+    <tr>
+        <th>字段</th>
+        <th>说明</th>
+    </tr>
+    <tr>
+        <td>id</td>
+        <td>{{ object.id }}</td>
+    </tr>
+    <tr>
+        <td>类型</td>
+        <td>{{ object.type }}</td>
+    </tr>
+    <tr>
+        <td>说明</td>
+        <td>{{ object.explain }}</td>
+    </tr>
+    <tr>
+        <td><a href={% url "db:db-type-list" %}>返回列表</a></td>
+        <td><a href={% url "db:db-type-update" object.id %}>更新</a></td>
+        <td><a href={% url "db:db-type-delete" object.id %}>删除</a></td>
+    </tr>
+</table>
+
+
+{% endblock %}

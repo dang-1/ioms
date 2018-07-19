@@ -1,27 +1,41 @@
 {% extends 'base.html' %}
 
+
 {% block content %}
 
 <p>host index page</p>
 
 <table>
-    <caption>角色列表</caption>
+    <caption>数据库列表</caption>
     <tr>
-        <th>项目id</th>
-        <th>项目名称</th>
-        <th>说明</th>
-        <th>机器数量</th>
+        <th>id</th>
+        <th>主库</th>
+        <th>ip</th>
+        <th>别名</th>
+        <th>端口</th>
+        <th>状态</th>
+        <th>开启时间</th>
+        <th>操作</th>
     </tr>
-    {% for role in role_list %}
+    {% for slave_db in slave_db_list %}
+
     <tr>
-        <td>{{ role.id }}</td>
-        <td>{{ role.role }}</td>
-        <td>{{ role.explain }}</td>
-        <td>{{ role.roles.all.count }}</td>
+        <td>{{ slave_db.id }}</td>
+        <td>{{ slave_db.db_master.host_info.outer_ip }}</td>
+        <td>{{ slave_db.host_info.outer_ip }}</td>
+        <td>{{ slave_db.alias }}</td>
+        <td>{{ slave_db.db_port }}</td>
+        <td>{{ slave_db.status }}</td>
+        <td>{{ slave_db.open_time }}</td>
+        <td>
+            <a href={% url "db:slave-db-update" slave_db.id %}>更新</a>
+        </td>
     </tr>
     {% endfor%}
 </table>
-
+<p>
+    <a href={% url "db:slave-db-add" %}>添加</a>
+</p>
 
 {% if is_paginated %}
 <div>
@@ -38,7 +52,6 @@
         {% if page_obj.has_next %}
             <a href={% url "hostmanage:role_list" %}?page={{ page_obj.next_page_number }}>下一页</a>
         {% endif %}
-
     </span>
 </div>
 {% endif %}

@@ -9,20 +9,31 @@
 from django.urls import path
 # from rest_framework import routers
 
-from ..views import GsStatusView, ZoneNameView, MergeListView, \
-    update_merge_info, update_all_merge_info
+from ..views import MergeListView, update_merge_info, update_all_merge_info
 
-
+#status
+from ..views import GsStatusView, GsStatusAddView, GsStatusUpdateView
+#zone name
+from ..views import ZoneNameView,ZoneNameAddView,ZoneNameUpdateView, ZoneNameDeleteView
 #tag
 from ..views import TagListView, TagDetailView, TagUpdateView, TagAddView, TagDeleteView
 
 #gs
-from ..views import GsListView, GsDetailView, GsUpdateView
+from ..views import GsListView, GsDetailView, GsUpdateView, GsStatusDeleteView
 
 app_name = 'cmdb'
 
-
 urlpatterns = [
+    path('gs-status/list/', GsStatusView.as_view(), name='gs-status-list'),
+    path('gs-status/add/', GsStatusAddView.as_view(), name='gs-status-add'),
+    path('gs-status/<int:pk>/update/', GsStatusUpdateView.as_view(), name='gs-status-update'),
+    path('gs-status/<int:pk>/delete/', GsStatusDeleteView.as_view(), name='gs-status-delete'),
+
+    path('zone-name/list/', ZoneNameView.as_view(), name='zone-name-list'),
+    path('zone-name/add/', ZoneNameAddView.as_view(), name='zone-name-add'),
+    path('zone-name/<int:pk>/update/', ZoneNameUpdateView.as_view(), name='zone-name-update'),
+    path('zone-name/<int:pk>/delete/', ZoneNameDeleteView.as_view(), name='zone-name-delete'),
+
     path('tag/list/', TagListView.as_view(), name='tag-list'),
     path('tag/add/', TagAddView.as_view(), name='tag-add'),
     path('tag/<int:pk>/detail/', TagDetailView.as_view(), name='tag-detail'),
@@ -33,18 +44,8 @@ urlpatterns = [
     path('gs/<int:pk>/detail/', GsDetailView.as_view(), name='gs-detail'),
     path('gs/<int:pk>/update/', GsUpdateView.as_view(), name='gs-update'),
 
-
-    path('gs-status/', GsStatusView.as_view(), name='gs-status'),
-    path('zone-name/', ZoneNameView.as_view(), name='zone-name'),
     # path('gs-list/', GsListView.as_view(), name='gs-list1'),
     path('merge-info/', MergeListView.as_view(), name='merge-info'),
     path('merge-info/update/', update_all_merge_info, name='update-all-info-merge'),
     path('merge-info/<int:pk>/update/', update_merge_info, name='update-one-info-merge'),
-    # path('db-list/', DbListView.as_view(), name='db-list'),
-    # path('host_index/', HostIndexView.as_view(), name="host_index"),
-    # path('status_list/', StatusView.as_view(), name='status_list'),
-    # path('site_index/', SiteIndex.as_view(), name='site_index'),
-    # path('site_add/', SiteAddView.as_view(), name='site_add'),
-    # path('site_type_index/', SiteType.as_view(), name='site_type_index'),
-    # path('site_type_add/', SiteTypeAddView.as_view(), name='site_type_add'),
 ]

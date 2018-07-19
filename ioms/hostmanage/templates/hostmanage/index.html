@@ -2,7 +2,9 @@
 
 {% block content %}
 
-<p>host index page</p>
+<p>host index page </p>
+
+<a href={% url 'hostmanage:host-sync' %}>初始化同步</a>
 
 <table>
     <caption>机器列表</caption>

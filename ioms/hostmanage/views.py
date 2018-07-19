@@ -1,4 +1,5 @@
 #coding: utf-8
+
 import json
 import requests
 from django.conf import settings
@@ -7,19 +8,130 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import TemplateView, ListView, DetailView, View
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.shortcuts import redirect
 from django.http import HttpResponse
+from django.urls import reverse_lazy
+
 from .models import *
 from .serializers import HostSerializer
 from .form import HostFrom, HostRoleForm, PorjectFrom
 
+#================================host role begin==============================================
 
-# db_password  = settings.CONFIG['gs_password']
+class HostRoleView(LoginRequiredMixin, ListView):
+    template_name = 'hostmanage/host_role_list.html'
+    context_object_name = 'role_list'
+    model = HostRole
+    # paginate_by = 30
+
+    def get_context_data(self, **kwargs):
+        context = super(HostRoleView, self).get_context_data(**kwargs)
+        context['title_name'] = 'iomp: role page'
+        return context
+
+
+# class DbTypeDetailView(LoginRequiredMixin, DetailView):
+#     template_name = "db/db_type_detail.html"
+#     model = DbType
 #
-# db_config = '/Users/tangjianming/config.json'
-# with open(db_config, 'r') as f:
-#     api_info = json.load(f)
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['title_name'] = 'iomp: db type detail page'
+#         return context
+#
+#
+class HostRoleUpdateView(LoginRequiredMixin, UpdateView):
+    model = HostRole
+    fields = ['role', 'explain']
+    template_name = 'union/update.html'
+    success_url = reverse_lazy("db:host-role-list")
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title_name'] = 'iomp: host role update page'
+        context['info'] = 'role'
+        return context
+
+
+class HostRoleAddView(LoginRequiredMixin, CreateView):
+    model = HostRole
+    form_class = HostRoleForm
+    template_name = "union/add.html"
+    success_url = reverse_lazy("db:host-role-list")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title_name'] = 'ioms: host role add page'
+        return context
+
+
+class HostRoleDeleteView(LoginRequiredMixin, DeleteView):
+    model = HostRole
+    fields = ['role', 'explain']
+    template_name = 'union/delete.html'
+    success_url = reverse_lazy("db:host-role-list")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title_name'] = 'ioms: host role delete page'
+
+
+# class RoleView(LoginRequiredMixin, ListView):
+#     template_name = 'hostmanage/role_list.html'
+#     context_object_name = 'role_list'
+#     model = HostRole
+#     paginate_by = 30
+#
+#     def get_context_data(self, **kwargs):
+#         context = super(RoleView, self).get_context_data(**kwargs)
+#         context['title_name'] = 'iomp: host role page'
+#         return context
+
+#================================host role end==============================================
+#================================project begin==============================================
+
+class ProjectListView(LoginRequiredMixin, ListView):
+    template_name = 'hostmanage/project_list.html'
+    context_object_name = 'project_list'
+    model = ProjectName
+    # paginate_by = 20
+
+    def get_context_data(self, **kwargs):
+        context = super(ProjectListView, self).get_context_data(**kwargs)
+        context['title_name'] = 'iomp: host project page'
+        return context
+#================================project end==============================================
+#================================cloudplat begin==============================================
+class CloudPlatView(LoginRequiredMixin, ListView):
+    template_name = 'hostmanage/platfrom_list.html'
+    context_object_name = 'cloudplat_list'
+    model = CloudPlat
+    paginate_by = 30
+
+    def get_context_data(self, **kwargs):
+        context = super(CloudPlatView, self).get_context_data(**kwargs)
+        context['title_name'] = 'iomp: host platfrom page'
+        return context
+#================================cloudplat end==============================================
+#================================hoststatus begin==============================================
+class HostStatusView(LoginRequiredMixin, ListView):
+    template_name = 'hostmanage/status_list.html'
+    context_object_name = 'status_list'
+    model = HostStatus
+
+    def get_context_data(self, **kwargs):
+        context = super(HostStatusView, self).get_context_data(**kwargs)
+        context['title_name'] = 'iomp: host status page'
+        return context
+
+class HostStatusDetailView(DetailView):
+    model = HostStatus
+    template_name = 'hostmanage/host_status_detail.html'
+#================================hoststatus end==============================================
+#================================host begin==============================================
+
+# @transaction.atomic
 def update_host_view(request):
     # error_info = {}
     iop_host_api_url = settings.CONFIG["api_info"]
@@ -35,7 +147,7 @@ def update_host_view(request):
             instance_id = host_data.get('identifier', '')
             public_ip = ','.join(host_data.get("public_ip_addresses"))
             private_ip = ','.join(host_data.get('private_ip_addresses'))
-            hostname = host_data.get('hostname', '')
+            hostname = host_data.get('hostname', 'xxxxx')
             project = host_data.get("project").get('bastion_group_name', '')
             # role = None if not host_data.get('tags').get('roles') else ','.join(host_data.get('tags').get('roles'))
             role = host_data.get('tags').get('roles')
@@ -43,6 +155,8 @@ def update_host_view(request):
             # print('{} {} {} {} {} {}'.format(type(instance_id), type(public_ip), type(private_ip), type(hostname),
             #                                      type(project), type(role)))
             # print(role)
+            if not hostname:
+                hostname = 'xxx'
             if role:
                 for role_one in role:
                     print(role_one)
@@ -57,6 +171,7 @@ def update_host_view(request):
                             print('save error')
                             # r = HostRole.objects.get(role=i)
             if project:
+                print("project: {}".format(project))
                 try:
                     pro = ProjectName.objects.get(project_name=project)
                 except:
@@ -109,30 +224,6 @@ def update_host_view(request):
     return redirect('/hostmanage/host_index/')
 
 
-class HostRoleView(LoginRequiredMixin, ListView):
-    template_name = 'hostmanage/role_list.html'
-    context_object_name = 'role_list'
-    model = HostRole
-    # paginate_by = 30
-
-    def get_context_data(self, **kwargs):
-        context = super(HostRoleView, self).get_context_data(**kwargs)
-        context['title_name'] = 'iomp: role page'
-        return context
-
-
-class ProjectListView(LoginRequiredMixin, ListView):
-    template_name = 'hostmanage/project_list.html'
-    context_object_name = 'project_list'
-    model = ProjectName
-    # paginate_by = 20
-
-    def get_context_data(self, **kwargs):
-        context = super(ProjectListView, self).get_context_data(**kwargs)
-        context['title_name'] = 'iomp: host project page'
-        return context
-
-
 class HostIndexView(LoginRequiredMixin, ListView):
     template_name = 'hostmanage/index.html'
     context_object_name = 'host_list'
@@ -162,6 +253,7 @@ class HostDetailView(LoginRequiredMixin, ListView):
         print('info: {}'.format(host_detail_info))
         return super(HostDetailView, self).get_queryset().filter(hostname=host_detail_info)
 
+#================================host end==============================================
 
 
 
@@ -169,42 +261,41 @@ class HostDetailView(LoginRequiredMixin, ListView):
 
 
 
-class CloudPlatView(LoginRequiredMixin, ListView):
-    template_name = 'hostmanage/platfrom_list.html'
-    context_object_name = 'cloudplat_list'
-    model = CloudPlat
-    paginate_by = 30
-
-    def get_context_data(self, **kwargs):
-        context = super(CloudPlatView, self).get_context_data(**kwargs)
-        context['title_name'] = 'iomp: host platfrom page'
-        return context
-
-class RoleView(LoginRequiredMixin, ListView):
-    template_name = 'hostmanage/role_list.html'
-    context_object_name = 'role_list'
-    model = HostRole
-    paginate_by = 30
-
-    def get_context_data(self, **kwargs):
-        context = super(RoleView, self).get_context_data(**kwargs)
-        context['title_name'] = 'iomp: host role page'
-        return context
 
 
-class HostStatusView(LoginRequiredMixin, ListView):
-    template_name = 'hostmanage/status_list.html'
-    context_object_name = 'status_list'
-    model = HostStatus
 
-    def get_context_data(self, **kwargs):
-        context = super(HostStatusView, self).get_context_data(**kwargs)
-        context['title_name'] = 'iomp: host status page'
-        return context
 
-class HostStatusDetailView(DetailView):
-    model = HostStatus
-    template_name = 'hostmanage/host_status_detail.html'
+
+# db_password  = settings.CONFIG['gs_password']
+#
+# db_config = '/Users/tangjianming/config.json'
+# with open(db_config, 'r') as f:
+#     api_info = json.load(f)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 def upload(request):

@@ -60,7 +60,7 @@ class Host(models.Model):
     single host
     '''
     id = models.AutoField(primary_key=True)
-    hostname = models.CharField(max_length=50, null=True, blank=True, verbose_name="主机名")
+    hostname = models.CharField(max_length=128, null=True, blank=True, verbose_name="主机名")
     status = models.ForeignKey(HostStatus, on_delete=models.SET_NULL, blank=True, null=True, verbose_name='状态')
     outer_ip = models.CharField(max_length=50, null=True, blank=True, verbose_name="外网ip")
     inner_ip = models.CharField(max_length=50, null=True, blank=True, verbose_name="内网ip")

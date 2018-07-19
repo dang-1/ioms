@@ -23,9 +23,10 @@ urlpatterns = [
     path('site_type/list/api/', SiteTypeApiView.as_view(), name='api-user'),
     path('site_type/list/', SiteTypeListView.as_view(), name='site_type_list'),
     path('site_type/add/', SiteTypeAddView.as_view(), name='site_type_add'),
-    path('site_type/<int:pk>/', SiteTypeDetailView.as_view(), name='site_type_detail'),
+    path('site_type/<int:pk>/detail/', SiteTypeDetailView.as_view(), name='site_type_detail'),
     path('site_type/<int:pk>/update/', SiteTypeUpdateView.as_view(), name='site_type_update'),
     path('site_type/<int:pk>/delete/', SiteTypeModelDeleteView.as_view(), name='site_type_delete'),
+
     path('site/list/', SiteListView.as_view(), name='site_list'),
     path('site/list/manage/', SiteManageView.as_view(), name='site_manage'),
     path('site/add/', SiteAddView.as_view(), name='site_add'),

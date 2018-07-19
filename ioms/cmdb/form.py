@@ -7,7 +7,7 @@
 # @Mail    : 93651849@qq.com
 
 from django import forms
-from .models import Tag
+from .models import Tag, GsStatus, ZoneName
 
 class TagForm(forms.ModelForm):
     class Meta:
@@ -15,3 +15,13 @@ class TagForm(forms.ModelForm):
         fields = "__all__"
 
 
+class GsStatusForm(forms.ModelForm):
+    class Meta:
+        model = GsStatus
+        fields = "__all__"
+
+
+class ZoneNameForm(forms.ModelForm):
+    class Meta:
+        model = ZoneName
+        fields = "__all__"

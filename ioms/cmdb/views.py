@@ -15,6 +15,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.db.models import Q
 
+from django.urls import reverse_lazy
+
 from rest_framework import viewsets
 
 from django.http import JsonResponse
@@ -22,7 +24,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 # from .serializers import HostSerializer
 from .models import Tag, GsStatus, ZoneName, GsConfig
-from .form import TagForm
+from .form import TagForm, GsStatusForm, ZoneNameForm
 
 # config
 db_password  = settings.CONFIG['gs_password']
@@ -51,47 +53,50 @@ class GsStatusView(LoginRequiredMixin, ListView):
 #         return context
 
 
-# class TagUpdateView(LoginRequiredMixin, UpdateView):
-#     model = Tag
-#     fields = ['tag_name', 'tag_explain']
-#     template_name = 'cmdb/tag_update.html'
-#     success_url = "/cmdb/tag/list/"
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['title_name'] = 'iomp: cmdb tag update page'
-#         return context
-#
-#
-# class TagAddView(LoginRequiredMixin, CreateView):
-#     model = Tag
-#     form_class = TagForm
-#     template_name = "cmdb/tag_add.html"
-#     success_url = "/cmdb/tag/list/"
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['title_name'] = 'ioms: tag add page'
-#         return context
-#
-#
-# class TagDeleteView(LoginRequiredMixin, DeleteView):
-#     model = Tag
-#     fields = ['tag_name', 'tag_explain']
-#     template_name = 'cmdb/tag_delete.html'
-#     success_url = '/cmdb/tag/list/'
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['title_name'] = 'ioms: tag delete page'
-#         return context
+class GsStatusUpdateView(LoginRequiredMixin, UpdateView):
+    model = GsStatus
+    fields = ['status', 'status_explain']
+    template_name = 'union/update.html'
+    success_url = reverse_lazy("cmdb:gs-status-list")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title_name'] = 'iomp: cmdb tag update page'
+        context['info'] = 'gs status'
+        return context
+
+
+class GsStatusAddView(LoginRequiredMixin, CreateView):
+    model = GsStatus
+    form_class = GsStatusForm
+    template_name = "union/add.html"
+    success_url = reverse_lazy("cmdb:gs-status-list")
+    # success_url = "/cmdb/gs-status/list/"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title_name'] = 'ioms: tag add page'
+        context['info'] = 'gs status'
+        return context
+
+
+class GsStatusDeleteView(LoginRequiredMixin, DeleteView):
+    model = GsStatus
+    fields = ['status', 'status_explain']
+    template_name = 'union/delete.html'
+    success_url = reverse_lazy("cmdb:gs-status-list")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title_name'] = 'ioms: tag delete page'
+        return context
 
 #================================status end==============================================
 
 #================================zonename begin==============================================
 
 class ZoneNameView(LoginRequiredMixin, ListView):
-    template_name = 'cmdb/zone_name.html'
+    template_name = 'cmdb/zone_name_list.html'
     context_object_name = 'zone_name_list'
     model = ZoneName
 
@@ -111,40 +116,41 @@ class ZoneNameView(LoginRequiredMixin, ListView):
 #         return context
 #
 #
-# class TagUpdateView(LoginRequiredMixin, UpdateView):
-#     model = Tag
-#     fields = ['tag_name', 'tag_explain']
-#     template_name = 'cmdb/tag_update.html'
-#     success_url = "/cmdb/tag/list/"
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['title_name'] = 'iomp: cmdb tag update page'
-#         return context
-#
-#
-# class TagAddView(LoginRequiredMixin, CreateView):
-#     model = Tag
-#     form_class = TagForm
-#     template_name = "cmdb/tag_add.html"
-#     success_url = "/cmdb/tag/list/"
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['title_name'] = 'ioms: tag add page'
-#         return context
-#
-#
-# class TagDeleteView(LoginRequiredMixin, DeleteView):
-#     model = Tag
-#     fields = ['tag_name', 'tag_explain']
-#     template_name = 'cmdb/tag_delete.html'
-#     success_url = '/cmdb/tag/list/'
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['title_name'] = 'ioms: tag delete page'
-#         return context
+class ZoneNameUpdateView(LoginRequiredMixin, UpdateView):
+    model = ZoneName
+    fields = ['zone_name', 'zone_name_explain']
+    template_name = 'union/update.html'
+    success_url = reverse_lazy("cmdb:zone-name-list")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title_name'] = 'iomp: zone name update page'
+        return context
+
+
+class ZoneNameAddView(LoginRequiredMixin, CreateView):
+    model = ZoneName
+    form_class = ZoneNameForm
+    template_name = "union/add.html"
+    success_url = reverse_lazy("cmdb:zone-name-list")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title_name'] = 'ioms: zone name add page'
+        context['info'] = 'zone name'
+        return context
+
+
+class ZoneNameDeleteView(LoginRequiredMixin, DeleteView):
+    model = ZoneName
+    fields = ['zone_name', 'zone_name_explain']
+    template_name = 'union/delete.html'
+    success_url = reverse_lazy("cmdb:zone-name-list")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title_name'] = 'ioms: zone name delete page'
+        return context
 #================================zone name==============================================
 #================================tag begin==============================================
 

@@ -10,10 +10,10 @@
         <span class="nav-label">链接管理</span>
     </a>
     <ul class="nav nav-second-level active">
-        <li id="host-list"><a href="{% url 'sitecollect:site_list' %}">链接列表</a> </li>
+        <li id="host-list"><a href="{% url 'sitecollect:site_list' %}">链接列表</a></li>
         <li id="host-list"><a href="{% url 'sitecollect:site_add' %}">添加链接</a></li>
-        <li id="host-list"><a href="{% url 'sitecollect:site_type_list' %}">链接类型</a> </li>
-        <li id="host-list"><a href="{% url 'sitecollect:site_type_add' %}">添加链接类型</a> </li>
+        <li id="host-list"><a href="{% url 'sitecollect:site_type_list' %}">链接类型</a></li>
+        <li id="host-list"><a href="{% url 'sitecollect:site_type_add' %}">添加链接类型</a></li>
 
     </ul>
 </li>
@@ -23,9 +23,10 @@
         <span class="nav-label">主机管理</span>
     </a>
     <ul class="nav nav-second-level active">
-        <li id="host-list"><a href="{% url 'hostmanage:host_index' %}">链接列表</a> </li>
+        <li id="host-list"><a href="{% url 'hostmanage:host-role-list' %}">角色管理</a></li>
+        <li id="host-list"><a href="{% url 'hostmanage:host_index' %}">主机列表</a></li>
         <li id="host-list"><a href="{% url 'hostmanage:status_list' %}">状态列表</a></li>
-        <li id="host-list"><a href="{% url 'hostmanage:role' %}">角色管理</a> </li>
+
         <li id="host-list"><a href="{% url 'hostmanage:host_index' %}">项目管理</a></li>
         <li id="host-list"><a href="{% url 'hostmanage:host_index' %}">云平台管理</a></li>
     </ul>
@@ -35,8 +36,10 @@
         <span class="nav-label">数据库管理</span>
     </a>
     <ul class="nav nav-second-level active">
-        <li id="host-list"><a href="{% url 'db:db-list' %}">游戏服列表</a> </li>
-
+        <li id="host-list"><a href="{% url 'db:db-type-list' %}">标签列表</a></li>
+        <li id="host-list"><a href="{% url 'db:db-list' %}">数据库列表</a></li>
+        <li id="host-list"><a href="{% url 'db:master-db-list' %}">主库列表</a></li>
+        <li id="host-list"><a href="{% url 'db:slave-db-list' %}">从库列表</a></li>
     </ul>
 </li>
 <li id="links">
@@ -44,11 +47,11 @@
         <span class="nav-label">配置管理</span>
     </a>
     <ul class="nav nav-second-level active">
-        <li id="host-list"><a href="{% url 'cmdb:gs-list' %}">游戏服列表</a> </li>
-        <li id="host-list"><a href="{% url 'cmdb:gs-status' %}">状态列表</a></li>
-        <li id="host-list"><a href="{% url 'cmdb:zone-name' %}">区域列表</a> </li>
-        <li id="host-list"><a href="{% url 'cmdb:merge-info' %}">合服信息</a></li>
+        <li id="host-list"><a href="{% url 'cmdb:gs-status-list' %}">状态列表</a></li>
+        <li id="host-list"><a href="{% url 'cmdb:zone-name-list' %}">区域列表</a></li>
         <li id="host-list"><a href="{% url 'cmdb:tag-list' %}">标签信息</a></li>
+        <li id="host-list"><a href="{% url 'cmdb:gs-list' %}">游戏服列表</a></li>
+        <li id="host-list"><a href="{% url 'cmdb:merge-info' %}">合服信息</a></li>
 
     </ul>
 </li>
