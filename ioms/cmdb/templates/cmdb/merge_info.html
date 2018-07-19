@@ -7,7 +7,7 @@
 <table>
     <caption>数据库列表</caption>
     <tr>
-        <!--<th>状态id</th>-->
+        <th>id</th>
         <th>gs_id</th>
         <th>游戏服</th>
         <th>区域</th>
@@ -22,6 +22,7 @@
     </tr>
     {% for gs in gs_list %}
     <tr>
+        <td>{{ gs.id }}</td>
         <td>{{ gs.gs_id }}</td>
         <td>{{ gs.gs_name }}</td>
         <td>{{ gs.gs_zone.zone_name_explain }}</td>
