@@ -436,30 +436,30 @@ def update_one_merge_info(id):
 
 def update_all_merge_info(request):
     all_gs_info = GsConfig.objects.filter(Q(gs_status__status=1), Q(tag__tag_name='an_all') | Q(tag__tag_name='cn_all') | Q(tag__tag_name='ios_all'))
-    # all_gs_info = GsConfig.objects.all()
-    # procs = []
-    # for gs_one in all_gs_info:
-    #     # try:
-    #     #     gs_one = get_object_or_404(GsConfig, pk=)
-    #     # except:
-    #     #     print("get pk {} error".format(pk))
-    #     #     redirect("cmdb:merge-info")
-    #     print(gs_one.id)
-    #     # try:
-    #     #     db_ip = gs_one.gs_db.slavedb.host_info.outer_ip
-    #     #     db_port = gs_one.gs_db.slavedb.db_port
-    #     # except:
-    #     #     db_ip = gs_one.gs_db.host_info.outer_ip
-    #     #     db_port = gs_one.gs_db.db_port
-    #     # db_name = gs_one.gs_db_name
-    #
-    #     # proc = multiprocessing.Process(target=ConnMysql(db_ip, int(db_port), user, password, char_set, database, sql_list).run)
-    #     proc= multiprocessing.Process(target=update_one_merge_info, args=(gs_one.id,))
-    #     procs.append(proc)
-    #     proc.start()
-    # for proc in procs:
-    #     proc.join()
-    update_one_merge_info(all_gs_info[1].id)
+    all_gs_info = GsConfig.objects.all()
+    procs = []
+    for gs_one in all_gs_info:
+        # try:
+        #     gs_one = get_object_or_404(GsConfig, pk=)
+        # except:
+        #     print("get pk {} error".format(pk))
+        #     redirect("cmdb:merge-info")
+        print(gs_one.id)
+        # try:
+        #     db_ip = gs_one.gs_db.slavedb.host_info.outer_ip
+        #     db_port = gs_one.gs_db.slavedb.db_port
+        # except:
+        #     db_ip = gs_one.gs_db.host_info.outer_ip
+        #     db_port = gs_one.gs_db.db_port
+        # db_name = gs_one.gs_db_name
+
+        # proc = multiprocessing.Process(target=ConnMysql(db_ip, int(db_port), user, password, char_set, database, sql_list).run)
+        proc= multiprocessing.Process(target=update_one_merge_info, args=(gs_one.id,))
+        procs.append(proc)
+        proc.start()
+    for proc in procs:
+        proc.join()
+    # update_one_merge_info(all_gs_info[1].id)
 
         # print(gs_one.gs_name, db_ip, db_port)
     return redirect("cmdb:merge-info")
