@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    {% if title_name %}
+      <title>{{ title_name }}</title>
+    {% else %}
+    <title>iomp</title>
+    {% endif %}
+    <!-- <title>{% block title %}{% endblock %}</title> -->
+
+    <link rel="icon" href="{% static 'img/logo.png' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'img/logo.png' %}" type="image/x-icon">
+    <!--<link href={% static "css/base.css" %} rel="stylesheet" type="text/css" media="all"/>-->
+</head>
+<body>
+
+    <p>index page</p>
+
+    <p>go to manage page: <a href="{% url 'iomp_index' %}" >IOMP</a></p>
+    <p>go to blog page: <a href="{% url 'blog:blog_index' %}" >BLOG</a></p>
+
+</body>
+</html>

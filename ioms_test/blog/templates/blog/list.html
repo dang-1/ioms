@@ -1,0 +1,45 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+
+   文章列表
+
+{% endblock %}
+
+{% block body %}
+
+   <h1>文章列表</h1>
+
+   <table width="400px">
+
+       <thead>
+
+           <tr>
+
+               <th>标题</th>
+
+               <th>操作</th>
+
+           </tr>
+
+       </thead>
+
+       <tbody>
+
+           {% for blog in blogs %}
+
+               <tr>
+
+                   <th><a href={% url 'blog_detail' blog.id %}>{{ blog.title }}</a></th>
+
+                   <th><a href={% url 'blog_modify' blog.id %}>编辑</a>|<a href={% url 'blog_delete' blog.id %}>删除</a></th>
+
+               </tr>
+
+           {% endfor %}
+
+       </tbody>
+
+   </table>
+
+{% endblock %}

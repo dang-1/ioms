@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<p>host index page</p>
+
+<table>
+    <caption>角色列表</caption>
+    <tr>
+        <th>项目id</th>
+        <th>项目名称</th>
+        <th>说明</th>
+        <th>机器数量</th>
+        <th>管理</th>
+    </tr>
+    {% for role in role_list %}
+    <tr>
+        <td>{{ role.id }}</td>
+        <td>{{ role.role }}</td>
+        <td>{{ role.explain }}</td>
+        <td>{{ role.roles.all.count }}</td>
+        <td>
+            <a href={% url 'hostmanage:host-role-update' role.id %}>更新</a>
+        </td>
+    </tr>
+    {% endfor%}
+</table>
+<p><a href={% url 'hostmanage:host-role-add' %}>添加</a></p>
+
+{% if is_paginated %}
+<div>
+    <span>
+        <!--{% if first %}-->
+            <!--<a href={% url "hostmanage:host_index" %}?page=1>1</a>-->
+        <!--{% endif %}-->
+        {% if page_obj.has_previous %}
+            <a href={% url "hostmanage:role_list" %}?page={{ page_obj.previous_page_number }}>上一页</a>
+        {% endif %}
+        <span class="page-current">
+            第{{ page_obj.number }}页 ，共{{ page_obj.paginator.num_pages }}页。
+        </span>
+        {% if page_obj.has_next %}
+            <a href={% url "hostmanage:role_list" %}?page={{ page_obj.next_page_number }}>下一页</a>
+        {% endif %}
+
+    </span>
+</div>
+{% endif %}
+
+
+{% endblock %}

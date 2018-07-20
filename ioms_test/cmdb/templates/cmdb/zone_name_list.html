@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<p>host index page</p>
+
+<table>
+    <caption>区域列表</caption>
+    <tr>
+        <th>id</th>
+        <th>国家</th>
+        <th>区域</th>
+        <th>操作</th>
+    </tr>
+    {% for zone_name in zone_name_list %}
+    <tr>
+
+        <td>{{ zone_name.id }}</td>
+        <td>{{ zone_name.zone_name }}</td>
+        <td>{{ zone_name.zone_name_explain }}</td>
+        <td>
+            <a href={% url "cmdb:zone-name-update" zone_name.id %}>更新</a>
+            <a href={% url "cmdb:zone-name-delete" zone_name.id %}>删除</a>
+        </td>
+    </tr>
+    {% endfor%}
+</table>
+
+<p><a href={% url "cmdb:zone-name-add" %}>添加</a></p>
+
+
+{% if is_paginated %}
+<div>
+    <span>
+        <!--{% if first %}-->
+            <!--<a href={% url "hostmanage:host_index" %}?page=1>1</a>-->
+        <!--{% endif %}-->
+        {% if page_obj.has_previous %}
+            <a href={% url "hostmanage:role_list" %}?page={{ page_obj.previous_page_number }}>上一页</a>
+        {% endif %}
+        <span class="page-current">
+            第{{ page_obj.number }}页 ，共{{ page_obj.paginator.num_pages }}页。
+        </span>
+        {% if page_obj.has_next %}
+            <a href={% url "hostmanage:role_list" %}?page={{ page_obj.next_page_number }}>下一页</a>
+        {% endif %}
+
+    </span>
+</div>
+{% endif %}
+
+
+{% endblock %}

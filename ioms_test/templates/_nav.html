@@ -1,0 +1,72 @@
+<!-- 这个是左侧的导航栏-->
+<li id="index">
+    <a href="{% url 'index' %}">
+        <i class="fa fa-dashboard" style="width: 14px"></i><span class="nav-label">仪表盘</span><span class="label label-info pull-right"></span>
+    </a>
+</li>
+
+<li id="links">
+    <a href="{% url 'sitecollect:site_type_list' %}">
+        <span class="nav-label">链接管理</span>
+    </a>
+    <ul class="nav nav-second-level active">
+        <li id="host-list"><a href="{% url 'sitecollect:site_list' %}">链接列表</a></li>
+        <li id="host-list"><a href="{% url 'sitecollect:site_add' %}">添加链接</a></li>
+        <li id="host-list"><a href="{% url 'sitecollect:site_type_list' %}">链接类型</a></li>
+        <li id="host-list"><a href="{% url 'sitecollect:site_type_add' %}">添加链接类型</a></li>
+
+    </ul>
+</li>
+
+<li id="links">
+    <a href="{% url 'hostmanage:host_index' %}">
+        <span class="nav-label">主机管理</span>
+    </a>
+    <ul class="nav nav-second-level active">
+        <li id="host-list"><a href="{% url 'hostmanage:host-role-list' %}">角色管理</a></li>
+        <li id="host-list"><a href="{% url 'hostmanage:host_index' %}">主机列表</a></li>
+        <li id="host-list"><a href="{% url 'hostmanage:status_list' %}">状态列表</a></li>
+
+        <li id="host-list"><a href="{% url 'hostmanage:host_index' %}">项目管理</a></li>
+        <li id="host-list"><a href="{% url 'hostmanage:host_index' %}">云平台管理</a></li>
+    </ul>
+</li>
+<li id="links">
+    <a href="{% url 'db:db-list' %}">
+        <span class="nav-label">数据库管理</span>
+    </a>
+    <ul class="nav nav-second-level active">
+        <li id="host-list"><a href="{% url 'db:db-type-list' %}">标签列表</a></li>
+        <li id="host-list"><a href="{% url 'db:db-list' %}">数据库列表</a></li>
+        <li id="host-list"><a href="{% url 'db:master-db-list' %}">主库列表</a></li>
+        <li id="host-list"><a href="{% url 'db:slave-db-list' %}">从库列表</a></li>
+    </ul>
+</li>
+<li id="links">
+    <a href="{% url 'cmdb:gs-list' %}">
+        <span class="nav-label">配置管理</span>
+    </a>
+    <ul class="nav nav-second-level active">
+        <li id="host-list"><a href="{% url 'cmdb:gs-status-list' %}">状态列表</a></li>
+        <li id="host-list"><a href="{% url 'cmdb:zone-name-list' %}">区域列表</a></li>
+        <li id="host-list"><a href="{% url 'cmdb:tag-list' %}">标签信息</a></li>
+        <li id="host-list"><a href="{% url 'cmdb:gs-list' %}">游戏服列表</a></li>
+        <li id="host-list"><a href="{% url 'cmdb:merge-info' %}">合服信息</a></li>
+
+    </ul>
+</li>
+
+<li id="links">
+    <a href="{% url 'users:user_list' %}">
+        <span class="nav-label">用户管理</span>
+    </a>
+    <ul class="nav nav-second-level active">
+        <li id="host-list"><a href="{% url 'users:user_list' %}">用户列表</a></li>
+        <li id="host-list"><a href="{% url 'users:user_add' %}">添加用户</a></li>
+    </ul>
+</li>
+<li id="link">
+    <a href="{% url 'hostmanage:upload' %}">
+        <span>文件上传</span>
+    </a>
+</li>

@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<p>host index page</p>
+
+<form action="" method="post">
+    <p>
+        项目<input type="text" name="project" />
+        类型<input type="text" name="zone" />
+    </p>
+    <p>查询<input type="submit" value="submit"/></p>
+</form>
+<table>
+    <caption>gs列表</caption>
+    <tr>
+        <!--<th>状态id</th>-->
+        <th>id</th>
+        <th>hostname</th>
+        <th>ip</th>
+        <th>zone</th>
+        <th>逻辑服id</th>
+        <th>标签</th>
+        <th>alias</th>
+        <th>加速端口</th>
+        <!--<th>程序目录</th>-->
+        <th>游戏服名</th>
+        <th>状态</th>
+        <th>开服时间</th>
+        <th>分支名</th>
+        <th>分支id</th>
+        <th>zone</th>
+        <th>操作</th>
+    </tr>
+    {% for gs_config in gs_config_list %}
+    {% if gs_config.used == '1' %}
+        <tr>
+            <td>{{ gs_config.id }}</td>
+            <td>{{ gs_config.gs_ip.hostname }}</td>
+            <td>{{ gs_config.gs_ip.outer_ip }}</td>
+            <td>{{ gs_config.gs_zone.zone_name }}</td>
+            <td>{{ gs_config.gs_id }}</td>
+            <td>{{ gs_config.tag.tag_name }}</td>
+            <td>{{ gs_config.gs_alias }}</td>
+            <td>{{ gs_config.gs_accelerate_port }}</td>
+            <!--<td>{{ gs_config.gs_dir }}</td>-->
+            <td>{{ gs_config.gs_name }}</td>
+            <td>{{ gs_config.gs_status.status_explain }}</td>
+            <td>{{ gs_config.gs_open_time }}</td>
+            <td>{{ gs_config.gs_branch }}</td>
+            <td>{{ gs_config.gs_branch_commit_id }}</td>
+            <td>
+                <a href={% url "cmdb:gs-detail" gs_config.id %}>详细</a>
+                <a href={% url "cmdb:gs-update" gs_config.id %}>更新</a>
+            </td>
+        </tr>
+    {% endif %}
+    {% endfor%}
+</table>
+
+<p><a href={% url "cmdb:gs-add" %}>添加</a></p>
+
+{% if is_paginated %}
+<div>
+    <span>
+        <!--{% if first %}-->
+            <!--<a href={% url "hostmanage:host_index" %}?page=1>1</a>-->
+        <!--{% endif %}-->
+        {% if page_obj.has_previous %}
+            <a href={% url "hostmanage:role_list" %}?page={{ page_obj.previous_page_number }}>上一页</a>
+        {% endif %}
+        <span class="page-current">
+            第{{ page_obj.number }}页 ，共{{ page_obj.paginator.num_pages }}页。
+        </span>
+        {% if page_obj.has_next %}
+            <a href={% url "hostmanage:role_list" %}?page={{ page_obj.next_page_number }}>下一页</a>
+        {% endif %}
+
+    </span>
+</div>
+{% endif %}
+
+
+{% endblock %}

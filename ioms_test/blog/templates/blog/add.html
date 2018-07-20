@@ -1,0 +1,25 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+
+   添加文章
+
+{% endblock %}
+
+{% block body %}
+
+   <h1>添加文章</h1><br>
+
+   <form action="" method="post">
+
+   {% csrf_token %}
+
+   标题:<input type="text" name="title"><br>
+
+   内容:<textarea placeholder="请输入内容" name="content" cols="30" rows="10"></textarea><br>
+
+   <button type="submit">发布文章</button>
+
+   </form>
+
+{% endblock %}

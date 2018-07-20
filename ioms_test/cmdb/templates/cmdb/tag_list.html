@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<p>host index page</p>
+
+<table>
+    <caption>标签列表</caption>
+    <tr>
+        <th>标签id</th>
+        <th>标签名</th>
+        <th>标签说明</th>
+        <th>数量</th>
+        <th>操作</th>
+    </tr>
+    {% for tag in tag_list %}
+    <tr>
+        <!--<td>{{ gs_status.id }}</td>-->
+        <td>{{ tag.id }}</td>
+        <td>{{ tag.tag_name }}</td>
+        <td>{{ tag.tag_explain }}</td>
+        <td>{{ tag.gs_tag.count }}</td>
+        <th>
+            <a href={% url "cmdb:tag-detail" tag.id %}>详情</a>
+            <a href={% url "cmdb:tag-update" tag.id %}>修改</a>
+            <a href={% url "cmdb:tag-delete" tag.id %}>删除</a>
+        </th>
+
+    </tr>
+    {% endfor%}
+</table>
+<p><a href={% url 'cmdb:tag-add' %}>添加tag</a></p>
+
+
+{% if is_paginated %}
+<div>
+    <span>
+        <!--{% if first %}-->
+            <!--<a href={% url "hostmanage:host_index" %}?page=1>1</a>-->
+        <!--{% endif %}-->
+        {% if page_obj.has_previous %}
+            <a href={% url "hostmanage:role_list" %}?page={{ page_obj.previous_page_number }}>上一页</a>
+        {% endif %}
+        <span class="page-current">
+            第{{ page_obj.number }}页 ，共{{ page_obj.paginator.num_pages }}页。
+        </span>
+        {% if page_obj.has_next %}
+            <a href={% url "hostmanage:role_list" %}?page={{ page_obj.next_page_number }}>下一页</a>
+        {% endif %}
+
+    </span>
+</div>
+{% endif %}
+
+
+{% endblock %}

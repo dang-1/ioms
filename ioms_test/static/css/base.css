@@ -1,0 +1,56 @@
+
+body {
+	background-color: grey;
+	  margin: 0 0 0 0; /*上 右边 下边 左边*/
+  padding: 0 0 0 0; /*上 右边 下边 左边*/
+  border: 0;
+}
+/* WRAPPERS */
+
+#wrapper {
+  margin: 0 0 0 0; /*上 右边 下边 左边*/
+  padding: 0 0 0 0; /*上 右边 下边 左边*/
+  border: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;/*裁剪div元素中内容的左右边缘，如果溢出元素的内容区*/
+  background-color: black;
+  margin-top: 0;
+}
+/*左侧导航*/
+.navbar-default {
+  background-color: transparent; /*不需要颜色*/
+  border-color: #2f4050; /*背景色*/
+  overflow-x: hidden; /*裁剪div元素中内容的左右边缘，如果溢出元素的内容区*/
+}
+/*左侧导航*/
+.navbar-static-side {
+	border:0;
+  margin: 0;
+  padding: 0;
+  background-color: #009966;
+  position: fixed; /*绝对定位*/
+  z-index: 2001; /*设置元素的堆叠顺序，数字高的在数字低的前面*/
+  height: 100%; /*height: 100*/
+  width: 220px; /*width: 220px, min:70px*/
+}
+
+/*右侧内容*/
+#page-wrapper {
+  margin: 0 0 0 220px;
+  padding: 0;
+  height: 100%;
+  border: 0;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  transition: all 0.4s;
+  overflow-x: hidden;
+  position: inherit; /*继承父元素的position*/
+
+}
+/*右侧内容*/
+.gray-bg {
+  background-color: white;
+  height: 100%;
+}

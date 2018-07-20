@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load tz %}
+{% block content %}
+
+<p>merge info page</p>
+<p><a href={% url "cmdb:update-all-info-merge" %}>更新全部</a></p>
+<table>
+    <caption>数据库列表</caption>
+    <tr>
+        <th>id</th>
+        <th>gs_id</th>
+        <th>游戏服</th>
+        <th>区域</th>
+        <th>dau</th>
+        <th>power_m</th>
+        <th>pvp</th>
+        <th>udid</th>
+        <th>users</th>
+        <th>open time</th>
+        <th>更新时间</th>
+        <th>update</th>
+    </tr>
+    {% for gs in gs_list %}
+    <tr>
+        <td>{{ gs.id }}</td>
+        <td>{{ gs.gs_id }}</td>
+        <td>{{ gs.gs_name }}</td>
+        <td>{{ gs.gs_zone.zone_name_explain }}</td>
+        <td>{{ gs.dau }}</td>
+        <td>{{ gs.power_m }}</td>
+        <td>{{ gs.pvp }}</td>
+        <td>{{ gs.udid }}</td>
+        <td>{{ gs.users }}</td>
+        <td>{{ gs.gs_open_time }}</td>
+        <td>{{ gs.update_at|date:"Y-m-d H:i:s" }}</td>
+        <th><a href="{% url 'cmdb:update-one-info-merge' gs.id %}">update</a></th>
+
+    </tr>
+    {% endfor%}
+</table>
+
+
+{% if is_paginated %}
+<div>
+    <span>
+        <!--{% if first %}-->
+            <!--<a href={% url "hostmanage:host_index" %}?page=1>1</a>-->
+        <!--{% endif %}-->
+        {% if page_obj.has_previous %}
+            <a href={% url "hostmanage:role_list" %}?page={{ page_obj.previous_page_number }}>上一页</a>
+        {% endif %}
+        <span class="page-current">
+            第{{ page_obj.number }}页 ，共{{ page_obj.paginator.num_pages }}页。
+        </span>
+        {% if page_obj.has_next %}
+            <a href={% url "hostmanage:role_list" %}?page={{ page_obj.next_page_number }}>下一页</a>
+        {% endif %}
+
+    </span>
+</div>
+{% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+<!-- {% block title %}
+all
+{% endblock %} -->
+{% block content %}
+<div class="sitecollect">
+    <p>hello, every body, this page is a collect site page.</p>
+    <table>
+        <caption>site collect page</caption>
+        <th>
+            <td>类型</td>
+            <td>列表</td>
+        </th>
+        {% for site_type in type_list %}
+        <tr>
+            <td>{{ site_type.site_type_name }}</td>
+            {% for site_one in site_type.sitecollectmodel_set.all %}
+            <td><a href={{ site_one.siteurl }} target="_blank"> {{ site_one.sitename }}  </a></td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+
+
+
+
+
+    <!--{% for site_type in type_list %}-->
+        <!--{{ site_type.site_type_name }}-->
+
+        <!--{% for site_one in site_type.sitecollectmodel_set.all %}-->
+            <!--{{ site_one.id }}-->
+        <!--{% endfor %}-->
+
+
+    <!--{% endfor %}-->
+
+
+
+
+
+
+    <!--{% for site in site_list %}-->
+    <!--<p>{{ site }}</p>-->
+    <!--{% if site %}-->
+
+    <!--<table>-->
+        <!--<caption>{{ site }}</caption>-->
+        <!--<tr><td>{{ sitetotal.len }}</td></tr>-->
+        <!--<tr>-->
+            <!--{% for sitename, siteurl in sitetotal.items %}-->
+            <!--<td><a href={{ siteurl }} target="_blank"> {{ sitename }}  </a></td>-->
+            <!--{% endfor %}-->
+        <!--</tr>-->
+    <!--</table>-->
+
+    <!--{% endif %}-->
+
+
+
+
+
+<!--{% endfor %}-->
+<p>
+    <a href={% url 'sitecollect:site_manage' %}>管理</a>
+    <a href={% url 'sitecollect:site_add' %}>添加</a>
+    <a href=>删除</a>
+</p>
+
+</div>
+
+{% endblock %}
