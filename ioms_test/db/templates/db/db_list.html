@@ -1,73 +1,126 @@
-{% extends 'base.html' %}
+{% extends 'adminlte/base.html' %}
 
 
 {% block content %}
 
-<p>db index page</p>
+<!--<p>host index page</p>-->
 
-<table>
-    <caption>数据库列表</caption>
-    <tr>
-        <th>id</th>
-        <th>别名</th>
-        <th>端口</th>
-        <th>状态</th>
-        <th>主机ip</th>
-        <th>打开时间</th>
-        <th>类型</th>
-        <th>从库id</th>
-        <th>从库别名</th>
-        <th>从库端口</th>
-        <th>从库状态</th>
-        <th>从库启动时间</th>
-        <th>从库ip</th>
-        <th>其他</th>
+<!-- Content Wrapper. Contains page content -->
+<div class="">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        {{ info }}
+        <!--<small>advanced tables</small>-->
+      </h1>
+      <ol class="breadcrumb">
+          {{ request.path }}
+        <!--<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>-->
+        <!--<li><a href="#">Tables</a></li>-->
+        <!--<li class="active">Data tables</li>-->
+      </ol>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="row-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">db index page</h3>
+                    </div>
+                    <table id="exapmle2" class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>别名</th>
+                            <th>端口</th>
+                            <th>状态</th>
+                            <th>主机ip</th>
+                            <th>打开时间</th>
+                            <th>类型</th>
+                            <th>从库id</th>
+                            <th>从库别名</th>
+                            <th>从库端口</th>
+                            <th>从库状态</th>
+                            <th>从库启动时间</th>
+                            <th>从库ip</th>
+                            <th>其他</th>
+                        </tr>
 
-    </tr>
-    {% for db in db_list %}
+                        </thead>
+                        {% for db in db_list %}
 
-    <tr>
-        <td>{{ db.id }}</td>
-        <td>{{ db.alias }}</td>
-        <td>{{ db.db_port }}</td>
-        <td>{{ db.status }}</td>
-        <td>{{ db.host_info.outer_ip }}</td>
-        <td>{{ db.open_time }}</td>
-        <td>{{ db.type.explain }}</td>
-        <td>{{ db.slavedb.id }}</td>
-        <td>{{ db.slavedb.alias }}</td>
-        <td>{{ db.slavedb.db_port }}</td>
-        <td>{{ db.slavedb.status }}</td>
-        <td>{{ db.slavedb.open_time }}</td>
-        <td>{{ db.slavedb.host_info.outer_ip }}</td>
-        <td>{{ db.gs_db.count }}</td>
-        <td><a href="">详情</a></td>
-    </tr>
-    {% endfor%}
-</table>
+                            <tr>
+                                <td>{{ db.id }}</td>
+                                <td>{{ db.alias }}</td>
+                                <td>{{ db.db_port }}</td>
+                                <td>{{ db.status }}</td>
+                                <td>{{ db.host_info.outer_ip }}</td>
+                                <td>{{ db.open_time }}</td>
+                                <td>{{ db.type.explain }}</td>
+                                <td>{{ db.slavedb.id }}</td>
+                                <td>{{ db.slavedb.alias }}</td>
+                                <td>{{ db.slavedb.db_port }}</td>
+                                <td>{{ db.slavedb.status }}</td>
+                                <td>{{ db.slavedb.open_time }}</td>
+                                <td>{{ db.slavedb.host_info.outer_ip }}</td>
+                                <td>{{ db.gs_db.count }}</td>
+                                <td><a href="">详情</a></td>
+                            </tr>
+                        {% endfor%}
+                        <tbody>
+                        <tr></tr>
+                        </tbody>
+                    </table>
+                    {% if is_paginated %}
+                    <div>
+                        <span>
+                            <!--{% if first %}-->
+                                <!--<a href={% url "hostmanage:host_index" %}?page=1>1</a>-->
+                            <!--{% endif %}-->
+                            {% if page_obj.has_previous %}
+                                <a href={% url "hostmanage:role_list" %}?page={{ page_obj.previous_page_number }}>上一页</a>
+                            {% endif %}
+                            <span class="page-current">
+                                第{{ page_obj.number }}页 ，共{{ page_obj.paginator.num_pages }}页。
+                            </span>
+                            {% if page_obj.has_next %}
+                                <a href={% url "hostmanage:role_list" %}?page={{ page_obj.next_page_number }}>下一页</a>
+                            {% endif %}
 
-
-
-{% if is_paginated %}
-<div>
-    <span>
-        <!--{% if first %}-->
-            <!--<a href={% url "hostmanage:host_index" %}?page=1>1</a>-->
-        <!--{% endif %}-->
-        {% if page_obj.has_previous %}
-            <a href={% url "hostmanage:role_list" %}?page={{ page_obj.previous_page_number }}>上一页</a>
-        {% endif %}
-        <span class="page-current">
-            第{{ page_obj.number }}页 ，共{{ page_obj.paginator.num_pages }}页。
-        </span>
-        {% if page_obj.has_next %}
-            <a href={% url "hostmanage:role_list" %}?page={{ page_obj.next_page_number }}>下一页</a>
-        {% endif %}
-
-    </span>
+                        </span>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
-{% endif %}
 
+
+<script>
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
 
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
 

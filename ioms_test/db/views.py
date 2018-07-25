@@ -25,6 +25,7 @@ class DbTypeListView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title_name'] = 'iomp: db type list page'
+        context['info'] = 'database type'
         return context
 
 

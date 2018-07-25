@@ -1,51 +1,102 @@
-{% extends 'base.html' %}
+{% extends 'adminlte/base.html' %}
 
 {% block content %}
 
-<p>host index page </p>
+<div class="">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        {{ info }}
+          <p>host index page </p>
 
-<a href={% url 'hostmanage:host-sync' %}>初始化同步</a>
+          <a href={% url 'hostmanage:host-sync' %}>初始化同步</a>
+        <!--<small>advanced tables</small>-->
+      </h1>
+      <ol class="breadcrumb">
+          {{ request.path }}
+        <!--<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>-->
+        <!--<li><a href="#">Tables</a></li>-->
+        <!--<li class="active">Data tables</li>-->
+      </ol>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="row-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">机器列表</h3>
+                    </div>
+                    <table id="exapmle2" class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>主机名称</th>
+                            <th>外网ip</th>
+                            <th>内网ip</th>
+                            <th>内存</th>
+                            <th>iptables</th>
+                        </tr>
 
-<table>
-    <caption>机器列表</caption>
-    <tr>
-        <th>主机名称</th>
-        <th>外网ip</th>
-        <th>内网ip</th>
-        <th>内存</th>
-        <th>iptables</th>
-    </tr>
-    {% for post in host_list %}
-    <tr>
-        <td>{{ post.hostname }}</td>
-        <td>{{ post.outer_ip }}</td>
-        <td>{{ post.inner_ip }}</td>
-        <td>{{ post.memory }}</td>
-        <td><a href="">iptables信息</td>
-    </tr>
-    {% endfor%}
-</table>
-
-
-{% if is_paginated %}
-<div>
-    <span>
-        {% if first %}
-            <a href={% url "hostmanage:host_index" %}?page=1>1</a>
-        {% endif %}
-        {% if page_obj.has_previous %}
-            <a href={% url "hostmanage:host_index" %}?page={{ page_obj.previous_page_number }}>上一页</a>
-        {% endif %}
-        <span class="page-current">
-            第{{ page_obj.number }}页 ，共{{ page_obj.paginator.num_pages }}页。
-        </span>
-        {% if page_obj.has_next %}
-            <a href={% url "hostmanage:host_index" %}?page={{ page_obj.next_page_number }}>下一页</a>
-        {% endif %}
-
-    </span>
+                        </thead>
+                        {% for post in host_list %}
+                        <tr>
+                            <td>{{ post.hostname }}</td>
+                            <td>{{ post.outer_ip }}</td>
+                            <td>{{ post.inner_ip }}</td>
+                            <td>{{ post.memory }}</td>
+                            <td><a href="">iptables信息</td>
+                        </tr>
+                        {% endfor%}
+                        <tbody>
+                        <tr></tr>
+                        </tbody>
+                    </table>
+                    {% if is_paginated %}
+                    <div>
+                        <span>
+                            <!--{% if first %}-->
+                                <!--<a href={% url "hostmanage:host_index" %}?page=1>1</a>-->
+                            <!--{% endif %}-->
+                            {% if first %}
+                                <a href={% url "hostmanage:host_index" %}?page=1>1</a>
+                            {% endif %}
+                            {% if page_obj.has_previous %}
+                                <a href={% url "hostmanage:host_index" %}?page={{ page_obj.previous_page_number }}>上一页</a>
+                            {% endif %}
+                            <span class="page-current">
+                                第{{ page_obj.number }}页 ，共{{ page_obj.paginator.num_pages }}页。
+                            </span>
+                            {% if page_obj.has_next %}
+                                <a href={% url "hostmanage:host_index" %}?page={{ page_obj.next_page_number }}>下一页</a>
+                            {% endif %}
+                        </span>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
-{% endif %}
 
+
+<script>
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
 
 {% endblock %}
+
+
+
+
+
+
+

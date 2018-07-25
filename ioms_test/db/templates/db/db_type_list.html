@@ -1,54 +1,73 @@
-{% extends 'base.html' %}
-
-
+{% extends 'adminlte/base.html' %}
 {% block content %}
 
-<p>host index page</p>
+<!-- Content Wrapper. Contains page content -->
+<div class="">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        {{ info }}
+        <!--<small>advanced tables</small>-->
+      </h1>
+      <ol class="breadcrumb">
+          {{ request.path }}
+        <!--<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>-->
+        <!--<li><a href="#">Tables</a></li>-->
+        <!--<li class="active">Data tables</li>-->
+      </ol>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="row-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">data table</h3>
+                    </div>
+                    <table id="exapmle2" class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>类型</th>
+                            <th>说明</th>
+                            <th>操作</th>
+                        </tr>
 
-<table>
-    <caption>数据库列表</caption>
-    <tr>
-        <th>id</th>
-        <th>类型</th>
-        <th>说明</th>
-        <th>操作</th>
-    </tr>
-    {% for db_type in db_type_list %}
-
-    <tr>
-        <td>{{ db_type.id }}</td>
-        <td>{{ db_type.type }}</td>
-        <td>{{ db_type.explain }}</td>
-        <td>
-            <a href={% url "db:db-type-update" db_type.id %}>更新</a>
-            <a href={% url "db:db-type-delete" db_type.id %}>删除</a>
-        </td>
-    </tr>
-    {% endfor%}
-</table>
-<p>
-    <a href={% url "db:db-type-add" %}>添加</a>
-</p>
-
-{% if is_paginated %}
-<div>
-    <span>
-        <!--{% if first %}-->
-            <!--<a href={% url "hostmanage:host_index" %}?page=1>1</a>-->
-        <!--{% endif %}-->
-        {% if page_obj.has_previous %}
-            <a href={% url "hostmanage:role_list" %}?page={{ page_obj.previous_page_number }}>上一页</a>
-        {% endif %}
-        <span class="page-current">
-            第{{ page_obj.number }}页 ，共{{ page_obj.paginator.num_pages }}页。
-        </span>
-        {% if page_obj.has_next %}
-            <a href={% url "hostmanage:role_list" %}?page={{ page_obj.next_page_number }}>下一页</a>
-        {% endif %}
-    </span>
+                        </thead>
+                        {% for db_type in db_type_list %}
+                        <tr>
+                            <td>{{ db_type.id }}</td>
+                            <td>{{ db_type.type }}</td>
+                            <td>{{ db_type.explain }}</td>
+                            <td>
+                                <a href={% url "db:db-type-update" db_type.id %}>更新</a> |
+                                <a href={% url "db:db-type-delete" db_type.id %}>删除</a>
+                            </td>
+                        </tr>
+                        {% endfor%}
+                        <tbody>
+                        <tr></tr>
+                        </tbody>
+                    </table>
+                    <a href={% url "db:db-type-add" %}>添加</a>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
-{% endif %}
 
+
+<script>
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
 
 {% endblock %}
-

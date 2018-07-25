@@ -240,7 +240,7 @@ class GsDetailView(LoginRequiredMixin, DetailView):
 
 class GsUpdateView(LoginRequiredMixin, UpdateView):
     model = GsConfig
-    fields = ['tag', 'gs_zone', 'gs_status', 'gs_accelerate_port']
+    fields = ['tag', 'gs_zone', 'gs_name', 'gs_status', 'gs_accelerate_port']
     template_name = 'cmdb/gs_update.html'
     success_url = reverse_lazy("cmdb:gs-list")
 
