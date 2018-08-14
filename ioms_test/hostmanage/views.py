@@ -132,6 +132,7 @@ class HostStatusDetailView(DetailView):
 #================================host begin==============================================
 
 # @transaction.atomic
+@login_required
 def update_host_view(request):
     # error_info = {}
     iop_host_api_url = settings.CONFIG["api_info"]

@@ -24,6 +24,7 @@ class ProjectName(models.Model):
     '''
     id = models.AutoField(primary_key=True)
     project_name = models.CharField(max_length=48, null=False, unique=True, verbose_name="项目名")
+    explain = models.CharField(max_length=128, null=True, verbose_name="说明")
 
     def __str__(self):
         return self.project_name
@@ -50,6 +51,7 @@ class HostStatus(models.Model):
     '''
     id = models.AutoField(primary_key=True)
     status = models.CharField(max_length=48, null=False, unique=True, verbose_name='状态')
+    explain = models.CharField(max_length=128, null=True, verbose_name="说明")
 
     def __str__(self):
         return self.status
