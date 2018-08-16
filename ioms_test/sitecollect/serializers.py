@@ -15,11 +15,15 @@ from .models import SiteCollectModel, SiteTypeModel
 class SiteTypeSerializers(ModelSerializer):
     class Meta:
         model = SiteTypeModel
-        fields = ('id', 'site_type_name')
+        # fields = ('id', 'site_type_name')
+        fields = '__all__'
 
 
-
-
+class SiteSerializers(ModelSerializer):
+    class Meta:
+        model = SiteCollectModel
+        fields = '__all__'
+        depth = 1
 
 
 

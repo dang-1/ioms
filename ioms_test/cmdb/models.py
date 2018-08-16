@@ -54,22 +54,33 @@ class Tag(models.Model):
         ordering = ['id']
 
 
+class GwConfig(models.Model):
+    id = models.AutoField(primary_key=True)
+    gs_ip = models.ForeignKey(Host, on_delete=models.SET_NULL, blank=True, null=True, related_name="gw_ip_info",
+                              verbose_name="host ip's id")
+    gs_db = models.CharField(max_length=42, blank=True, null=True, verbose_name='database name')
+    gs_db_ip = models.ForeignKey(MasterDb, on_delete=models.SET_NULL, blank=True, null=True, related_name="gw_db",
+                              verbose_name="main db")
+
+
 class GsConfig(models.Model):
     id = models.AutoField(primary_key=True)
     used = models.CharField(max_length=50, verbose_name="是否使用")
-    gs_ip = models.ForeignKey(Host, on_delete=models.SET_NULL, blank=True, null=True, related_name="gs_ip_info",
-                              verbose_name="host ip's id")
+
     gs_zone = models.ForeignKey(ZoneName, on_delete=models.SET_NULL, related_name="gs_zone_name",
                                 blank=True, null=True, verbose_name="zone id，安卓 or ios")
     tag = models.ForeignKey(Tag, on_delete=models.SET_NULL, blank=True, null=True, related_name="gs_tag",
                             verbose_name="标签字段")
-    # tag = models.ManyToManyField(Tag, blank=True, related_name="gs_tag",
-    #                         verbose_name="标签字段")
     gs_id = models.IntegerField(verbose_name="游戏服id")
+    gs_name = models.CharField(max_length=50, verbose_name="游戏服名字")
     gs_alias = models.CharField(max_length=50, verbose_name="唯一标识符")
+    gs_ip = models.ForeignKey(Host, on_delete=models.SET_NULL, blank=True, null=True, related_name="gs_ip_info",
+                              verbose_name="host ip's id")
+    gs_language = models.CharField(max_length=11, blank=True, null=True, verbose_name="语言")
+
     gs_accelerate_port = models.CharField(max_length=50, verbose_name="加速端口")
     gs_dir = models.CharField(max_length=50, verbose_name="游戏服目录")
-    gs_name = models.CharField(max_length=50, verbose_name="游戏服名字")
+
 
     gs_status = models.ForeignKey(GsStatus, on_delete=models.SET_NULL, blank=True, null=True,
                                   related_name="gs_status", verbose_name="gs status id")
@@ -83,24 +94,8 @@ class GsConfig(models.Model):
     gs_merged_to_id = models.CharField(max_length=50, verbose_name="合入id")
     gs_db_name = models.CharField(max_length=42, blank=True, null=True, verbose_name='database name')
     gs_log_db_name = models.CharField(max_length=42, blank=True, null=True, verbose_name='database log name')
-
     gs_db = models.ForeignKey(MasterDb, on_delete=models.SET_NULL, blank=True, null=True, related_name="gs_db",
                               verbose_name="main db")
-
-    #merge info
-    # big_r = models.IntegerField(null=True, verbose_name="")
-    dau = models.IntegerField(null=True, verbose_name="")
-    # level = models.CharField(null=True, max_length=128, verbose_name="")
-    power_alliance_m = models.FloatField(null=True, verbose_name="")
-    # powerest_alliance_m = models.FloatField(null=True, verbose_name="")
-    # powerest_m = models.FloatField(null=True, verbose_name="")
-    power_m = models.FloatField(null=True, verbose_name="实力")
-    # pvp = models.FloatField(null=True, verbose_name="")
-    # R = models.IntegerField(null=True, verbose_name="")
-    # revenue = models.FloatField(null=True, verbose_name="")
-    udid = models.IntegerField(null=True, verbose_name="")
-    users = models.IntegerField(null=True, verbose_name="用户数量")
-
 
     create_at = models.DateTimeField(auto_now_add=True, null=True, verbose_name="创建时间")
     update_at = models.DateTimeField(auto_now=True, null=True, verbose_name="更新时间")

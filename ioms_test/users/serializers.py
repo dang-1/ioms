@@ -11,6 +11,8 @@ from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 
 from .models import User, UserGroup
+
+
 # class UserSerializer(serializers.HyperlinkedModelSerializer):
 class UserSerializer(ModelSerializer):
     groups_display = serializers.SerializerMethodField()

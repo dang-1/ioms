@@ -15,6 +15,7 @@ class SiteTypeModel(models.Model):
     '''
     id = models.AutoField(primary_key=True)
     site_type_name = models.CharField(max_length=60, null=False, unique=True, verbose_name="网址类型")
+    explain = models.CharField(max_length=128, null=True, verbose_name="说明")
 
     def __str__(self):
         return self.site_type_name

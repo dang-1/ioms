@@ -7,14 +7,13 @@ content | version
 python | 3.6.2
 django | 2.0.6
 
-```python
+```basg
 #install
 pip install --upgrade pip
 pip install djangorestframework-bulk
 pip install pymysql
 pip install Pillow
 pip install requests
-
 ```
 
 ## app feature

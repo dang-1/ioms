@@ -8,8 +8,9 @@
 
 from rest_framework import serializers, viewsets, routers
 
-from .serializers import MasterDbSerializer, MasterDbSerializer2
-from .models import MasterDb
+from .serializers import MasterDbSerializer, MasterDbSerializer2, \
+    SlaveDbSerializer
+from .models import MasterDb, SlaveDb
 
 
 class MasterDbView(viewsets.ModelViewSet):
@@ -22,6 +23,16 @@ class MasterDbView2(viewsets.ModelViewSet):
     queryset = MasterDb.objects.all().order_by('id')
     serializer_class = MasterDbSerializer2
     depth = 1
+
+
+class SlaveDbAPI(viewsets.ModelViewSet):
+    queryset = SlaveDb.objects.all().order_by('id')
+    serializer_class = SlaveDbSerializer
+    depth = 1
+
+
+
+
 # from .serializers import ConfigMangeSerializer, GsConfigSerializer, DbConfigSerializer
 # from .models import GsConfig, DbConfig
 #

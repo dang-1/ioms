@@ -5,12 +5,16 @@
 # @FileName: api.py
 # @Software: PyCharm
 # @Mail    : 93651849@qq.com
+from rest_framework import generics, viewsets
 
-from .serializers import SiteTypeSerializers
+from .serializers import SiteTypeSerializers, SiteSerializers
 from .models import SiteTypeModel, SiteCollectModel
 
-from rest_framework import generics, viewsets
+
 # from rest_framework.permissions import Is
+
+
+#================================site type begin==============================================
 
 
 class SiteTypeListView(viewsets.ModelViewSet):
@@ -19,10 +23,13 @@ class SiteTypeListView(viewsets.ModelViewSet):
 
 
 
+#================================site type end==============================================
+
+#================================site begin==============================================
+class SiteListView(viewsets.ModelViewSet):
+    queryset = SiteCollectModel.objects.all()
+    serializer_class = SiteSerializers
 
 
 
-
-
-
-
+#================================site end==============================================

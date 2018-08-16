@@ -18,10 +18,12 @@ class MasterDb(models.Model):
                              verbose_name="db type")
     host_info = models.ForeignKey(Host, on_delete=models.SET_NULL, blank=True, null=True, related_name="host_info",
                               verbose_name="host name's id")
+
     alias = models.CharField(max_length=48, blank=True, verbose_name="别名")
     db_port = models.CharField(max_length=42, default=3306, verbose_name='database port')
     status = models.CharField(max_length=42, null=False, verbose_name='database status, online or offline')
     open_time = models.CharField(max_length=42, null=False, blank=True, verbose_name='database open time')
+    explain = models.CharField(max_length=96, blank=True, verbose_name="说明")
 
     def __str__(self):
         return self.alias
@@ -36,11 +38,12 @@ class SlaveDb(models.Model):
                               verbose_name="host ip's id")
     alias = models.CharField(max_length=48, blank=True, verbose_name="别名")
     db_port = models.CharField(max_length=42, default=3306, verbose_name='database port')
-    # db_master = models.ForeignKey(MasterDb, on_delete=models.SET_NULL, related_name="slave_info", null=True, blank=True,
-    #                              verbose_name="从库")
-    db_master = models.OneToOneField(MasterDb, on_delete=models.SET_NULL, null=True, verbose_name="master info")
+    db_master = models.ForeignKey(MasterDb, on_delete=models.SET_NULL, related_name="slave_info", null=True, blank=True,
+                                 verbose_name="从库")
+    # db_master = models.OneToOneField(MasterDb, on_delete=models.SET_NULL, null=True, verbose_name="master info")
     status = models.CharField(max_length=42, null=False, verbose_name='database status, online of offline')
     open_time = models.CharField(max_length=42, null=False, blank=True, verbose_name='database open time')
+    explain = models.CharField(max_length=96, blank=True, verbose_name="说明")
 
     def __str__(self):
         return self.alias

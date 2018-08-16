@@ -9,14 +9,10 @@ from rest_framework import routers
 from .. import api
 
 router = routers.DefaultRouter()
-router.register(r'db-list', api.MasterDbView)
-router.register(r'db-list2', api.MasterDbView2)
-# router.register(r'gs-list1', api.GsConfigManageView)
-# router.register(r'db-list', api.DbConfigView)
-# router.register(r'users', api.UserViewSet)
-# # router.register(r'users2', api.UserViewSet2.as_view())
+router.register(r'master', api.MasterDbView)
+# router.register(r'db-list2', api.MasterDbView2)
+router.register(r'slave', api.SlaveDbAPI)
 
-#
 urlpatterns = router.urls
 
 

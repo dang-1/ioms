@@ -38,8 +38,10 @@
                             <td>{{ status.status }}</td>
                             <td>{{ status.explain }}</td>
                             <td>{{ status.host_set.all.count }}</td>
-                            <td>{{ cloudplat.locate }}</td>
-                            <td>{{ cloudplat.city }}</td>
+                            <td>
+                                <a >编辑</a>|
+                                <a >删除</a>
+                            </td>
                         </tr>
                         {% endfor%}
                         <tbody>

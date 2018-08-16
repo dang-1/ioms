@@ -11,16 +11,18 @@ from rest_framework import serializers
 from .models import MasterDb, SlaveDb
 
 
-
 class SlaveDbSerializer(serializers.ModelSerializer):
     class Meta:
         model = SlaveDb
-        fields = ["alias",]
+        # fields = ["alias",]
+        fields = '__all__'
+        depth = 1
 
 class MasterDbSerializer(serializers.ModelSerializer):
     class Meta:
         model = MasterDb
-        fields = ["id","type", "host_info", "alias", "db_port", "status"]
+        # fields = ["id","type", "host_info", "alias", "db_port", "status"]
+        fields = '__all__'
         depth = 1
 
 

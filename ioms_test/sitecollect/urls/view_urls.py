@@ -6,7 +6,7 @@
 # @Software: PyCharm
 # @Mail    : 93651849@qq.com
 
-from django.contrib import admin
+# from django.contrib import admin
 from django.urls import path
 
 from ..views import SiteTypeDetailView, SiteTypeListView, SiteTypeAddView, SiteTypeUpdateView, SiteTypeModelDeleteView, \
