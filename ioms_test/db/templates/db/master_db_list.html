@@ -37,6 +37,7 @@
                             <th>端口</th>
                             <th>状态</th>
                             <th>开启时间</th>
+                            <th>说明</th>
                             <th>操作</th>
                         </tr>
 
@@ -51,6 +52,7 @@
                             <td>{{ master_db.db_port }}</td>
                             <td>{{ master_db.status }}</td>
                             <td>{{ master_db.open_time }}</td>
+                            <td>{{ master_db.explain }}</td>
                             <td>
                                 <a href={% url "db:master-db-update" master_db.id %}>更新</a>
                             </td>

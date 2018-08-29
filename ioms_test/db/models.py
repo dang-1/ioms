@@ -18,6 +18,7 @@ class MasterDb(models.Model):
                              verbose_name="db type")
     host_info = models.ForeignKey(Host, on_delete=models.SET_NULL, blank=True, null=True, related_name="host_info",
                               verbose_name="host name's id")
+    rds_url = models.CharField(max_length=128, blank=True, verbose_name="rds url")
 
     alias = models.CharField(max_length=48, blank=True, verbose_name="别名")
     db_port = models.CharField(max_length=42, default=3306, verbose_name='database port')

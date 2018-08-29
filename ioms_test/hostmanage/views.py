@@ -20,6 +20,7 @@ from .form import HostFrom, HostRoleForm, PorjectFrom, HostRoleOneForm
 #================================host role begin==============================================
 
 class HostRoleView(LoginRequiredMixin, ListView):
+    # '''角色'''
     template_name = 'hostmanage/host_role_list.html'
     context_object_name = 'role_list'
     model = HostRole
@@ -130,6 +131,55 @@ class HostStatusDetailView(DetailView):
     template_name = 'hostmanage/host_status_detail.html'
 #================================hoststatus end==============================================
 #================================host begin==============================================
+
+def save_host_info(outer_ip,
+                   hostname=None, status=None, inner_ip=None,
+                   osversion=None, memory=None,disk=None,cpu_num=None,
+                   platform=None,instance_id=None,instance_name=None,virtual_type=None,
+                   role=None,start_time=None,end_time=None,project=None,
+                   explain=None):
+    try:
+        h_one = Host.object.get(outer_ip=outer_ip)
+    except MultipleObjectsReturned:
+        print('ip: {} not only on')
+    except:
+        h_one = Host.object.create(outer_ip=outer_ip)
+    if 'h_one' in locals().keys():
+        if hostname:
+            h_one.hostname = hostname
+        if status:
+            h_one.status = HostStatus.object.get(status)
+        if inner_ip:
+            h_one.inner_ip = inner_ip
+        if osversion:
+            h_one.osversion = osversion
+        if memory:
+            h_one.memory = memory
+        if disk:
+            h_one.disk = disk
+        if cpu_num:
+            h_one.cpu_num = cpu_num
+        if platform:
+            h_one.platform = platform
+        if instance_id:
+            h_one.instance_id = instance_id
+        if instance_name:
+            h_one.instance_name = instance_name
+        if virtual_type:
+            h_one.virtual_type = virtual_type
+        if role:
+            h_one.role = role
+        if start_time:
+            h_one.start_time = start_time
+        if end_time:
+            h_one.end_time = end_time
+        if project:
+            h_one.project = project
+        h_one.save()
+
+    # pass
+
+
 
 # @transaction.atomic
 @login_required

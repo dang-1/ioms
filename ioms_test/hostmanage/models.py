@@ -29,6 +29,9 @@ class ProjectName(models.Model):
     def __str__(self):
         return self.project_name
 
+    class Meta:
+        ordering = ["id"]
+
 
 class CloudPlat(models.Model):
     '''
@@ -40,9 +43,13 @@ class CloudPlat(models.Model):
     zone = models.CharField(max_length=48, default="none", verbose_name="区域")
     locate = models.CharField(max_length=48, null=True, verbose_name="国家")
     city = models.CharField(max_length=48, null=True, verbose_name="城市")
+    explain = models.CharField(max_length=128, null=True, verbose_name="说明")
 
     def __str__(self):
         return "{}-{}".format(self.cloud_platform_name, self.zone)
+
+    class Meta:
+        ordering = ["id"]
 
 
 class HostStatus(models.Model):
@@ -55,6 +62,9 @@ class HostStatus(models.Model):
 
     def __str__(self):
         return self.status
+
+    class Meta:
+        ordering = ["id"]
 
 
 class Host(models.Model):
@@ -69,7 +79,7 @@ class Host(models.Model):
     osversion = models.CharField(max_length=50,null=True, blank=True, verbose_name="系统版本")
     memory = models.CharField(max_length=50,null=True, blank=True, verbose_name="内存")
     disk = models.CharField(max_length=128,null=True, blank=True, verbose_name="磁盘")
-    cpu_num = models.CharField(max_length=50,null=True, blank=True, verbose_name="cpu数量")
+    cpu_num = models.IntegerField(verbose_name="cpu数量")
     platfrom = models.ForeignKey(CloudPlat, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="区域")
     instance_id = models.CharField(max_length=50,null=True, blank=True, verbose_name="实例id")
     instance_name = models.CharField(max_length=50,null=True, blank=True, verbose_name="实例名字")

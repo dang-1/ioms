@@ -56,10 +56,14 @@ class Tag(models.Model):
 
 class GwConfig(models.Model):
     id = models.AutoField(primary_key=True)
-    gs_ip = models.ForeignKey(Host, on_delete=models.SET_NULL, blank=True, null=True, related_name="gw_ip_info",
+    gw_ip = models.ForeignKey(Host, on_delete=models.SET_NULL, blank=True, null=True, related_name="gw_ip_info",
                               verbose_name="host ip's id")
-    gs_db = models.CharField(max_length=42, blank=True, null=True, verbose_name='database name')
-    gs_db_ip = models.ForeignKey(MasterDb, on_delete=models.SET_NULL, blank=True, null=True, related_name="gw_db",
+    gw_zone = models.ForeignKey(ZoneName, on_delete=models.SET_NULL, blank=True, null=True, related_name='gw_zone',
+                                verbose_name='gw zone')
+    gw_dir = models.CharField(max_length=42, blank=True, null=True, verbose_name='gw dir')
+    gw_port = models.IntegerField()
+    gw_db = models.CharField(max_length=42, blank=True, null=True, verbose_name='database name')
+    gw_db_ip = models.ForeignKey(MasterDb, on_delete=models.SET_NULL, blank=True, null=True, related_name="gw_db",
                               verbose_name="main db")
 
 

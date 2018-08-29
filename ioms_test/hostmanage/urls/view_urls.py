@@ -18,10 +18,10 @@ from ..views import HostRoleView, HostRoleAddView, HostRoleUpdateView, HostRoleD
 app_name = 'hostmanage'
 
 urlpatterns = [
-    path('host-role/list/', HostRoleView.as_view(), name='host-role-list'),
-    path('host-role/add/', HostRoleAddView.as_view(), name='host-role-add'),
-    path('host-role/<int:pk>/update/', HostRoleUpdateView.as_view(), name='host-role-update'),
-    path('host-role/<int:pk>/delete/', HostRoleDeleteView.as_view(), name='host-role-delete'),
+    path('host/role/list/', HostRoleView.as_view(), name='host-role-list'),
+    path('host/role/add/', HostRoleAddView.as_view(), name='host-role-add'),
+    path('host/role/<int:pk>/update/', HostRoleUpdateView.as_view(), name='host-role-update'),
+    path('host/role/<int:pk>/delete/', HostRoleDeleteView.as_view(), name='host-role-delete'),
 
     path('host_sync/', update_host_view, name="host-sync"),
     path('host_index/', HostIndexView.as_view(), name="host_index"),

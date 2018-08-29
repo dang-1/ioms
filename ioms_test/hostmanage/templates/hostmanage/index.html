@@ -25,6 +25,11 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">机器列表</h3>
+                        <form name="searchip" action="" method="post">
+                            外网ip：<input>
+                            <input type="submit" value="搜索" onclick="">
+                            <input type="reset" value="清空">
+                        </form>
                     </div>
                     <table id="exapmle2" class="table table-bordered table-hover">
                         <thead>
@@ -43,7 +48,7 @@
                             <td>{{ post.outer_ip }}</td>
                             <td>{{ post.inner_ip }}</td>
                             <td>{{ post.memory }}</td>
-                            <td><a href="">iptables信息</td>
+                            <td><a href="">iptables信息</a>|<a>详细信息</a></td>
                         </tr>
                         {% endfor%}
                         <tbody>

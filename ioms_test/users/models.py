@@ -96,7 +96,7 @@ class UserGroup(models.Model):
     name = models.CharField(max_length=128, verbose_name='group name')
     comment = models.CharField(max_length=123, blank=True, verbose_name='comment')
     date_created = models.DateTimeField(auto_now_add=True,null=True,verbose_name='date created')
-    created_by = models.CharField(max_length=100, null=True, blank=True)
+    created_by = models.CharField(max_length=100, null=True, blank=True, verbose_name="who create")
 
     def __str__(self):
         return self.name
